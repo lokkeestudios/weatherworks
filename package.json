@@ -1,7 +1,10 @@
 {
   "name": "weather-app",
-  "version": "0.1.0",
-  "private": true,
+  "version": "1.0.0",
+  "homepage": "PLACEHOLDER",
+  "license": "UNLICENSED",
+  "description": "PLACEHOLDER",
+  "author": "Lokkee Studios",
   "scripts": {
     "dev": "next dev",
     "build": "next build",
@@ -14,7 +17,22 @@
     "react-dom": "18.2.0"
   },
   "devDependencies": {
-    "eslint": "8.20.0",
-    "eslint-config-next": "12.2.2"
+    "@types/node": "^18.0.6",
+    "@types/react": "^18.0.12",
+    "@types/react-dom": "^18.0.5",
+    "@typescript-eslint/eslint-plugin": "^5.30.7",
+    "@typescript-eslint/parser": "^5.30.7",
+    "eslint": "^8.20.0",
+    "eslint-config-airbnb": "^19.0.4",
+    "eslint-config-airbnb-typescript": "^17.0.0",
+    "eslint-config-next": "^0.2.4",
+    "eslint-config-prettier": "^8.5.0",
+    "eslint-import-resolver-typescript": "^2.7.1",
+    "eslint-plugin-import": "^2.26.0",
+    "eslint-plugin-jsx-a11y": "^6.6.0",
+    "eslint-plugin-prettier": "^4.0.0",
+    "eslint-plugin-react": "^7.30.0",
+    "prettier": "^2.6.2",
+    "typescript": "^4.7.4"
   }
 }
