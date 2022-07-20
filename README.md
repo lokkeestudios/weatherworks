@@ -1,7 +1,7 @@
 // TODO: Logo
 
-# weather-app<br>SUBTITLE
+# WeatherWorks<br>The most visually compelling real-time weather app
 
 <sup>Copyright &copy; 2022 Lokkee Studios All Rights Reserved.</sup>
 
-// TODO: Description
+[WeatherWorks](https://weatherworks.lokkeestudios.com) brings you visually compelling real-time global weather data, from both the present and the future.

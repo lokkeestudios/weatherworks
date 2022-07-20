@@ -1,9 +1,9 @@
 {
-  "name": "weather-app",
+  "name": "weatherworks",
   "version": "1.0.0",
-  "homepage": "PLACEHOLDER",
+  "homepage": "https://weatherworks.lokkeestudios.com",
   "license": "UNLICENSED",
-  "description": "PLACEHOLDER",
+  "description": "The most visually compelling real-time weather app",
   "author": "Lokkee Studios",
   "scripts": {
     "dev": "next dev",
