@@ -1,3 +1,4 @@
+import GlobalStyles from '../styles/GlobalStyles';
 import SEO from './SEO';
 
 interface Props {
@@ -10,6 +11,7 @@ function Layout({ title, slug, children }: Props) {
   return (
     <>
       <SEO title={title} slug={slug} />
+      <GlobalStyles />
       <main>{children}</main>
     </>
   );

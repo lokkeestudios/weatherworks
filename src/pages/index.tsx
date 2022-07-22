@@ -1,14 +1,15 @@
 import Layout from '../components/layouts/Layout';
+import { H1 } from '../components/styles/TextStyles';
 
-function LandingPage() {
+function Home() {
   return (
     <Layout
       title="WeatherWorks | The most visually compelling real-time weather app"
       slug=""
     >
-      <h1>The most visually compelling real-time weather app</h1>
+      <H1>The most visually compelling real-time weather app</H1>
     </Layout>
   );
 }
 
-export default LandingPage;
+export default Home;
