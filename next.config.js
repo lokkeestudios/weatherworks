@@ -1,6 +1,8 @@
+// @ts-check
+
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  baseUrl: "./src",
+  baseUrl: './src',
   reactStrictMode: true,
   swcMinify: true,
   i18n: {
