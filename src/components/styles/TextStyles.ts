@@ -8,7 +8,7 @@ const H1 = styled.h1`
   max-width: 50ch;
   margin: 0;
 
-  @media only screen and (max-width: 768px) {
+  @media only screen and (max-width: 744px) {
     font-size: 2.125rem;
   }
 `;
@@ -21,7 +21,7 @@ const H2 = styled.h2`
   max-width: 50ch;
   margin: 0;
 
-  @media only screen and (max-width: 768px) {
+  @media only screen and (max-width: 744px) {
     font-size: 1.75rem;
   }
 `;
@@ -34,7 +34,7 @@ const H3 = styled.h3`
   max-width: 50ch;
   margin: 0;
 
-  @media only screen and (max-width: 768px) {
+  @media only screen and (max-width: 744px) {
     font-size: 1.5rem;
   }
 `;
@@ -47,7 +47,7 @@ const BodyLarge = styled.p`
   max-width: 50ch;
   margin: 0;
 
-  @media only screen and (max-width: 768px) {
+  @media only screen and (max-width: 744px) {
     font-size: 1rem;
   }
 `;
@@ -60,7 +60,7 @@ const BodyMedium = styled.p`
   max-width: 50ch;
   margin: 0;
 
-  @media only screen and (max-width: 768px) {
+  @media only screen and (max-width: 744px) {
     font-size: 0.8125rem;
   }
 `;
@@ -73,7 +73,7 @@ const BodySmall = styled.p`
   max-width: 50ch;
   margin: 0;
 
-  @media only screen and (max-width: 768px) {
+  @media only screen and (max-width: 744px) {
     font-size: 0.6875rem;
   }
 `;
@@ -87,7 +87,7 @@ const CaptionLarge = styled.p`
   margin: 0;
   text-transform: uppercase;
 
-  @media only screen and (max-width: 768px) {
+  @media only screen and (max-width: 744px) {
     font-size: 0.8125rem;
   }
 `;
@@ -101,7 +101,7 @@ const CaptionSmall = styled.p`
   margin: 0;
   text-transform: uppercase;
 
-  @media only screen and (max-width: 768px) {
+  @media only screen and (max-width: 744px) {
     font-size: 0.6875rem;
   }
 `;
