@@ -1,7 +1,7 @@
 {
   "name": "WeatherWorks",
   "description": "WeatherWorks brings you visually compelling real-time global weather data, from both the present and the future.",
-  "start_url": "/",
+  "start_url": "/?home=true",
   "display": "standalone",
   "background_color": "#90cdf4",
   "theme_color": "#12112C",
