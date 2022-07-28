@@ -9,6 +9,11 @@ const nextConfig = {
     locales: ['en'],
     defaultLocale: 'en',
   },
+  compiler: {
+    styledComponents: {
+      displayName: true,
+    },
+  },
 }
 
 module.exports = nextConfig
