@@ -15,8 +15,8 @@ const CardWrapper = styled.div`
   padding-block: 25px;
   border-radius: 20px;
   background: ${ColorStyles.dark.card.background};
-  border: 0.5px solid rgba(255, 255, 255, 0.3);
-  box-shadow: 0px 25px 80px rgba(0, 0, 0, 0.25);
+  border: ${ColorStyles.dark.card.border};
+  box-shadow: ${ColorStyles.dark.card.shadow};
   backdrop-filter: blur(40px);
   cursor: pointer;
 
