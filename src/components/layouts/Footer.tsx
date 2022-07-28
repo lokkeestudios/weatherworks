@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import socialsData from '../../data/socialsData';
 import ColorStyles from '../styles/ColorStyles';
 import { BodySmall, CaptionLarge, CaptionSmall } from '../styles/TextStyles';
+import Wrapper from '../styles/Wrapper';
 
 function getCurrentYear() {
   const currentYear = new Date().getFullYear().toString();
@@ -10,9 +11,7 @@ function getCurrentYear() {
   return currentYear;
 }
 
-const FooterWrapper = styled.footer`
-  position: relative;
-  bottom: 0;
+const FooterWrapper = styled(Wrapper)`
   padding-block: 24px;
 
   & > :not([hidden]) ~ :not([hidden]) {
@@ -23,7 +22,12 @@ const FooterWrapper = styled.footer`
 const LogoWrapper = styled.div`
   display: flex;
   justify-content: center;
+  align-items: center;
   padding-block: 32px;
+`;
+
+const Logo = styled.img`
+  width: 60px;
 `;
 
 const CreditsWrapper = styled.div`
@@ -54,7 +58,7 @@ const InformationWrapper = styled.div`
   display: flex;
   width: 100%;
   padding-block: 32px;
-  row-gap: 30px;
+  row-gap: 20px;
 
   @media only screen and (max-width: 744px) {
     flex-direction: column-reverse;
@@ -111,24 +115,17 @@ const LinksWrapper = styled.nav`
 `;
 
 const LinkText = styled(CaptionSmall)`
+  text-transform: none;
   cursor: pointer;
   text-decoration: none;
   color: ${ColorStyles.dark.text2};
-  border-bottom: 1px solid transparent;
-  transition-property: border-color;
-  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
-  transition-duration: 150ms;
-
-  &:hover {
-    border-color: ${ColorStyles.dark.text2};
-  }
 `;
 
 function Footer() {
   return (
-    <FooterWrapper>
+    <FooterWrapper as="footer">
       <LogoWrapper>
-        <span>Logo</span>
+        <Logo src="images/logos/weatherworks.svg" alt="WeatherWorks" />
       </LogoWrapper>
       <CreditsWrapper>
         <CreditsLogo

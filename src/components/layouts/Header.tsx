@@ -1,7 +1,8 @@
 import styled from 'styled-components';
 import socialsData from '../../data/socialsData';
+import Wrapper from '../styles/Wrapper';
 
-const HeaderWrapper = styled.header`
+const HeaderWrapper = styled(Wrapper)`
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -13,6 +14,10 @@ const HeaderWrapper = styled.header`
 `;
 
 const LogoWrapper = styled.div``;
+
+const Logo = styled.img`
+  width: 50px;
+`;
 
 const SocialsWrapper = styled.nav`
   display: flex;
@@ -37,9 +42,9 @@ const SocialsItem = styled.a`
 
 function Header() {
   return (
-    <HeaderWrapper>
+    <HeaderWrapper as="header">
       <LogoWrapper>
-        <span>Logo</span>
+        <Logo src="images/logos/weatherworks.svg" alt="WeatherWorks" />
       </LogoWrapper>
       <SocialsWrapper>
         {socialsData.map((social, index) => (
