@@ -1,4 +1,6 @@
 import GlobalStyles from '../styles/GlobalStyles';
+import Footer from './Footer';
+import Header from './Header';
 import SEO from './SEO';
 
 interface Props {
@@ -12,7 +14,9 @@ function Layout({ title, slug, children }: Props) {
     <>
       <SEO title={title} slug={slug} />
       <GlobalStyles />
+      <Header />
       <main>{children}</main>
+      <Footer />
     </>
   );
 }
