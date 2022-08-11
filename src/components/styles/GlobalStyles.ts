@@ -8,8 +8,8 @@ const BaseStyles = css`
     background: ${ColorStyles.dark.background};
     color: ${ColorStyles.dark.text};
 
-    &::selection {
-      background: rgba(146, 92, 240, 0.9);
+    *::selection {
+      background-color: rgba(146, 92, 240, 0.9);
     }
   }
 `;

@@ -18,7 +18,7 @@ module.exports = {
       extends: [
         'plugin:@typescript-eslint/recommended',
         'plugin:@typescript-eslint/recommended-requiring-type-checking',
-        'airbnb-typescript'
+        'airbnb-typescript',
       ],
       parserOptions: {
         project: ['./tsconfig.json'],
