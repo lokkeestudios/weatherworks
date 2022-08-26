@@ -1,5 +1,7 @@
+import WaveBackground from '../components/backgrounds/WaveBackground';
 import Layout from '../components/layouts/Layout';
-import { H1 } from '../components/styles/TextStyles';
+import GeolocationSection from '../components/sections/GeolocationSection';
+import SearchSection from '../components/sections/SearchSection';
 
 function Home() {
   return (
@@ -7,7 +9,9 @@ function Home() {
       title="WeatherWorks | The most visually compelling real-time weather app"
       slug=""
     >
-      <H1>The most visually compelling real-time weather app</H1>
+      <WaveBackground />
+      <GeolocationSection />
+      <SearchSection />
     </Layout>
   );
 }
