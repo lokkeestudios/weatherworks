@@ -3,6 +3,7 @@ import OpenWeatherMap from 'openweathermap-ts';
 import { CurrentResponse } from 'openweathermap-ts/dist/types';
 import { useEffect, useState } from 'react';
 import styled from 'styled-components';
+import Geolocation from '../../types/Geolocation';
 import ColorStyles from '../styles/ColorStyles';
 import { BodyLarge, CaptionLarge, H3 } from '../styles/TextStyles';
 
@@ -64,11 +65,10 @@ const WeatherIcon = styled.img`
 `;
 
 interface Props {
-  latitude: number;
-  longitude: number;
+  location: Geolocation;
 }
 
-function WeatherCard({ latitude, longitude }: Props) {
+function WeatherCard({ location }: Props) {
   const [weatherData, setWeatherData] = useState<CurrentResponse>();
   const [isFailed, setIsFailed] = useState(false);
 
@@ -84,17 +84,19 @@ function WeatherCard({ latitude, longitude }: Props) {
       units: 'metric',
     });
 
+    const { latitude, longitude } = location;
+
     openWeather
       .getCurrentWeatherByGeoCoordinates(latitude, longitude)
       .then((data) => setWeatherData(data))
       .catch(() => setIsFailed(true));
-  }, []);
+  }, [location]);
 
   /* eslint-disable-next-line no-nested-ternary  */
   return isFailed ? (
     <BodyLarge>Unable to fetch weather data</BodyLarge>
   ) : weatherData ? (
-    <Link href="/location/placeholder">
+    <Link href={`/location/PLACEHOLDER_${weatherData.name}`}>
       <CardWrapper>
         <TemperatureText>{Math.round(weatherData.main.temp)}°</TemperatureText>
         <DetailsWrapper>
