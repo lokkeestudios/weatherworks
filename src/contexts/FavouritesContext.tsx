@@ -14,9 +14,9 @@ import {
   FavouritesState,
   initialState,
 } from '../reducers/FavouritesReducer';
-import Favourite from '../types/Favourite';
 
 const FAVOURITES_STORAGE_KEY = 'favourites';
+const MAX_FAVOURITES = 4;
 
 type FavouritesContextState = readonly [FavouritesState, Dispatch<Action>];
 
@@ -28,7 +28,7 @@ interface Props {
   children: ReactNode;
 }
 
-export function FavouritesContextProvider({ children }: Props) {
+function FavouritesContextProvider({ children }: Props) {
   const [state, dispatch] = useReducer(FavouritesReducer, initialState);
 
   const contextValue: FavouritesContextState = useMemo(
@@ -42,14 +42,14 @@ export function FavouritesContextProvider({ children }: Props) {
     if (storedFavourites === null) return;
 
     try {
-      const initialFavourites: Favourite[] = JSON.parse(storedFavourites);
+      const initialFavourites = JSON.parse(storedFavourites) as number[];
       dispatch({
         type: ActionType.INIT_STORED,
         payload: initialFavourites,
       });
     } catch (error) {
       throw new Error(
-        'Favourites retrieved from local storage are not of JSON format',
+        'Favourites retrieved from local storage are not of correct JSON format',
       );
     }
   }, []);
@@ -58,7 +58,7 @@ export function FavouritesContextProvider({ children }: Props) {
     if (state !== initialState) {
       localStorage.setItem(
         FAVOURITES_STORAGE_KEY,
-        JSON.stringify(state.favourites),
+        JSON.stringify(state.favouriteCityIds),
       );
     }
   }, [state]);
@@ -70,7 +70,7 @@ export function FavouritesContextProvider({ children }: Props) {
   );
 }
 
-export function useFavouritesContext() {
+function useFavouritesContext() {
   const context = useContext(FavouritesContext);
 
   if (context === undefined) {
@@ -81,3 +81,5 @@ export function useFavouritesContext() {
 
   return context;
 }
+
+export { FavouritesContextProvider, useFavouritesContext, MAX_FAVOURITES };

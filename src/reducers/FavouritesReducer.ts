@@ -1,11 +1,9 @@
-import Favourite from '../types/Favourite';
-
 interface FavouritesState {
-  favourites: Favourite[];
+  favouriteCityIds: number[];
 }
 
 const initialState: FavouritesState = {
-  favourites: [],
+  favouriteCityIds: [],
 };
 
 enum ActionType {
@@ -15,28 +13,26 @@ enum ActionType {
 }
 
 type Action =
-  | { type: ActionType.INIT_STORED; payload: Favourite[] }
-  | { type: ActionType.ADD_FAVOURITE; payload: Favourite }
+  | { type: ActionType.INIT_STORED; payload: number[] }
+  | { type: ActionType.ADD_FAVOURITE; payload: number }
   | { type: ActionType.REMOVE_FAVOURITE; payload: number };
 
 const FavouritesReducer = (state: FavouritesState, action: Action) => {
   switch (action.type) {
     case ActionType.INIT_STORED:
-      return { favourites: action.payload };
+      return { favouriteCityIds: action.payload };
     case ActionType.ADD_FAVOURITE: {
       return {
         ...state,
-        favourites: [...state.favourites, action.payload],
+        favouriteCityIds: [...state.favouriteCityIds, action.payload],
       };
     }
     case ActionType.REMOVE_FAVOURITE: {
       return {
         ...state,
-        items: [
-          state.favourites.filter(
-            (favourite) => favourite.id !== action.payload,
-          ),
-        ],
+        favouriteCityIds: state.favouriteCityIds.filter(
+          (favouriteCityId) => favouriteCityId !== action.payload,
+        ),
       };
     }
     default: {
