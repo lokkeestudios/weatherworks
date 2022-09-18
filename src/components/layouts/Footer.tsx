@@ -1,86 +1,79 @@
+import Image from 'next/image';
 import Link from 'next/link';
 import styled from 'styled-components';
 import socialsData from '../../data/socialsData';
+import Wave from '../backgrounds/Wave';
 import ColorStyles from '../styles/ColorStyles';
-import { BodySmall, CaptionLarge, CaptionSmall } from '../styles/TextStyles';
-import Wrapper from '../styles/Wrapper';
+import StyledWrapper from '../styles/StyledWrapper';
+import {
+  StyledBodySmall,
+  StyledCaptionLarge,
+  StyledCaptionSmall,
+} from '../styles/TextStyles';
 
-function getCurrentYear() {
-  const currentYear = new Date().getFullYear().toString();
+const StyledFooterWrapper = styled.footer`
+  padding-block: 1.5em;
+  width: 100%;
+  margin-top: 100px;
+  background: ${ColorStyles.background};
+`;
 
-  return currentYear;
-}
-
-const FooterWrapper = styled(Wrapper)`
-  padding-block: 24px;
-
+const StyledContentsWrapper = styled(StyledWrapper)`
+  position: relative;
+  z-index: 1;
   & > :not([hidden]) ~ :not([hidden]) {
-    border-top: 0.6px solid ${ColorStyles.dark.text2};
+    border-top: 0.6px solid ${ColorStyles.text2};
   }
 `;
 
-const LogoWrapper = styled.div`
+const StyledFooterRow = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
   padding-block: 32px;
 `;
 
-const Logo = styled.img`
-  width: 60px;
-`;
-
-const CreditsWrapper = styled.div`
+const StyledCreditsLink = styled.a`
   display: flex;
   flex-direction: column;
   justify-content: center;
-  align-items: center;
-  padding-block: 32px;
-  row-gap: 10px;
+  text-decoration: none;
 `;
 
-const CreditsLogo = styled.img`
-  width: 48px;
+const StyledCreditsText = styled(StyledCaptionLarge)`
+  color: ${ColorStyles.text};
+  margin-top: 0.625em;
 
-  @media only screen and (max-width: 744px) {
-    width: 40px;
-  }
-`;
-
-const CreditsText = styled(CaptionLarge)`
   span {
     font-family: 'Roboto Condensed', sans-serif;
     font-weight: normal;
   }
 `;
 
-const InformationWrapper = styled.div`
-  display: flex;
-  width: 100%;
-  padding-block: 32px;
+const StyledMultiColumnFooterRow = styled(StyledFooterRow)`
   row-gap: 20px;
 
-  @media only screen and (max-width: 744px) {
+  @media only screen and (max-width: 50em) {
     flex-direction: column-reverse;
   }
 `;
 
-const CopyrightWrapper = styled.div`
+const StyledCopyrightWrapper = styled.div`
   display: flex;
   flex-basis: 33.33333%;
   justify-content: flex-start;
   align-items: center;
 
-  @media only screen and (max-width: 744px) {
+  @media only screen and (max-width: 50em) {
     justify-content: center;
   }
 `;
 
-const CopyrightText = styled(BodySmall)`
-  color: ${ColorStyles.dark.text2};
+const StyledCopyrightText = styled(StyledBodySmall)`
+  color: ${ColorStyles.text2};
 `;
 
-const SocialsWrapper = styled.nav`
+const StyledSocialsWrapper = styled.nav`
   display: flex;
   flex-basis: 33.33333%;
   column-gap: 10px;
@@ -88,14 +81,14 @@ const SocialsWrapper = styled.nav`
   align-items: center;
 `;
 
-const SocialsItem = styled.a`
+const StyledSocialsItem = styled.a`
   width: 24px;
-  transition-property: opacity;
-  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
-  transition-duration: 150ms;
+  transition-property: scale;
+  transition: cubic-bezier(0.215, 0.61, 0.355, 1) 300ms;
 
-  &:hover {
-    opacity: 0.7;
+  &:hover,
+  &:focus-within {
+    scale: 1.15;
   }
 
   @media only screen and (max-width: 744px) {
@@ -103,64 +96,117 @@ const SocialsItem = styled.a`
   }
 `;
 
-const LinksWrapper = styled.nav`
+const StyledLinksWrapper = styled.nav`
   display: flex;
   flex-basis: 33.33333%;
   justify-content: flex-end;
   align-items: center;
 
-  @media only screen and (max-width: 744px) {
+  @media only screen and (max-width: 50em) {
     justify-content: center;
   }
 `;
 
-const LinkText = styled(CaptionSmall)`
+const StyledLinkText = styled(StyledCaptionSmall)`
   text-transform: none;
   cursor: pointer;
   text-decoration: none;
-  color: ${ColorStyles.dark.text2};
+  color: ${ColorStyles.text2};
 `;
+
+const StyledBackgroundWrapper = styled.div`
+  position: relative;
+`;
+
+function getCurrentYear() {
+  const currentYear = new Date().getFullYear().toString();
+
+  return currentYear;
+}
 
 function Footer() {
   return (
-    <FooterWrapper as="footer">
-      <LogoWrapper>
-        <Logo src="images/logos/weatherworks.svg" alt="WeatherWorks" />
-      </LogoWrapper>
-      <CreditsWrapper>
-        <CreditsLogo
-          src="/images/logos/lokkee-studios.svg"
-          alt="Lokkee Studios"
+    <StyledFooterWrapper>
+      <StyledBackgroundWrapper>
+        <Wave
+          src="/images/waves/footer/wave1.svg"
+          width={1700}
+          height={508}
+          offsetY="-380px"
+          hasBlur
         />
-        <CreditsText>
-          Hand crafted by{' '}
-          <span>
-            <b> Lokkee</b> Studios
-          </span>
-        </CreditsText>
-      </CreditsWrapper>
-      <InformationWrapper>
-        <CopyrightWrapper>
-          <CopyrightText>
-            Copyright &copy; {getCurrentYear()} Lokkee Studios All Rights
-            Reserved.
-          </CopyrightText>
-        </CopyrightWrapper>
-        <SocialsWrapper>
-          {socialsData.map((social, index) => (
-            /* eslint-disable-next-line react/no-array-index-key */
-            <SocialsItem key={index} href={social.link} title={social.title}>
-              <img src={social.icon} alt={social.title} />
-            </SocialsItem>
-          ))}
-        </SocialsWrapper>
-        <LinksWrapper>
-          <Link href="/imprint">
-            <LinkText>Imprint</LinkText>
-          </Link>
-        </LinksWrapper>
-      </InformationWrapper>
-    </FooterWrapper>
+        <Wave
+          src="/images/waves/footer/wave2.svg"
+          width={1700}
+          height={300}
+          offsetY="-130px"
+        />
+      </StyledBackgroundWrapper>
+      <StyledContentsWrapper>
+        <StyledFooterRow>
+          <Image
+            src="/images/logos/weatherworks.svg"
+            alt="WeatherWorks"
+            width={64}
+            height={64}
+          />
+        </StyledFooterRow>
+        <StyledFooterRow>
+          <StyledCreditsLink
+            href="https://lokkeestudios.com"
+            rel="noreferrer"
+            target="_blank"
+            aria-label="Visit creator"
+          >
+            <Image
+              src="/images/logos/lokkee-studios.svg"
+              alt="Lokkee Studios"
+              width={48}
+              height={48}
+            />
+            <StyledCreditsText>
+              Hand crafted by{' '}
+              <span>
+                <b>Lokkee</b> Studios
+              </span>
+            </StyledCreditsText>
+          </StyledCreditsLink>
+        </StyledFooterRow>
+        <StyledMultiColumnFooterRow>
+          <StyledCopyrightWrapper>
+            <StyledCopyrightText>
+              Copyright &copy; {getCurrentYear()} Lokkee Studios All Rights
+              Reserved.
+            </StyledCopyrightText>
+          </StyledCopyrightWrapper>
+          <StyledSocialsWrapper>
+            {socialsData.map((social, index) => (
+              <StyledSocialsItem
+                /* safe to disable in this case, as we are dealing with static data */
+                /* eslint-disable-next-line react/no-array-index-key */
+                key={index}
+                href={social.link}
+                rel="noreferrer"
+                target="_blank"
+                aria-label={social.title}
+              >
+                <Image
+                  src={social.icon}
+                  alt={social.title}
+                  width={24}
+                  height={24}
+                />
+              </StyledSocialsItem>
+            ))}
+          </StyledSocialsWrapper>
+          <StyledLinksWrapper>
+            <Link href="/imprint">
+              <StyledLinkText>Imprint</StyledLinkText>
+            </Link>
+          </StyledLinksWrapper>
+        </StyledMultiColumnFooterRow>
+      </StyledContentsWrapper>
+    </StyledFooterWrapper>
   );
 }
 
