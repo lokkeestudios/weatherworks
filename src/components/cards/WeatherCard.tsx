@@ -1,13 +1,19 @@
+import Image from 'next/image';
 import Link from 'next/link';
-import OpenWeatherMap from 'openweathermap-ts';
-import { CurrentResponse } from 'openweathermap-ts/dist/types';
-import { useEffect, useState } from 'react';
+import { useQuery } from 'react-query';
 import styled from 'styled-components';
+import { QueryKeys } from '../../proxies';
+import getCurrentWeather from '../../proxies/getCurrentWeather';
 import Geolocation from '../../types/Geolocation';
+import Loader from '../loaders/Loader';
 import ColorStyles from '../styles/ColorStyles';
-import { BodyLarge, CaptionLarge, H3 } from '../styles/TextStyles';
+import {
+  StyledBodyLarge,
+  StyledCaptionLarge,
+  StyledH3,
+} from '../styles/TextStyles';
 
-const CardWrapper = styled.div`
+const StyledCardWrapper = styled.div`
   display: flex;
   width: 100%;
   justify-content: space-between;
@@ -15,11 +21,20 @@ const CardWrapper = styled.div`
   padding-inline: 45px;
   padding-block: 25px;
   border-radius: 20px;
-  background: ${ColorStyles.dark.card.background};
-  border: ${ColorStyles.dark.card.border};
-  box-shadow: ${ColorStyles.dark.card.shadow};
+  background: ${ColorStyles.card.background};
+  border: ${ColorStyles.card.border};
+  box-shadow: 0 2px 4px rgba(45, 35, 66, 0.35),
+    0 7px 13px -3px rgba(45, 35, 66, 0.25);
   backdrop-filter: blur(40px);
   cursor: pointer;
+  transition-property: translate, box-shadow;
+  transition: cubic-bezier(0.215, 0.61, 0.355, 1) 300ms;
+
+  &:hover {
+    translate: 0 -0.3rem;
+    box-shadow: 0 10px 30px 0 rgba(45, 35, 66, 0.4),
+      0 4px 18px 0 rgba(45, 35, 66, 0.3);
+  }
 
   @media only screen and (max-width: 744px) {
     padding-inline: 25px;
@@ -28,7 +43,7 @@ const CardWrapper = styled.div`
   }
 `;
 
-const TemperatureText = styled.p`
+const StyledTemperatureText = styled.p`
   font-family: 'Roboto Condensed', sans-serif;
   font-weight: bold;
   font-size: 4.875rem;
@@ -40,7 +55,7 @@ const TemperatureText = styled.p`
   }
 `;
 
-const DetailsWrapper = styled.div`
+const StyledDetailsWrapper = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -51,68 +66,68 @@ const DetailsWrapper = styled.div`
   }
 `;
 
-const WeatherText = styled(CaptionLarge)`
+const StyledWeatherText = styled(StyledCaptionLarge)`
   text-transform: capitalize;
-  color: ${ColorStyles.dark.text2};
-`;
-
-const WeatherIcon = styled.img`
-  width: 128px;
-
-  @media only screen and (max-width: 744px) {
-    width: 60px;
-  }
+  color: ${ColorStyles.text2};
 `;
 
 interface Props {
-  location: Geolocation;
+  geolocation?: Geolocation;
+  cityId?: number;
 }
 
-function WeatherCard({ location }: Props) {
-  const [weatherData, setWeatherData] = useState<CurrentResponse>();
-  const [isFailed, setIsFailed] = useState(false);
+function WeatherCard({ geolocation = undefined, cityId = undefined }: Props) {
+  const {
+    data: currentWeatherData,
+    isLoading,
+    isError,
+  } = useQuery(QueryKeys.currentWeather(geolocation || cityId), async () =>
+    getCurrentWeather({ geolocation, cityId }),
+  );
 
-  useEffect(() => {
-    const { NEXT_PUBLIC_WEATHER_API_KEY } = process.env;
+  if (isError) {
+    return (
+      <StyledBodyLarge>
+        {' '}
+        Unable to fetch weather data. Try again later
+      </StyledBodyLarge>
+    );
+  }
 
-    if (NEXT_PUBLIC_WEATHER_API_KEY === undefined) {
-      throw new Error('.env.local variable WEATHER_API_KEY is undefined');
-    }
+  if (isLoading) {
+    return <Loader />;
+  }
 
-    const openWeather = new OpenWeatherMap({
-      apiKey: NEXT_PUBLIC_WEATHER_API_KEY,
-      units: 'metric',
-    });
+  // PLACEHOLDER ONLY
+  if (!currentWeatherData) {
+    return <p>TODO</p>;
+  }
 
-    const { latitude, longitude } = location;
-
-    openWeather
-      .getCurrentWeatherByGeoCoordinates(latitude, longitude)
-      .then((data) => setWeatherData(data))
-      .catch(() => setIsFailed(true));
-  }, [location]);
-
-  /* eslint-disable-next-line no-nested-ternary  */
-  return isFailed ? (
-    <BodyLarge>Unable to fetch weather data</BodyLarge>
-  ) : weatherData ? (
-    <Link href={`/location/PLACEHOLDER_${weatherData.name}`}>
-      <CardWrapper>
-        <TemperatureText>{Math.round(weatherData.main.temp)}°</TemperatureText>
-        <DetailsWrapper>
-          <WeatherText>{weatherData.weather[0].description}</WeatherText>
-          <H3>
-            {weatherData.name} - {weatherData.sys.country}
-          </H3>
-        </DetailsWrapper>
-        <WeatherIcon
-          src={`/images/icons/weather/${weatherData.weather[0].icon}.webp`}
-          alt={weatherData.weather[0].description}
+  return (
+    <Link
+      href={`/location/${currentWeatherData.id}`}
+      aria-label="View detailed location page"
+    >
+      <StyledCardWrapper>
+        <StyledTemperatureText>
+          {Math.round(currentWeatherData.main.temp)}°
+        </StyledTemperatureText>
+        <StyledDetailsWrapper>
+          <StyledWeatherText>
+            {currentWeatherData.weather[0].description}
+          </StyledWeatherText>
+          <StyledH3>
+            {currentWeatherData.name} - {currentWeatherData.sys.country}
+          </StyledH3>
+        </StyledDetailsWrapper>
+        <Image
+          src={`/images/icons/weather/${currentWeatherData.weather[0].icon}.webp`}
+          alt={currentWeatherData.weather[0].description}
+          width={128}
+          height={128}
         />
-      </CardWrapper>
+      </StyledCardWrapper>
     </Link>
-  ) : (
-    <BodyLarge>Loading weather...</BodyLarge>
   );
 }
 
