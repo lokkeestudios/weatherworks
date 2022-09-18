@@ -1,13 +1,14 @@
 import styled from 'styled-components';
 import useGeolocation from '../../hooks/useGeolocation';
 import WeatherCard from '../cards/WeatherCard';
-import { BodyLarge, H2 } from '../styles/TextStyles';
-import Wrapper from '../styles/Wrapper';
+import Loader from '../loaders/Loader';
+import StyledWrapper from '../styles/StyledWrapper';
+import { StyledBodyLarge, StyledH2 } from '../styles/TextStyles';
 
-const SectionWrapper = styled(Wrapper)`
+const StyledSectionWrapper = styled(StyledWrapper)`
   display: grid;
   row-gap: 30px;
-  padding-block: 25px;
+  padding-block: 35px;
 
   @media only screen and (max-width: 744px) {
     row-gap: 20px;
@@ -21,17 +22,19 @@ function GeolocationSection() {
   });
 
   return (
-    <SectionWrapper as="section">
-      <H2>Your location</H2>
+    <StyledSectionWrapper as="section">
+      <StyledH2>Your location</StyledH2>
       {/* eslint-disable-next-line no-nested-ternary */}
       {error ? (
-        <BodyLarge>Unable to retrieve location: {error}</BodyLarge>
-      ) : location ? (
-        <WeatherCard location={location} />
+        <StyledBodyLarge>
+          Unable to retrieve location: {error}. Try again later
+        </StyledBodyLarge>
+      ) : !location ? (
+        <Loader />
       ) : (
-        <BodyLarge>Locating...</BodyLarge>
+        <WeatherCard geolocation={location} />
       )}
-    </SectionWrapper>
+    </StyledSectionWrapper>
   );
 }
 
