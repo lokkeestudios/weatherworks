@@ -1,15 +1,17 @@
 import { createGlobalStyle, css } from 'styled-components';
 import ColorStyles from './ColorStyles';
-import Reset from './Reset';
+import ResetStyles from './ResetStyles';
 
 const BaseStyles = css`
   body {
     font-family: 'Roboto', sans-serif;
-    background: ${ColorStyles.dark.background};
-    color: ${ColorStyles.dark.text};
+    background: ${ColorStyles.background};
+    color: ${ColorStyles.text};
+    overflow-x: hidden;
 
     *::selection {
-      background-color: rgba(146, 92, 240, 0.9);
+      background-color: rgba(105, 25, 255, 0.9);
+      color: ${ColorStyles.text};
     }
   }
 `;
@@ -18,7 +20,7 @@ const BaseStyles = css`
 const styled = { createGlobalStyle };
 
 const GlobalStyles = styled.createGlobalStyle`
-  ${Reset}
+  ${ResetStyles}
   ${BaseStyles}
 `;
 
