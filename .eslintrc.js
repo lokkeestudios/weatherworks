@@ -1,17 +1,24 @@
 module.exports = {
   env: {
     browser: true,
+    es2021: true,
     node: true,
-    es6: true
   },
   extends: [
     'eslint:recommended',
     'next',
     'plugin:react/recommended',
     'airbnb',
-    'prettier'
+    'prettier',
   ],
   parser: '@typescript-eslint/parser',
+  parserOptions: {
+    ecmaFeatures: {
+      jsx: true,
+    },
+    ecmaVersion: 'latest',
+    sourceType: 'module',
+  },
   overrides: [
     {
       files: ['*.ts', '*.tsx'],
@@ -27,10 +34,11 @@ module.exports = {
   ],
   plugins: ['@typescript-eslint', 'react', 'prettier'],
   rules: {
+    'prettier/prettier': 'error',
     'no-unused-vars': 'warn',
     'no-control-regex': 'warn',
     'react/react-in-jsx-scope': 'off',
     'react/require-default-props': ['error', { functions: 'defaultArguments' }],
-    'no-plusplus': ['error', { allowForLoopAfterthoughts: true }]
+    'no-plusplus': ['error', { allowForLoopAfterthoughts: true }],
   },
-}
+};
