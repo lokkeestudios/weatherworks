@@ -1,6 +1,7 @@
 import styled from 'styled-components';
+import Wave from './Wave';
 
-const Wrapper = styled.div`
+const StyledBackgroundWrapper = styled.div`
   position: fixed;
   top: 0;
   z-index: -1;
@@ -9,10 +10,10 @@ const Wrapper = styled.div`
   height: 100vh;
 `;
 
-const Background = styled.div`
+const StyledBackground = styled.div`
   position: absolute;
   width: 100%;
-  height: 326px;
+  height: 400px;
   background: linear-gradient(
     149.81deg,
     rgba(41, 3, 121, 1) 18.39%,
@@ -20,56 +21,56 @@ const Background = styled.div`
   );
 `;
 
-const Wave = styled.img`
-  position: absolute;
-  margin-left: calc(50%);
-  transform: translateX(-50%);
-`;
-
-const WaveWithBlur = styled(Wave)`
-  filter: blur(75px);
-`;
-
 function WaveBackground() {
   return (
-    <Wrapper>
-      <Background />
+    <StyledBackgroundWrapper>
+      <StyledBackground />
       <Wave
-        src="/images/waves/home-wave1.svg"
-        alt="Wave"
-        style={{ top: '90px' }}
-      />
-      <WaveWithBlur
-        src="/images/waves/home-wave2.svg"
-        alt="Wave"
-        style={{ top: '10px' }}
+        src="/images/waves/wave1.svg"
+        width={1700}
+        height={554}
+        offsetY="90px"
       />
       <Wave
-        src="/images/waves/home-wave3.svg"
-        alt="Wave"
-        style={{ top: '156px' }}
-      />
-      <WaveWithBlur
-        src="/images/waves/home-wave4.svg"
-        alt="Wave"
-        style={{ top: '126px' }}
+        src="/images/waves/wave2.svg"
+        width={1998}
+        height={1025}
+        offsetY="10px"
+        hasBlur
       />
       <Wave
-        src="/images/waves/home-wave5.svg"
-        alt="Wave"
-        style={{ top: '349px' }}
-      />
-      <WaveWithBlur
-        src="/images/waves/home-wave6.svg"
-        alt="Wave"
-        style={{ top: '389px' }}
+        src="/images/waves/wave3.svg"
+        width={1709}
+        height={809}
+        offsetY="156px"
       />
       <Wave
-        src="/images/waves/home-wave7.svg"
-        alt="Wave"
-        style={{ top: '489px' }}
+        src="/images/waves/wave4.svg"
+        width={2012}
+        height={835}
+        offsetY="126px"
+        hasBlur
       />
-    </Wrapper>
+      <Wave
+        src="/images/waves/wave5.svg"
+        width={1709}
+        height={471}
+        offsetY="349px"
+      />
+      <Wave
+        src="/images/waves/wave6.svg"
+        width={1700}
+        height={695}
+        offsetY="389px"
+        hasBlur
+      />
+      <Wave
+        src="/images/waves/wave7.svg"
+        width={1711}
+        height={659}
+        offsetY="489px"
+      />
+    </StyledBackgroundWrapper>
   );
 }
 
