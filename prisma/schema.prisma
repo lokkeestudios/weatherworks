@@ -1,0 +1,20 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider          = "mysql"
+  url               = env("DATABASE_URL")
+  shadowDatabaseUrl = env("SHADOW_DATABASE_URL")
+}
+
+model City {
+  id       Int     @id
+  name     String  @db.VarChar(72)
+  state    String? @db.VarChar(2)
+  country  String? @db.VarChar(2)
+  coordLon Decimal @map("coord_lon") @db.Decimal(11, 6)
+  coordLat Decimal @map("coord_lat") @db.Decimal(10, 6)
+
+  @@map("city")
+}
