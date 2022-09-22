@@ -30,14 +30,15 @@ module.exports = {
       parserOptions: {
         project: ['./tsconfig.json'],
       },
+      rules: {
+        "@typescript-eslint/indent": 'off',
+        'no-unused-vars': 'warn',
+        'no-control-regex': 'warn',
+        'react/react-in-jsx-scope': 'off',
+        'react/require-default-props': ['error', { functions: 'defaultArguments' }],
+        'no-plusplus': ['error', { allowForLoopAfterthoughts: true }],
+      },
     },
   ],
   plugins: ['@typescript-eslint', 'react', 'prettier'],
-  rules: {
-    'no-unused-vars': 'warn',
-    'no-control-regex': 'warn',
-    'react/react-in-jsx-scope': 'off',
-    'react/require-default-props': ['error', { functions: 'defaultArguments' }],
-    'no-plusplus': ['error', { allowForLoopAfterthoughts: true }],
-  },
 };
