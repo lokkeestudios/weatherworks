@@ -71,6 +71,19 @@ const StyledWeatherText = styled(StyledCaptionLarge)`
   color: ${ColorStyles.text2};
 `;
 
+const StyledLoaderWrapper = styled.div`
+  --weather-icon-height: 128px;
+  --weather-card-padding-block: 25px;
+  --weather-card-border-width: 0.5px;
+  display: flex;
+  justify-content: center;
+
+  height: calc(
+    var(--weather-icon-height) + var(--weather-card-padding-block) * 2 +
+      var(--weather-card-border-width) * 2
+  );
+`;
+
 interface Props {
   geolocation?: Geolocation;
   cityId?: number;
@@ -79,8 +92,9 @@ interface Props {
 function WeatherCard({ geolocation = undefined, cityId = undefined }: Props) {
   const {
     data: currentWeatherData,
-    isLoading,
     isError,
+    isLoading,
+    isIdle,
   } = useQuery(QueryKeys.currentWeather(geolocation || cityId), async () =>
     getCurrentWeather({ geolocation, cityId }),
   );
@@ -88,19 +102,17 @@ function WeatherCard({ geolocation = undefined, cityId = undefined }: Props) {
   if (isError) {
     return (
       <StyledBodyLarge>
-        {' '}
         Unable to fetch weather data. Try again later
       </StyledBodyLarge>
     );
   }
 
-  if (isLoading) {
-    return <Loader />;
-  }
-
-  // PLACEHOLDER ONLY
-  if (!currentWeatherData) {
-    return <p>TODO</p>;
+  if (isLoading || isIdle) {
+    return (
+      <StyledLoaderWrapper>
+        <Loader />
+      </StyledLoaderWrapper>
+    );
   }
 
   return (
