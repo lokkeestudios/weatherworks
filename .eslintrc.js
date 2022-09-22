@@ -34,7 +34,6 @@ module.exports = {
   ],
   plugins: ['@typescript-eslint', 'react', 'prettier'],
   rules: {
-    'prettier/prettier': 'error',
     'no-unused-vars': 'warn',
     'no-control-regex': 'warn',
     'react/react-in-jsx-scope': 'off',
