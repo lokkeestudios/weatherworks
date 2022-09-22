@@ -23,7 +23,7 @@ function GeolocationSection() {
 
   return (
     <StyledSectionWrapper as="section">
-      <StyledH2>Your location</StyledH2>
+      <StyledH2>My location</StyledH2>
       {/* eslint-disable-next-line no-nested-ternary */}
       {error ? (
         <StyledBodyLarge>
