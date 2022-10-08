@@ -11,22 +11,23 @@
     "start": "next start",
     "lint": "next lint"
   },
+  "prisma": {
+    "schema": "src/prisma/schema.prisma"
+  },
   "dependencies": {
     "@fontsource/roboto": "^4.5.8",
     "@fontsource/roboto-condensed": "^4.5.9",
-    "@prisma/client": "^4.3.1",
+    "@prisma/client": "^4.4.0",
     "@tanstack/react-query": "^4.3.9",
     "@uiball/loaders": "^1.2.6",
     "axios": "^0.27.2",
-    "detect-browser": "^5.3.0",
     "next": "^12.3.0",
     "next-seo": "^5.5.0",
     "openweathermap-ts": "^1.2.10",
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "react-icons": "^4.4.0",
-    "sharp": "^0.31.0",
-    "styled-components": "^5.3.5"
+    "sharp": "^0.31.0"
   },
   "devDependencies": {
     "@next/eslint-plugin-next": "^12.3.1",
@@ -34,8 +35,9 @@
     "@types/react": "^18.0.12",
     "@types/react-dom": "^18.0.5",
     "@types/styled-components": "^5.1.25",
-    "@typescript-eslint/eslint-plugin": "^5.30.7",
-    "@typescript-eslint/parser": "^5.30.7",
+    "@typescript-eslint/eslint-plugin": "^5.38.1",
+    "@typescript-eslint/parser": "^5.38.1",
+    "autoprefixer": "^10.4.12",
     "babel-plugin-styled-components": "^2.0.7",
     "eslint": "^8.20.0",
     "eslint-config-airbnb": "^19.0.4",
@@ -47,8 +49,12 @@
     "eslint-plugin-jsx-a11y": "^6.6.0",
     "eslint-plugin-prettier": "^4.0.0",
     "eslint-plugin-react": "^7.30.0",
-    "prettier": "^2.6.2",
+    "postcss": "^8.4.16",
+    "prettier": "^2.7.1",
+    "prettier-plugin-tailwindcss": "^0.1.13",
     "prisma": "^4.3.1",
+    "tailwind-scrollbar": "^2.0.1",
+    "tailwindcss": "^3.1.8",
     "typescript": "^4.7.4"
   }
 }

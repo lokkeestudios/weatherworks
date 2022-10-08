@@ -1,10 +1,9 @@
-import { openWeatherMap } from '.';
+import { validateWeatherResponseStatusCode, weatherApi } from '@/proxies';
 
 async function getThreeHourForecast(cityId: number) {
-  const threeHourForecastRes =
-    await openWeatherMap.getThreeHourForecastByCityId(cityId);
-
-  return threeHourForecastRes;
+  return validateWeatherResponseStatusCode(
+    weatherApi().getThreeHourForecastByCityId(cityId),
+  );
 }
 
 export default getThreeHourForecast;

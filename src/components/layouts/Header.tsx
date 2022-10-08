@@ -1,66 +1,71 @@
-import styled from 'styled-components';
-import socialsData from '../../data/socialsData';
-import Wrapper from '../styles/Wrapper';
+import socialsData from '@/data/socials';
+import Image from 'next/image';
+import Link from 'next/link';
 
-const HeaderWrapper = styled(Wrapper)`
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding-block: 30px;
+// const StyledHeaderWrapper = styled(StyledWrapper)`
+//   display: flex;
+//   justify-content: space-between;
+//   align-items: center;
+//   padding-block: 30px;
 
-  @media only screen and (max-width: 744px) {
-    padding-block: 20px;
-  }
-`;
+//   @media only screen and (max-width: 744px) {
+//     padding-block: 20px;
+//   }
+// `;
 
-const LogoWrapper = styled.div``;
+// const StyledLogoWrapper = styled.a``;
 
-const Logo = styled.img`
-  width: 50px;
-`;
+// const StyledLogo = styled(Image)`
+//   width: 50px;
+// `;
 
-const SocialsWrapper = styled.nav`
-  display: flex;
-  align-items: center;
-  column-gap: 10px;
-`;
+// const StyledSocialsWrapper = styled.nav`
+//   display: flex;
+//   align-items: center;
+//   column-gap: 10px;
+// `;
 
-const SocialsItem = styled.a`
-  width: 24px;
-  transition-property: opacity;
-  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
-  transition-duration: 150ms;
+// const StyledSocialsItem = styled.a`
+//   display: flex;
+//   color: ${CommonStyles.colors.text2};
+//   transition-property: color;
+//   transition: cubic-bezier(0.215, 0.61, 0.355, 1) 300ms;
 
-  &:hover {
-    opacity: 0.7;
-  }
-
-  @media only screen and (max-width: 744px) {
-    width: 20px;
-  }
-`;
+//   :hover,
+//   :focus-within {
+//     color: ${CommonStyles.colors.text};
+//   }
+// `;
 
 function Header() {
   return (
-    <HeaderWrapper as="header">
-      <LogoWrapper>
-        <Logo src="images/logos/weatherworks.svg" alt="WeatherWorks" />
-      </LogoWrapper>
-      <SocialsWrapper>
+    <header>
+      <Link
+        href="/"
+        aria-label="Visit home page"
+      >
+        <Image
+          src="/images/logos/weatherworks.svg"
+          alt="WeatherWorks"
+          width={64}
+          height={64}
+        />
+      </Link>
+      <ul>
         {socialsData.map((social, index) => (
-          <SocialsItem
-            /* eslint-disable-next-line react/no-array-index-key */
+          <a
+            // eslint-disable-next-line react/no-array-index-key
             key={index}
             href={social.link}
-            title={social.title}
             rel="noreferrer"
             target="_blank"
+            aria-label={social.title}
           >
-            <img src={social.icon} alt={social.title} />
-          </SocialsItem>
+            {social.icon}
+          </a>
         ))}
-      </SocialsWrapper>
-    </HeaderWrapper>
+      </ul>
+    </header>
   );
 }
 

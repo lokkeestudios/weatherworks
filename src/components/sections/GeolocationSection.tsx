@@ -1,19 +1,29 @@
-import styled from 'styled-components';
-import useGeolocation from '../../hooks/useGeolocation';
-import WeatherCard from '../cards/WeatherCard';
-import Loader from '../loaders/Loader';
-import StyledWrapper from '../styles/StyledWrapper';
-import { StyledBodyLarge, StyledH2 } from '../styles/TextStyles';
+import WeatherCard from '@/components/cards/WeatherCard';
+import Loader from '@/components/loaders/Loader';
+import useGeolocation from '@/hooks/useGeolocation';
 
-const StyledSectionWrapper = styled(StyledWrapper)`
-  display: grid;
-  row-gap: 30px;
-  padding-block: 35px;
+// const StyledSectionWrapper = styled(StyledWrapper)`
+//   display: grid;
+//   row-gap: 30px;
+//   padding-block: 35px;
 
-  @media only screen and (max-width: 744px) {
-    row-gap: 20px;
-  }
-`;
+//   @media only screen and (max-width: 744px) {
+//     row-gap: 20px;
+//   }
+// `;
+
+// const StyledLoaderWrapper = styled.div`
+//   --weather-icon-height: 128px;
+//   --weather-card-padding-block: 25px;
+//   --weather-card-border-width: 0.5px;
+//   display: flex;
+//   justify-content: center;
+
+//   height: calc(
+//     var(--weather-icon-height) + var(--weather-card-padding-block) * 2 +
+//       var(--weather-card-border-width) * 2
+//   );
+// `;
 
 function GeolocationSection() {
   const [location, error] = useGeolocation({
@@ -21,20 +31,20 @@ function GeolocationSection() {
     timeout: 1000 * 10,
   });
 
+  const isError = typeof error !== 'undefined';
+  const isLoading = !location;
+
   return (
-    <StyledSectionWrapper as="section">
-      <StyledH2>My location</StyledH2>
-      {/* eslint-disable-next-line no-nested-ternary */}
-      {error ? (
-        <StyledBodyLarge>
-          Unable to retrieve location: {error}. Try again later
-        </StyledBodyLarge>
-      ) : !location ? (
-        <Loader />
-      ) : (
-        <WeatherCard geolocation={location} />
+    <section className="py-8">
+      <h2>Your location</h2>
+      {isError && <p>Unable to retrieve location. Try again later</p>}
+      {!isError && isLoading && (
+        <div>
+          <Loader />
+        </div>
       )}
-    </StyledSectionWrapper>
+      {!isError && !isLoading && <WeatherCard geolocation={location} />}
+    </section>
   );
 }
 

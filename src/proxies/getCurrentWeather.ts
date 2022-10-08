@@ -1,5 +1,5 @@
-import { openWeatherMap } from '.';
-import Geolocation from '../types/Geolocation';
+import { validateWeatherResponseStatusCode, weatherApi } from '@/proxies';
+import Geolocation from '@/types/Geolocation';
 
 interface CurrentWeatherParams {
   geolocation?: Geolocation;
@@ -15,16 +15,16 @@ async function getCurrentWeather({
   if (geolocation) {
     const { latitude, longitude } = geolocation;
 
-    currentWeatherRes = await openWeatherMap.getCurrentWeatherByGeoCoordinates(
+    currentWeatherRes = weatherApi().getCurrentWeatherByGeoCoordinates(
       latitude,
       longitude,
     );
   } else if (cityId) {
-    currentWeatherRes = await openWeatherMap.getCurrentWeatherByCityId(cityId);
+    currentWeatherRes = weatherApi().getCurrentWeatherByCityId(cityId);
   } else {
     throw new Error('Either geolocation or cityId must be set');
   }
-  return currentWeatherRes;
+  return validateWeatherResponseStatusCode(currentWeatherRes);
 }
 
 export default getCurrentWeather;

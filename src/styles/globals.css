@@ -1,0 +1,13 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    @apply scroll-smooth;
+  }
+
+  body {
+    @apply bg-slate-900 font-body text-slate-50 selection:bg-primary/90 selection:text-slate-50; /* TODO: add further scrollbar styles */
+  }
+}

@@ -8,13 +8,11 @@ datasource db {
   shadowDatabaseUrl = env("SHADOW_DATABASE_URL")
 }
 
-model City {
+model Location {
   id       Int     @id
-  name     String  @db.VarChar(72)
-  state    String? @db.VarChar(2)
-  country  String? @db.VarChar(2)
+  name     String  @db.VarChar(81)
+  coordLat Decimal @map("coord_lat") @db.Decimal(11, 6)
   coordLon Decimal @map("coord_lon") @db.Decimal(11, 6)
-  coordLat Decimal @map("coord_lat") @db.Decimal(10, 6)
 
-  @@map("city")
+  @@map("location")
 }

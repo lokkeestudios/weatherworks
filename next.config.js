@@ -1,5 +1,3 @@
-// @ts-check
-
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   reactStrictMode: true,
@@ -8,9 +6,6 @@ const nextConfig = {
     locales: ['en'],
     defaultLocale: 'en',
   },
-  compiler: {
-    styledComponents: true,
-  },
 }
 
-module.exports = nextConfig
+module.exports = nextConfig;

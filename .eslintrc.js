@@ -19,6 +19,11 @@ module.exports = {
     ecmaVersion: 'latest',
     sourceType: 'module',
   },
+  settings: {
+    'import/resolver': {
+      typescript: true,
+    },
+  },
   overrides: [
     {
       files: ['*.ts', '*.tsx'],
@@ -31,7 +36,7 @@ module.exports = {
         project: ['./tsconfig.json'],
       },
       rules: {
-        "@typescript-eslint/indent": 'off',
+        '@typescript-eslint/indent': 'off',
         'no-unused-vars': 'warn',
         'no-control-regex': 'warn',
         'react/react-in-jsx-scope': 'off',
@@ -40,5 +45,8 @@ module.exports = {
       },
     },
   ],
+  rules: {
+    'global-require': 'off',
+  },
   plugins: ['@typescript-eslint', 'react', 'prettier'],
 };

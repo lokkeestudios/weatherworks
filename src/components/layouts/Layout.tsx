@@ -1,19 +1,21 @@
-import GlobalStyles from '../styles/GlobalStyles';
-import Footer from './Footer';
-import Header from './Header';
-import SEO from './SEO';
+import Footer from '@/components/layouts/Footer';
+import Header from '@/components/layouts/Header';
+import SEO from '@/components/layouts/SEO';
+import { ReactNode } from 'react';
 
 interface Props {
   title: string;
   slug?: string;
-  children: React.ReactNode;
+  children: ReactNode;
 }
 
 function Layout({ title, slug = '', children }: Props) {
   return (
     <>
-      <SEO title={title} slug={slug} />
-      <GlobalStyles />
+      <SEO
+        title={title}
+        slug={slug}
+      />
       <Header />
       <main>{children}</main>
       <Footer />

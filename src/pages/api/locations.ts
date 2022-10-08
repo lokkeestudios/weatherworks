@@ -12,10 +12,10 @@ async function handler(req: NextApiRequest, res: NextApiResponse) {
     return errorRes(res, 405, 'Method not allowed');
   }
 
-  const { nameFilter, limit } = req.query as Partial<{ [key: string]: string }>;
+  const { startsWith, limit } = req.query as Partial<{ [key: string]: string }>;
 
-  if (!nameFilter) {
-    return errorRes(res, 400, 'nameFilter parameter is required');
+  if (!startsWith) {
+    return errorRes(res, 400, 'startsWith parameter is required');
   }
 
   if (!limit) {
@@ -28,16 +28,16 @@ async function handler(req: NextApiRequest, res: NextApiResponse) {
     return errorRes(res, 400, 'limit parameter must be of type number');
   }
 
-  const cities = await prisma.city.findMany({
+  const locations = await prisma.location.findMany({
     where: {
       name: {
-        startsWith: nameFilter,
+        startsWith,
       },
     },
     take: limitNum,
   });
 
-  return res.json(cities);
+  return res.json(locations);
 }
 
 export default handler;

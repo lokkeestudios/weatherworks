@@ -1,18 +1,13 @@
+import WaveBackground2 from '@/components/backgrounds/WaveBackground2';
+import Layout from '@/components/layouts/Layout';
+import LocationDetailsSection from '@/components/sections/LocationDetailsSection';
+import getCurrentWeather from '@/proxies/getCurrentWeather';
+import getThreeHourForecast from '@/proxies/getThreeHourForecast';
 import { GetServerSidePropsContext } from 'next';
 import {
   CurrentResponse,
   ThreeHourResponse,
 } from 'openweathermap-ts/dist/types';
-import styled from 'styled-components';
-import Layout from '../../components/layouts/Layout';
-import CitySection from '../../components/sections/CitySection';
-import getCurrentWeather from '../../proxies/getCurrentWeather';
-import getThreeHourForecast from '../../proxies/getThreeHourForecast';
-
-const StyledPageWrapper = styled.div`
-  position: relative;
-  z-index: 1;
-`;
 
 /* start utility function */
 function isDigit(string: string) {
@@ -63,13 +58,13 @@ function Location({ currentWeather, threeHourForecast }: Props) {
   return (
     <Layout
       title={`[PH] ${currentWeather.name} - ${currentWeather.sys.country} | WeatherWorks`}
+      slug={`location/${currentWeather.id}`}
     >
-      <StyledPageWrapper>
-        <CitySection
-          initialCurrentWeatherData={currentWeather}
-          initialThreeHourForecastData={threeHourForecast}
-        />
-      </StyledPageWrapper>
+      <WaveBackground2 />
+      <LocationDetailsSection
+        initialCurrentWeatherData={currentWeather}
+        initialThreeHourForecastData={threeHourForecast}
+      />
     </Layout>
   );
 }
