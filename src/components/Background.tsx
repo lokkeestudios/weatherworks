@@ -8,7 +8,7 @@ function Background({ src }: Props) {
   return (
     <div
       aria-hidden
-      className="fixed inset-0 -z-10 h-screen w-full"
+      className="fixed inset-0 -z-50 h-screen w-full"
     >
       <Image
         src={src}
