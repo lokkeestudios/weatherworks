@@ -1,191 +1,91 @@
-// const StyledFooterWrapper = styled.footer`
-//   padding-block: 1.5em;
-//   width: 100%;
-//   margin-top: 100px;
-//   background: ${CommonStyles.colors.background};
-// `;
+import Container from '@/components/Container';
+import socials from '@/data/socials';
+import Image from 'next/image';
+import Link from 'next/link';
 
-// const StyledContentsWrapper = styled(StyledWrapper)`
-//   position: relative;
-//   z-index: 1;
-//   & > :not([hidden]) ~ :not([hidden]) {
-//     border-top: 0.6px solid ${CommonStyles.colors.text2};
-//   }
-// `;
+function getCurrentYear() {
+  const currentYear = new Date().getFullYear().toString();
 
-// const StyledFooterRow = styled.div`
-//   display: flex;
-//   justify-content: center;
-//   align-items: center;
-//   padding-block: 32px;
-// `;
-
-// const StyledCreditsLink = styled.a`
-//   display: flex;
-//   flex-direction: column;
-//   justify-content: center;
-//   text-decoration: none;
-// `;
-
-// const StyledCreditsText = styled(StyledCaptionLarge)`
-//   color: ${CommonStyles.colors.text};
-//   margin-top: 0.625em;
-
-//   span {
-//     font-family: 'Roboto Condensed', sans-serif;
-//     font-weight: normal;
-//   }
-// `;
-
-// const StyledMultiColumnFooterRow = styled(StyledFooterRow)`
-//   row-gap: 20px;
-
-//   @media only screen and (max-width: 50em) {
-//     flex-direction: column-reverse;
-//   }
-// `;
-
-// const StyledCopyrightWrapper = styled.div`
-//   display: flex;
-//   flex-basis: 33.33333%;
-//   justify-content: flex-start;
-//   align-items: center;
-
-//   @media only screen and (max-width: 50em) {
-//     justify-content: center;
-//   }
-// `;
-
-// const StyledCopyrightText = styled(StyledBodySmall)`
-//   color: ${CommonStyles.colors.text2};
-// `;
-
-// const StyledSocialsWrapper = styled.nav`
-//   display: flex;
-//   flex-basis: 33.33333%;
-//   column-gap: 10px;
-//   justify-content: center;
-//   align-items: center;
-// `;
-
-// const StyledSocialsItem = styled.a`
-//   color: ${CommonStyles.colors.text2};
-//   transition-property: color;
-//   transition: cubic-bezier(0.215, 0.61, 0.355, 1) 300ms;
-
-//   &:hover,
-//   &:focus-within {
-//     color: ${CommonStyles.colors.text};
-//   }
-// `;
-
-// const StyledLinksWrapper = styled.nav`
-//   display: flex;
-//   flex-basis: 33.33333%;
-//   justify-content: flex-end;
-//   align-items: center;
-
-//   @media only screen and (max-width: 50em) {
-//     justify-content: center;
-//   }
-// `;
-
-// const StyledLinkText = styled(StyledCaptionSmall)`
-//   text-transform: none;
-//   cursor: pointer;
-//   text-decoration: none;
-//   color: ${CommonStyles.colors.text2};
-// `;
-
-// const StyledBackgroundWrapper = styled.div`
-//   position: relative;
-// `;
-
-// function getCurrentYear() {
-//   const currentYear = new Date().getFullYear().toString();
-
-//   return currentYear;
-// }
+  return currentYear;
+}
 
 function Footer() {
   return (
-    <div />
-    // <StyledFooterWrapper>
-    //   <StyledBackgroundWrapper>
-    //     <Wave
-    //       src="/images/waves/footer/wave1.svg"
-    //       width={1700}
-    //       height={508}
-    //       offsetY="-380px"
-    //       hasBlur
-    //     />
-    //     <Wave
-    //       src="/images/waves/footer/wave2.svg"
-    //       width={1700}
-    //       height={300}
-    //       offsetY="-130px"
-    //     />
-    //   </StyledBackgroundWrapper>
-    //   <StyledContentsWrapper>
-    //     <StyledFooterRow>
-    //       <Image
-    //         src="/images/logos/weatherworks.svg"
-    //         alt="WeatherWorks"
-    //         width={64}
-    //         height={64}
-    //       />
-    //     </StyledFooterRow>
-    //     <StyledFooterRow>
-    //       <StyledCreditsLink
-    //         href="https://lokkeestudios.com"
-    //         rel="noreferrer"
-    //         target="_blank"
-    //         aria-label="Visit creator"
-    //       >
-    //         <Image
-    //           src="/images/logos/lokkee-studios.svg"
-    //           alt="Lokkee Studios"
-    //           width={48}
-    //           height={48}
-    //         />
-    //         <StyledCreditsText>
-    //           Hand crafted by{' '}
-    //           <span>
-    //             <b>Lokkee</b> Studios
-    //           </span>
-    //         </StyledCreditsText>
-    //       </StyledCreditsLink>
-    //     </StyledFooterRow>
-    //     <StyledMultiColumnFooterRow>
-    //       <StyledCopyrightWrapper>
-    //         <StyledCopyrightText>
-    //           Copyright &copy; {getCurrentYear()} Lokkee Studios All Rights
-    //           Reserved.
-    //         </StyledCopyrightText>
-    //       </StyledCopyrightWrapper>
-    //       <StyledSocialsWrapper>
-    //         {socialsData.map((social, index) => (
-    //           <StyledSocialsItem
-    //             /* safe to disable in this case, as we are dealing with static data */
-    //             /* eslint-disable-next-line react/no-array-index-key */
-    //             key={index}
-    //             href={social.link}
-    //             rel="noreferrer"
-    //             target="_blank"
-    //             aria-label={social.title}
-    //           >
-    //             {social.icon}
-    //           </StyledSocialsItem>
-    //         ))}
-    //       </StyledSocialsWrapper>
-    //       <StyledLinksWrapper>
-    //         <Link href="/imprint">
-    //           <StyledLinkText>Imprint</StyledLinkText>
-    //         </Link>
-    //       </StyledLinksWrapper>
-    //     </StyledMultiColumnFooterRow>
-    //   </StyledContentsWrapper>
-    // </StyledFooterWrapper>
+    <footer className="relative isolate w-full bg-neutrals-900 py-4">
+      <div className="absolute -top-80 -z-1 h-[508px] w-full overflow-hidden">
+        <Image
+          src="/images/waves/footer.svg"
+          layout="fill"
+          objectFit="cover"
+        />
+      </div>
+      <Container>
+        <div className="flex flex-col items-center divide-y-0.5 divide-neutrals-300">
+          <div className="flex w-full items-center justify-center py-8">
+            <Image
+              src="/images/logos/weatherworks.svg"
+              alt="WeatherWorks"
+              width={64}
+              height={64}
+            />
+          </div>
+          <div className="flex w-full items-center justify-center py-8">
+            <a
+              href="https://lokkeestudios.com"
+              rel="noreferrer"
+              target="_blank"
+              aria-label="Check out the creator"
+              className="flex flex-col items-center justify-center"
+            >
+              <Image
+                src="/images/logos/lokkee-studios.svg"
+                alt="LOKKEE STUDIOS"
+                width={48}
+                height={48}
+              />
+              <p className="mt-2 text-sm font-semibold uppercase">
+                Hand crafted by{' '}
+                <span className="font-display font-normal">
+                  <b>Lokkee</b> Studios
+                </span>
+              </p>
+            </a>
+          </div>
+          <div className="flex w-full flex-col-reverse items-center justify-center gap-5 py-8 lg:flex-row">
+            <div className="flex basis-1/3 items-center justify-start">
+              <p className="text-xs text-neutrals-300">
+                Copyright &copy; {getCurrentYear()} Lokkee Studios All Rights
+                Reserved.
+              </p>
+            </div>
+            <div className="flex basis-1/3 items-center justify-center gap-x-2">
+              {socials.map((social, i) => (
+                <a
+                  key={i}
+                  href={social.link}
+                  rel="noreferrer"
+                  target="_blank"
+                  aria-label={social.title}
+                  className="text-neutrals-300 focus-visible:text-neutrals-50 hover:text-neutrals-50"
+                >
+                  {social.icon}
+                </a>
+              ))}
+            </div>
+            <div className="flex basis-1/3 items-center justify-end">
+              <Link
+                href="/imprint"
+                passHref
+              >
+                <a className="text-sm uppercase text-neutrals-300 focus-visible:text-neutrals-50 hover:text-neutrals-50">
+                  Imprint
+                </a>
+              </Link>
+            </div>
+          </div>
+        </div>
+      </Container>
+    </footer>
   );
 }
 

@@ -1,4 +1,5 @@
-import socialsData from '@/data/socials';
+import Container from '@/components/Container';
+import socials from '@/data/socials';
 import Image from 'next/image';
 import Link from 'next/link';
 
@@ -39,33 +40,37 @@ import Link from 'next/link';
 
 function Header() {
   return (
-    <header>
-      <Link
-        href="/"
-        aria-label="Visit home page"
-      >
-        <Image
-          src="/images/logos/weatherworks.svg"
-          alt="WeatherWorks"
-          width={64}
-          height={64}
-        />
-      </Link>
-      <ul>
-        {socialsData.map((social, index) => (
-          <a
-            // eslint-disable-next-line react/no-array-index-key
-            key={index}
-            href={social.link}
-            rel="noreferrer"
-            target="_blank"
-            aria-label={social.title}
-          >
-            {social.icon}
+    <Container as="header">
+      <div className="flex items-center justify-between py-4">
+        <Link
+          href="/"
+          passHref
+        >
+          <a aria-label="Go back home">
+            <Image
+              src="/images/logos/weatherworks.svg"
+              alt="WeatherWorks"
+              width={64}
+              height={64}
+            />
           </a>
-        ))}
-      </ul>
-    </header>
+        </Link>
+        <div className="flex gap-x-2">
+          {socials.map((social, i) => (
+            <a
+              key={i}
+              href={social.link}
+              rel="noreferrer"
+              target="_blank"
+              aria-label={social.title}
+              className="text-neutrals-50/60 focus-visible:text-neutrals-50 hover:text-neutrals-50"
+            >
+              {social.icon}
+            </a>
+          ))}
+        </div>
+      </div>
+    </Container>
   );
 }
 
