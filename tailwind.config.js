@@ -15,9 +15,18 @@ module.exports = {
       },
       colors: {
         primary: '#6919ff',
+        neutrals: {
+          '50': '#F8FAFC',
+          '300': '#CBD5E1',
+          '900': '#12112C',
+          '800': '#1C1B45',
+        }
       },
       borderWidth: {
         '0.5': '0.5px',
+      },
+      zIndex: {
+        '1': '1',
       }
     },
   },
