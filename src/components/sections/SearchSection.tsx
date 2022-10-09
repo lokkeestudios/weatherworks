@@ -6,7 +6,10 @@ function SearchSection() {
   const [selectedCityId, setSelectedCityId] = useState<number>();
 
   return (
-    <section className="py-8">
+    <section
+      className="py-8"
+      aria-label="Location search"
+    >
       <SearchCityInput setSelectedResult={setSelectedCityId} />
       {selectedCityId && <WeatherCard cityId={selectedCityId} />}
     </section>

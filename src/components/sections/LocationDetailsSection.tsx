@@ -1,8 +1,8 @@
 import Card from '@/components/cards/Card';
 import WeatherTimepointCard from '@/components/cards/WeatherTimepointCard';
+import Container from '@/components/Container';
 import FavouriteButton from '@/components/forms/FavouriteButton';
 import Loader from '@/components/loaders/Loader';
-import Wrapper from '@/components/Wrapper';
 import { QueryKeys } from '@/proxies';
 import getCurrentWeather from '@/proxies/getCurrentWeather';
 import getThreeHourForecast from '@/proxies/getThreeHourForecast';
@@ -126,21 +126,29 @@ function LocationDetailsSection({
   const isWeatherDataAvailable = !isErrorMessageDisplayed && !isLoaderDisplayed;
 
   return (
-    <Wrapper as="section">
+    <Container as="section">
       {isErrorMessageDisplayed && (
         <p>Unable to fetch weather data. Try again later</p>
       )}
       {isLoaderDisplayed && <Loader />}
       {isWeatherDataAvailable && (
         <>
-          <section className="mb-8">
+          <section
+            className="mb-8"
+            aria-label="Location details"
+          >
             <h1 className="font-display text-6xl font-semibold leading-tight">{`${currentWeatherQuery.data.name} - ${currentWeatherQuery.data.sys.country}`}</h1>
             <div className="flex items-center gap-x-2">
-              <Link href="/">
-                <HomeIcon
-                  size={24}
-                  className="cursor-pointer focus-visible:text-slate-300 hover:text-slate-300"
-                />
+              <Link
+                href="/"
+                passHref
+              >
+                <a
+                  className="focus-visible:text-slate-300 hover:text-slate-300"
+                  aria-label="Go back home"
+                >
+                  <HomeIcon size={24} />
+                </a>
               </Link>
               <FavouriteButton cityId={cityId} />
             </div>
@@ -193,7 +201,7 @@ function LocationDetailsSection({
           </div>
         </>
       )}
-    </Wrapper>
+    </Container>
   );
 }
 

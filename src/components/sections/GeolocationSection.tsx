@@ -35,7 +35,10 @@ function GeolocationSection() {
   const isLoading = !location;
 
   return (
-    <section className="py-8">
+    <section
+      className="py-8"
+      aria-label="Your location"
+    >
       <h2>Your location</h2>
       {isError && <p>Unable to retrieve location. Try again later</p>}
       {!isError && isLoading && (

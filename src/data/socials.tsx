@@ -4,22 +4,22 @@ import {
 } from 'react-icons/fa';
 import { HiOutlineCode as CodeIcon } from 'react-icons/hi';
 
-const iconSize = 24;
+const ICON_SIZE = 22;
 
 const socials = [
   {
     title: 'View GitHub profile',
-    icon: <GitHubIcon size={iconSize} />,
+    icon: <GitHubIcon size={ICON_SIZE} />,
     link: 'https://github.lokkeestudios.com',
   },
   {
     title: 'Join Discord server',
-    icon: <DiscordIcon size={iconSize} />,
+    icon: <DiscordIcon size={ICON_SIZE} />,
     link: 'https://discord.lokkeestudios.com',
   },
   {
     title: 'View source code',
-    icon: <CodeIcon size={iconSize} />,
+    icon: <CodeIcon size={ICON_SIZE} />,
     link: 'https://github.com/lokkeestudios/WeatherWorks',
   },
 ];

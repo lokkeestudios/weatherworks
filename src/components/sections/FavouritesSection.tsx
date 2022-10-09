@@ -9,7 +9,10 @@ function FavouritesSection() {
   const [favourites] = useFavouritesContext();
 
   return (
-    <section className="py-8">
+    <section
+      className="py-8"
+      aria-label="Your favourites"
+    >
       <h2>{`Your favourites (${favourites.favouriteCityIds.length}/${MAX_FAVOURITES})`}</h2>
       <div className="flex flex-col gap-x-4">
         {favourites.favouriteCityIds.length === 0 && (
