@@ -1,4 +1,4 @@
-import WaveBackground2 from '@/components/backgrounds/WaveBackground2';
+import Background from '@/components/Background';
 import Layout from '@/components/layouts/Layout';
 import LocationDetailsSection from '@/components/sections/LocationDetailsSection';
 import getCurrentWeather from '@/proxies/getCurrentWeather';
@@ -60,7 +60,7 @@ function Location({ currentWeather, threeHourForecast }: Props) {
       title={`[PH] ${currentWeather.name} - ${currentWeather.sys.country} | WeatherWorks`}
       slug={`location/${currentWeather.id}`}
     >
-      <WaveBackground2 />
+      <Background src="/images/waves/background2.svg" />
       <LocationDetailsSection
         initialCurrentWeatherData={currentWeather}
         initialThreeHourForecastData={threeHourForecast}
