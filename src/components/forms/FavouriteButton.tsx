@@ -48,7 +48,7 @@ function FavouriteButton({ cityId }: Props) {
       }
       className="text-neutrals-300 transition-colors duration-200 focus-visible:text-slate-50 hover:text-slate-50"
     >
-      <FavouriteIcon size={24} />
+      <FavouriteIcon className="h-6 w-6" />
     </button>
   );
 }
