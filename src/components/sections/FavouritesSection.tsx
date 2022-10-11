@@ -16,7 +16,7 @@ function FavouritesSection() {
     >
       <Container>
         <h2 className="mb-8 font-display font-bold leading-tight text-4xl">{`Your favourites (${favourites.favouriteCityIds.length}/${MAX_FAVOURITES})`}</h2>
-        <div className="flex flex-col gap-x-4">
+        <div className="flex flex-col gap-y-3">
           {favourites.favouriteCityIds.length === 0 && (
             <>
               <FavouriteIcon size={128} />
