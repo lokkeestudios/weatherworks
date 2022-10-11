@@ -83,7 +83,7 @@ function WeatherCard({ geolocation = undefined, cityId = undefined }: Props) {
     >
       {(currentWeatherData) => (
         <Link
-          href={`/location/${currentWeatherData.id}`}
+          href={`/locations/${currentWeatherData.id}`}
           passHref
         >
           <a
