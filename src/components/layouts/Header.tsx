@@ -56,18 +56,22 @@ function Header() {
           </a>
         </Link>
         <div className="flex gap-x-2">
-          {socials.map((social, i) => (
-            <a
-              key={i}
-              href={social.link}
-              rel="noreferrer"
-              target="_blank"
-              aria-label={social.title}
-              className="text-neutrals-50/60 focus-visible:text-neutrals-50 hover:text-neutrals-50"
-            >
-              {social.icon}
-            </a>
-          ))}
+          {socials.map((social, i) => {
+            const { link, title, icon: Icon } = social;
+
+            return (
+              <a
+                key={i}
+                href={link}
+                rel="noreferrer"
+                target="_blank"
+                aria-label={title}
+                className="text-neutrals-50/70 transition-colors duration-200 focus-visible:text-neutrals-50 hover:text-neutrals-50"
+              >
+                <Icon className="h-5 w-5 lg:h-6 lg:w-6" />
+              </a>
+            );
+          })}
         </div>
       </div>
     </Container>

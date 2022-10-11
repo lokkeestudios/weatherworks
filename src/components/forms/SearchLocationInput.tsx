@@ -1,3 +1,4 @@
+import SearchIcon from '@/components/icons/SearchIcon';
 import Loader from '@/components/loaders/Loader';
 import getFilteredLocations from '@/proxies/getFilteredLocations';
 import { Location } from '@prisma/client';
@@ -10,7 +11,6 @@ import {
   useCallback,
   useState,
 } from 'react';
-import { BiSearch as SearchIcon } from 'react-icons/bi';
 
 const MIN_QUERY_LENGTH = 3;
 const MAX_DISPLAYED_RESULTS = 5;
@@ -106,11 +106,8 @@ function SearchLocationInput({ setSelectedResult }: Props) {
 
   return (
     <div className="relative w-full rounded-lg border-0.5 border-neutrals-50/30 bg-neutrals-800/60 p-3 backdrop-blur-xl md:w-1/2">
-      <label className="flex">
-        <SearchIcon
-          className="mr-2 text-neutrals-300"
-          size={24}
-        />
+      <label className="flex items-center">
+        <SearchIcon className="mr-2 h-6 w-6 text-neutrals-300" />
         <input
           type="text"
           placeholder="Search"
@@ -140,7 +137,6 @@ function SearchLocationInput({ setSelectedResult }: Props) {
                   width={20}
                   height={20}
                 />
-                {/* eslint-disable-next-line jsx-a11y/control-has-associated-label */}
                 <button
                   type="button"
                   key={result.id}

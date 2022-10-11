@@ -11,7 +11,7 @@ function getCurrentYear() {
 
 function Footer() {
   return (
-    <footer className="relative isolate w-full bg-neutrals-900 py-4">
+    <footer className="relative isolate mt-24 w-full bg-neutrals-900 py-4">
       <div className="absolute -top-80 -z-1 h-[508px] w-full overflow-hidden">
         <Image
           src="/images/waves/footer.svg"
@@ -43,7 +43,7 @@ function Footer() {
                 width={48}
                 height={48}
               />
-              <p className="mt-2 text-sm font-semibold uppercase">
+              <p className="mt-2 font-semibold uppercase text-sm">
                 Hand crafted by{' '}
                 <span className="font-display font-normal">
                   <b>Lokkee</b> Studios
@@ -53,31 +53,35 @@ function Footer() {
           </div>
           <div className="flex w-full flex-col-reverse items-center justify-center gap-5 py-8 lg:flex-row">
             <div className="flex basis-1/3 items-center justify-start">
-              <p className="text-xs text-neutrals-300">
+              <p className="text-neutrals-300 text-xs">
                 Copyright &copy; {getCurrentYear()} Lokkee Studios All Rights
                 Reserved.
               </p>
             </div>
             <div className="flex basis-1/3 items-center justify-center gap-x-2">
-              {socials.map((social, i) => (
-                <a
-                  key={i}
-                  href={social.link}
-                  rel="noreferrer"
-                  target="_blank"
-                  aria-label={social.title}
-                  className="text-neutrals-300 focus-visible:text-neutrals-50 hover:text-neutrals-50"
-                >
-                  {social.icon}
-                </a>
-              ))}
+              {socials.map((social, i) => {
+                const { link, title, icon: Icon } = social;
+
+                return (
+                  <a
+                    key={i}
+                    href={link}
+                    rel="noreferrer"
+                    target="_blank"
+                    aria-label={title}
+                    className="text-neutrals-300 transition-colors duration-200 focus-visible:text-neutrals-50 hover:text-neutrals-50"
+                  >
+                    <Icon className="h-5 w-5 lg:h-6 lg:w-6" />
+                  </a>
+                );
+              })}
             </div>
             <div className="flex basis-1/3 items-center justify-end">
               <Link
                 href="/imprint"
                 passHref
               >
-                <a className="text-sm uppercase text-neutrals-300 focus-visible:text-neutrals-50 hover:text-neutrals-50">
+                <a className="uppercase text-neutrals-300 transition-colors duration-200 text-xs focus-visible:text-neutrals-50 hover:text-neutrals-50">
                   Imprint
                 </a>
               </Link>

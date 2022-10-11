@@ -1,13 +1,11 @@
+import ActiveFavouriteIcon from '@/components/icons/ActiveFavouriteIcon';
+import InactiveFavouriteIcon from '@/components/icons/InactiveFavouriteIcon';
 import {
   MAX_FAVOURITES,
   useFavouritesContext,
 } from '@/contexts/FavouritesContext';
 import { ActionType } from '@/reducers/FavouritesReducer';
 import { useCallback } from 'react';
-import {
-  AiFillStar as EnabledFavouriteIcon,
-  AiOutlineStar as DisabledFavouriteIcon,
-} from 'react-icons/ai';
 
 interface Props {
   cityId: number;
@@ -35,8 +33,8 @@ function FavouriteButton({ cityId }: Props) {
     favourites.favouriteCityIds.length < MAX_FAVOURITES || isCityFavourite;
 
   const FavouriteIcon = isCityFavourite
-    ? EnabledFavouriteIcon
-    : DisabledFavouriteIcon;
+    ? ActiveFavouriteIcon
+    : InactiveFavouriteIcon;
 
   if (!isFavouriteButtonDisplayed) {
     return null;
@@ -48,7 +46,7 @@ function FavouriteButton({ cityId }: Props) {
       onClick={
         isCityFavourite ? handleRemoveFromFavourites : handleAddToFavourites
       }
-      className="focus-visible:text-slate-300 hover:text-slate-300"
+      className="text-neutrals-300 transition-colors duration-200 focus-visible:text-slate-50 hover:text-slate-50"
     >
       <FavouriteIcon size={24} />
     </button>
