@@ -12,96 +12,6 @@ import {
 } from 'react';
 import { BiSearch as SearchIcon } from 'react-icons/bi';
 
-// const StyledInputWrapper = styled.div`
-//   display: flex;
-//   position: relative;
-//   width: 100%;
-
-//   @media only screen and (min-width: 50em) {
-//     width: 50%;
-//   }
-// `;
-
-// interface StyledSearchWrapperProps {
-//   isResultsListShown: boolean;
-// }
-
-// const StyledSearchWrapper = styled.label<StyledSearchWrapperProps>`
-//   display: flex;
-//   position: relative;
-//   align-items: center;
-//   height: 44px;
-//   background: ${CommonStyles.colors.card.background};
-//   border: ${CommonStyles.colors.card.border};
-//   box-shadow: ${CommonStyles.colors.card.shadow};
-//   backdrop-filter: blur(40px);
-//   padding: 10px;
-//   border-radius: 8px;
-//   ${(props) => props.isResultsListShown && 'border-bottom-left-radius: 0'};
-//   ${(props) => props.isResultsListShown && 'border-bottom-right-radius: 0'};
-//   width: 100%;
-// `;
-
-// const StyledSearchIcon = styled(SearchIcon)`
-//   margin-right: 10px;
-//   color: ${CommonStyles.colors.text2};
-// `;
-
-// const StyledInput = styled.input`
-//   font-size: 1rem;
-//   color: ${CommonStyles.colors.text};
-//   line-height: 1;
-//   border: none;
-//   outline: none;
-//   background: transparent;
-//   flex: 1;
-
-//   &::placeholder {
-//     color: ${CommonStyles.colors.text2};
-//   }
-// `;
-
-// const StyledResultsList = styled.ul`
-//   position: absolute;
-//   top: 28px;
-//   width: 100%;
-//   color: ${CommonStyles.colors.text};
-//   border-top: 0.5px solid rgba(255, 255, 255, 0.3);
-//   flex-direction: column;
-//   list-style: none;
-//   background: ${CommonStyles.colors.card.background};
-//   border: ${CommonStyles.colors.card.border};
-//   border-top: none;
-//   box-shadow: ${CommonStyles.colors.card.shadow};
-//   backdrop-filter: blur(40px);
-//   padding: 10px;
-//   border-radius: 8px;
-//   border-top-left-radius: 0;
-//   border-top-right-radius: 0;
-//   z-index: 1;
-// `;
-
-// const StyledResultsItem = styled.li`
-//   cursor: pointer;
-//   width: 100%;
-//   padding: 8px;
-//   border-radius: 6px;
-//   line-height: 1;
-//   color: ${CommonStyles.colors.text2};
-
-//   span {
-//     color: ${CommonStyles.colors.text};
-//   }
-
-//   &:hover {
-//     background: rgb(105, 25, 255);
-//   }
-// `;
-
-// const StyledLoaderWrapper = styled.div`
-//   padding-block: 0.6rem;
-// `;
-
 const MIN_QUERY_LENGTH = 3;
 const MAX_DISPLAYED_RESULTS = 5;
 
@@ -195,9 +105,12 @@ function SearchInput({ setSelectedResult }: Props) {
   const isResultsListShown = query.length >= MIN_QUERY_LENGTH && isFocused;
 
   return (
-    <div>
-      <div>
-        <SearchIcon size={24} />
+    <div className="relative w-full rounded-lg border-0.5 border-neutrals-50/30 bg-neutrals-800/60 p-3 backdrop-blur-xl md:w-1/2">
+      <label className="flex">
+        <SearchIcon
+          className="mr-2 text-neutrals-300"
+          size={24}
+        />
         <input
           type="text"
           placeholder="Search"
@@ -205,10 +118,11 @@ function SearchInput({ setSelectedResult }: Props) {
           onChange={handleQueryChange}
           onFocus={handleFocus}
           onBlur={handleBlur}
+          className="flex-1 bg-transparent outline-none placeholder:text-neutrals-300"
         />
-      </div>
+      </label>
       {isResultsListShown && (
-        <ul>
+        <ul className="absolute top-16">
           {isError && <p>Unable to fetch results. Try again later</p>}
           {!isError && results.length === 0 && (
             <div>
@@ -217,7 +131,7 @@ function SearchInput({ setSelectedResult }: Props) {
           )}
           {!isError &&
             results.map((result) => (
-              <div
+              <li
                 key={result.id}
                 style={{ display: 'flex' }}
               >
@@ -237,7 +151,7 @@ function SearchInput({ setSelectedResult }: Props) {
                     highlightQuery(result.name, query),
                   )}
                 />
-              </div>
+              </li>
             ))}
         </ul>
       )}
