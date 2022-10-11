@@ -1,5 +1,6 @@
 import WeatherCard from '@/components/cards/WeatherCard';
-import SearchCityInput from '@/components/forms/SearchCityInput';
+import Container from '@/components/Container';
+import SearchLocationInput from '@/components/forms/SearchLocationInput';
 import { useState } from 'react';
 
 function SearchSection() {
@@ -7,11 +8,13 @@ function SearchSection() {
 
   return (
     <section
-      className="py-8"
+      className="relative z-1 py-8"
       aria-label="Location search"
     >
-      <SearchCityInput setSelectedResult={setSelectedCityId} />
-      {selectedCityId && <WeatherCard cityId={selectedCityId} />}
+      <Container>
+        <SearchLocationInput setSelectedResult={setSelectedCityId} />
+        {selectedCityId && <WeatherCard cityId={selectedCityId} />}
+      </Container>
     </section>
   );
 }

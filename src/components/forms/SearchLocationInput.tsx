@@ -45,7 +45,7 @@ interface Props {
   setSelectedResult: Dispatch<SetStateAction<number | undefined>>;
 }
 
-function SearchInput({ setSelectedResult }: Props) {
+function SearchLocationInput({ setSelectedResult }: Props) {
   const [isFocused, setIsFocused] = useState(false);
   const [query, setQuery] = useState('');
   const [results, setResults] = useState<Location[]>([]);
@@ -159,4 +159,4 @@ function SearchInput({ setSelectedResult }: Props) {
   );
 }
 
-export default SearchInput;
+export default SearchLocationInput;
