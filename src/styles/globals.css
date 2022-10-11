@@ -8,6 +8,6 @@
   }
 
   body {
-    @apply bg-neutrals-900 font-body text-neutrals-50 scrollbar-thin scrollbar-track-transparent scrollbar-thumb-neutrals-300/70 scrollbar-thumb-rounded selection:bg-primary/90 selection:text-neutrals-50 hover:scrollbar-thumb-neutrals-300/90;
+    @apply bg-neutrals-900 font-body text-neutrals-50 antialiased scrollbar-thin scrollbar-track-transparent scrollbar-thumb-neutrals-300/70 scrollbar-thumb-rounded selection:bg-primary/90 selection:text-neutrals-50 hover:scrollbar-thumb-neutrals-300/90;
   }
 }
