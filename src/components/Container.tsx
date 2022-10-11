@@ -7,7 +7,7 @@ interface Props {
 
 function Container({ as: ContainerAs = 'div', children }: Props) {
   return (
-    <ContainerAs className="mx-auto w-11/12 max-w-7xl">{children}</ContainerAs>
+    <ContainerAs className="mx-auto w-11/12 max-w-6xl">{children}</ContainerAs>
   );
 }
 
