@@ -2,11 +2,9 @@ import SearchIcon from '@/components/icons/SearchIcon';
 import Loader from '@/components/loaders/Loader';
 import getFilteredLocations from '@/proxies/getFilteredLocations';
 import { Location } from '@prisma/client';
-import Image from 'next/image';
 import {
   Dispatch,
   FormEvent,
-  MouseEvent,
   SetStateAction,
   useCallback,
   useState,
@@ -57,16 +55,8 @@ function SearchLocationInput({ setSelectedResult }: Props) {
   }
 
   const handleSelectResult = useCallback(
-    (event: MouseEvent<HTMLElement>) => {
-      const { cityId } = event.currentTarget.dataset;
-
-      if (!cityId) {
-        return;
-      }
-
-      const cityIdNum = parseInt(cityId, 10);
-
-      setSelectedResult(cityIdNum);
+    (result: Location) => {
+      setSelectedResult(result.id);
       clearSearch();
     },
     [setSelectedResult],
@@ -128,26 +118,15 @@ function SearchLocationInput({ setSelectedResult }: Props) {
           )}
           {!isError &&
             results.map((result) => (
-              <li
+              <button
                 key={result.id}
-                style={{ display: 'flex' }}
-              >
-                <Image
-                  src="/images/icons/location.svg"
-                  width={20}
-                  height={20}
-                />
-                <button
-                  type="button"
-                  key={result.id}
-                  onMouseDown={handleSelectResult}
-                  data-city-id={result.id}
-                  // eslint-disable-next-line react/no-danger
-                  dangerouslySetInnerHTML={toMarkup(
-                    highlightQuery(result.name, query),
-                  )}
-                />
-              </li>
+                type="button"
+                onMouseDown={() => handleSelectResult(result)}
+                dangerouslySetInnerHTML={toMarkup(
+                  highlightQuery(result.name, query),
+                )}
+                className="flex"
+              />
             ))}
         </ul>
       )}
