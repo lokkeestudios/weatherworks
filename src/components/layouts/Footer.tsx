@@ -25,8 +25,8 @@ function Footer() {
             <Image
               src="/images/logos/weatherworks.svg"
               alt="WeatherWorks"
-              width={64}
-              height={64}
+              width={76}
+              height={76}
             />
           </div>
           <div className="flex w-full items-center justify-center py-8">
