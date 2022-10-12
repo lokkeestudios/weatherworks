@@ -1,4 +1,6 @@
-// TODO: Logo
+<div align="center">
+ <img src="public/images/logos/weatherworks.svg" width="300"/>
+</div>
 
 # WeatherWorks<br>The most visually compelling real-time weather app
 
