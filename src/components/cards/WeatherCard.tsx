@@ -6,68 +6,30 @@ import { useQuery } from '@tanstack/react-query';
 import Image from 'next/image';
 import Link from 'next/link';
 
-// const StyledCardWrapper = styled.div`
-//   display: flex;
-//   width: 100%;
-//   justify-content: space-between;
-//   align-items: center;
-//   padding-inline: 45px;
-//   padding-block: 25px;
-//   border-radius: 20px;
-//   background: ${CommonStyles.colors.card.background};
-//   border: ${CommonStyles.colors.card.border};
-//   box-shadow: 0 2px 4px rgba(45, 35, 66, 0.35),
-//     0 7px 13px -3px rgba(45, 35, 66, 0.25);
-//   backdrop-filter: blur(40px);
-//   cursor: pointer;
-//   transition-property: translate, box-shadow;
-//   transition: cubic-bezier(0.215, 0.61, 0.355, 1) 300ms;
-
-//   :hover,
-//   :focus-visible {
-//     translate: 0 -0.3rem;
-//     box-shadow: 0 10px 30px 0 rgba(45, 35, 66, 0.4),
-//       0 4px 18px 0 rgba(45, 35, 66, 0.3);
-//   }
-
-//   @media only screen and (max-width: 744px) {
-//     padding-inline: 25px;
-//     padding-block: 15px;
-//     border-radius: 13px;
-//   }
-// `;
-
-// const StyledTemperatureText = styled.p`
-//   font-family: 'Roboto Condensed', sans-serif;
-//   font-weight: bold;
-//   font-size: 4.875rem;
-//   line-height: 1;
-//   margin: 0;
-
-//   @media only screen and (max-width: 744px) {
-//     font-size: 2.5rem;
-//   }
-// `;
-
-// const StyledDetailsWrapper = styled.div`
-//   display: flex;
-//   flex-direction: column;
-//   align-items: center;
-//   row-gap: 10px;
-
-//   @media only screen and (max-width: 744px) {
-//     row-gap: 6px;
-//   }
-// `;
-
-// const StyledWeatherText = styled(StyledCaptionLarge)`
-//   text-transform: capitalize;
-//   color: ${CommonStyles.colors.text2};
-// `;
-
 interface Props {
   geolocation?: Geolocation;
   locationId?: number;
+}
+
+function LoadingStateDisplay() {
+  return (
+    <div className="pointer-events-none w-full rounded-2xl border-0.5 border-neutrals-50/30 bg-neutrals-800/20 px-8 py-4 shadow-lg backdrop-blur-xl lg:px-11 lg:py-6">
+      <div className="flex animate-pulse items-center justify-between">
+        <p className="rounded-full bg-neutrals-50/20 font-display font-bold leading-none text-transparent text-7xl">
+          00°
+        </p>
+        <div className="flex flex-col items-center justify-center gap-y-2">
+          <p className="rounded-full bg-neutrals-50/20 font-medium leading-none text-transparent text-sm">
+            Clear Sky
+          </p>
+          <h3 className="rounded-full bg-neutrals-50/20 font-display font-bold leading-none text-transparent text-2xl">
+            Hamburg - DE
+          </h3>
+        </div>
+        <div className="h-20 w-20 rounded-full bg-neutrals-50/20 md:h-24 md:w-24 lg:h-32 lg:w-32" />
+      </div>
+    </div>
+  );
 }
 
 function WeatherCard({
@@ -82,6 +44,7 @@ function WeatherCard({
   return (
     <QueryStateWrapper
       query={currentWeatherQuery}
+      LoadingStateDisplay={<LoadingStateDisplay />}
       errorText="Unable to fetch weather data. Try again later"
     >
       {(currentWeatherData) => (
