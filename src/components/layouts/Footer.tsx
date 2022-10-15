@@ -29,8 +29,8 @@ function Footer() {
               <Image
                 src="/images/logos/weatherworks.webp"
                 alt="WeatherWorks"
-                width={150}
-                height={150}
+                width={256}
+                height={256}
                 layout="responsive"
               />
             </div>
@@ -47,8 +47,8 @@ function Footer() {
                 <Image
                   src="/images/logos/lokkee-studios.svg"
                   alt="LOKKEE STUDIOS"
-                  width={512}
-                  height={512}
+                  width={48}
+                  height={48}
                   layout="responsive"
                 />
               </div>

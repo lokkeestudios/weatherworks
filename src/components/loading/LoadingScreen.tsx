@@ -56,8 +56,8 @@ function LoadingScreen() {
             <Image
               src="/images/logos/weatherworks.webp"
               alt="WeatherWorks"
-              width={150}
-              height={150}
+              width={256}
+              height={256}
               layout="responsive"
             />
           </div>
