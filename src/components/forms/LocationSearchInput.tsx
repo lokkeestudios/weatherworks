@@ -79,7 +79,7 @@ function LocationSearchInput() {
           onChange={(event) => setQuery(event.target.value)}
           className="flex-1 bg-transparent outline-none placeholder:text-neutrals-300"
         />
-        <div className="ml-2 space-x-1">
+        <div className="ml-2 hidden space-x-1 lg:block">
           <kbd className="rounded border border-b-2 border-neutrals-50 border-b-neutrals-400 bg-neutrals-300 py-0.5 px-2 font-semibold text-neutrals-800 shadow-lg text-xs">
             ⌘
           </kbd>
