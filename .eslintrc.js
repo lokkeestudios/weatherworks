@@ -42,11 +42,16 @@ module.exports = {
         'react/react-in-jsx-scope': 'off',
         'react/require-default-props': ['error', { functions: 'defaultArguments' }],
         'no-plusplus': ['error', { allowForLoopAfterthoughts: true }],
+        '@typescript-eslint/no-misused-promises': 'off',
+        'jsx-a11y/label-has-associated-control': [2, {
+          'controlComponents': ['Combobox.Input'], 'assert': 'either'
+        }],
       },
     },
   ],
   rules: {
     'global-require': 'off',
+    'import/no-extraneous-dependencies': ['error', { 'devDependencies': true }],
   },
   plugins: ['@typescript-eslint', 'react', 'prettier'],
 };
