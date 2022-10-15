@@ -6,6 +6,9 @@ const nextConfig = {
     locales: ['en'],
     defaultLocale: 'en',
   },
+  experimental: {
+    newNextLinkBehavior: true,
+  },
 }
 
 module.exports = nextConfig;
