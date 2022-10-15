@@ -59,12 +59,12 @@ function Footer() {
               </p>
             </div>
             <div className="flex basis-1/3 items-center justify-center gap-x-2">
-              {socials.map((social, i) => {
-                const { link, title, icon: Icon } = social;
+              {socials.map((social) => {
+                const { id, link, title, Icon } = social;
 
                 return (
                   <a
-                    key={i}
+                    key={id}
                     href={link}
                     rel="noreferrer"
                     target="_blank"
@@ -79,11 +79,9 @@ function Footer() {
             <div className="flex basis-1/3 items-center justify-end">
               <Link
                 href="/imprint"
-                passHref
+                className="uppercase text-neutrals-300 transition-colors duration-200 text-xs focus-visible:text-neutrals-50 hover:text-neutrals-50"
               >
-                <a className="uppercase text-neutrals-300 transition-colors duration-200 text-xs focus-visible:text-neutrals-50 hover:text-neutrals-50">
-                  Imprint
-                </a>
+                Imprint
               </Link>
             </div>
           </div>

@@ -10,29 +10,24 @@ function Header() {
         <div className="flex items-center justify-between">
           <Link
             href="/"
-            passHref
+            aria-label="Go back home"
+            className="h-12 w-12 lg:h-16 lg:w-16"
           >
-            <a
-              className="h-12 w-12 lg:h-16 lg:w-16"
-              aria-label="Go back home"
-            >
-              <Image
-                src="/images/logos/weatherworks.svg"
-                alt="WeatherWorks"
-                width={512}
-                height={512}
-                layout="responsive"
-                priority
-              />
-            </a>
+            <Image
+              src="/images/logos/weatherworks.svg"
+              alt="WeatherWorks"
+              width={512}
+              height={512}
+              layout="responsive"
+            />
           </Link>
           <div className="flex gap-x-2">
-            {socials.map((social, i) => {
-              const { link, title, icon: Icon } = social;
+            {socials.map((social) => {
+              const { id, link, title, Icon } = social;
 
               return (
                 <a
-                  key={i}
+                  key={id}
                   href={link}
                   rel="noreferrer"
                   target="_blank"
