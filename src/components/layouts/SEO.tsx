@@ -24,14 +24,14 @@ function SEO({ title, slug }: Props) {
         site_name: 'WeatherWorks',
         images: [
           {
-            url: '/banner-1200x630',
+            url: '/banner-1200x630.png',
             width: 1200,
             height: 630,
             alt: title,
           },
         ],
       }}
-      twitter={{ cardType: 'summary_large_image' }}
+      twitter={{ cardType: 'summary' }}
       additionalLinkTags={[
         {
           rel: 'icon',
