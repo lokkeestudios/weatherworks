@@ -8,29 +8,29 @@ import { ActionType } from '@/reducers/FavouritesReducer';
 import { useCallback } from 'react';
 
 interface Props {
-  cityId: number;
+  locationId: number;
 }
 
-function FavouriteButton({ cityId }: Props) {
+function FavouriteButton({ locationId }: Props) {
   const [favourites, dispatch] = useFavouritesContext();
 
   const handleAddToFavourites = useCallback(() => {
     dispatch({
       type: ActionType.ADD_FAVOURITE,
-      payload: cityId,
+      payload: locationId,
     });
-  }, [cityId]);
+  }, [dispatch, locationId]);
 
   const handleRemoveFromFavourites = useCallback(() => {
     dispatch({
       type: ActionType.REMOVE_FAVOURITE,
-      payload: cityId,
+      payload: locationId,
     });
-  }, [cityId]);
+  }, [dispatch, locationId]);
 
-  const isCityFavourite = favourites.favouriteCityIds.includes(cityId);
+  const isCityFavourite = favourites.favouriteLocationIds.includes(locationId);
   const isFavouriteButtonDisplayed =
-    favourites.favouriteCityIds.length < MAX_FAVOURITES || isCityFavourite;
+    favourites.favouriteLocationIds.length < MAX_FAVOURITES || isCityFavourite;
 
   const FavouriteIcon = isCityFavourite
     ? ActiveFavouriteIcon
@@ -46,9 +46,9 @@ function FavouriteButton({ cityId }: Props) {
       onClick={
         isCityFavourite ? handleRemoveFromFavourites : handleAddToFavourites
       }
-      className="text-neutrals-300 transition-colors duration-200 focus-visible:text-slate-50 hover:text-slate-50"
+      className="text-neutrals-50/70 transition-colors duration-200 focus-visible:text-slate-50 hover:text-slate-50"
     >
-      <FavouriteIcon className="h-6 w-6" />
+      <FavouriteIcon className="h-7 w-7 lg:h-8 lg:w-8" />
     </button>
   );
 }

@@ -24,18 +24,18 @@ async function getServerSideProps(context: GetServerSidePropsContext) {
     return notFound;
   }
 
-  const cityId = context.params.id as string;
+  const locationId = context.params.id as string;
 
-  if (!isDigit(cityId)) {
+  if (!isDigit(locationId)) {
     return notFound;
   }
 
-  const cityIdNum = parseInt(cityId, 10);
+  const locationIdNum = parseInt(locationId, 10);
 
   try {
     const [currentWeather, threeHourForecast] = await Promise.all([
-      getCurrentWeather({ cityId: cityIdNum }),
-      getThreeHourForecast(cityIdNum),
+      getCurrentWeather({ locationId: locationIdNum }),
+      getThreeHourForecast(locationIdNum),
     ]);
 
     return {

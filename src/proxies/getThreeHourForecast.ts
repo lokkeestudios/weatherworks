@@ -1,8 +1,8 @@
 import { validateWeatherResponseStatusCode, weatherApi } from '@/proxies';
 
-async function getThreeHourForecast(cityId: number) {
+async function getThreeHourForecast(locationId: number) {
   return validateWeatherResponseStatusCode(
-    weatherApi().getThreeHourForecastByCityId(cityId),
+    weatherApi().getThreeHourForecastByLocationId(locationId),
   );
 }
 

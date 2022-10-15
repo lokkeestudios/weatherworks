@@ -19,10 +19,10 @@ function weatherApi() {
   return {
     getCurrentWeatherByGeoCoordinates: (latitude: number, longitude: number) =>
       openWeatherMap.getCurrentWeatherByGeoCoordinates(latitude, longitude),
-    getCurrentWeatherByCityId: (cityId: number) =>
-      openWeatherMap.getCurrentWeatherByCityId(cityId),
-    getThreeHourForecastByCityId: (cityId: number) =>
-      openWeatherMap.getThreeHourForecastByCityId(cityId),
+    getCurrentWeatherByLocationId: (locationId: number) =>
+      openWeatherMap.getCurrentWeatherByCityId(locationId),
+    getThreeHourForecastByLocationId: (locationId: number) =>
+      openWeatherMap.getThreeHourForecastByCityId(locationId),
   };
 }
 

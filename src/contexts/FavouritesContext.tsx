@@ -58,7 +58,7 @@ function FavouritesContextProvider({ children }: Props) {
     if (state !== initialState) {
       localStorage.setItem(
         FAVOURITES_STORAGE_KEY,
-        JSON.stringify(state.favouriteCityIds),
+        JSON.stringify(state.favouriteLocationIds),
       );
     }
   }, [state]);

@@ -3,12 +3,12 @@ import Geolocation from '@/types/Geolocation';
 
 interface CurrentWeatherParams {
   geolocation?: Geolocation;
-  cityId?: number;
+  locationId?: number;
 }
 
 async function getCurrentWeather({
   geolocation,
-  cityId,
+  locationId,
 }: CurrentWeatherParams) {
   let currentWeatherRes;
 
@@ -19,10 +19,10 @@ async function getCurrentWeather({
       latitude,
       longitude,
     );
-  } else if (cityId) {
-    currentWeatherRes = weatherApi().getCurrentWeatherByCityId(cityId);
+  } else if (locationId) {
+    currentWeatherRes = weatherApi().getCurrentWeatherByLocationId(locationId);
   } else {
-    throw new Error('Either geolocation or cityId must be set');
+    throw new Error('Either geolocation or locationId must be set');
   }
   return validateWeatherResponseStatusCode(currentWeatherRes);
 }

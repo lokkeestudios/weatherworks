@@ -15,19 +15,19 @@ function FavouritesSection() {
       aria-label="Your favourites"
     >
       <Container>
-        <h2 className="mb-8 font-display font-bold leading-tight text-4xl">{`Your favourites (${favourites.favouriteCityIds.length}/${MAX_FAVOURITES})`}</h2>
+        <h2 className="mb-8 font-display font-bold leading-tight text-4xl">{`Your favourites (${favourites.favouriteLocationIds.length}/${MAX_FAVOURITES})`}</h2>
         <div className="flex flex-col gap-y-3">
-          {favourites.favouriteCityIds.length === 0 && (
+          {favourites.favouriteLocationIds.length === 0 && (
             <>
               <FavouriteIcon size={128} />
               <h3>No favourites yet</h3>
               <p>Locations you mark as favourite are shown here</p>
             </>
           )}
-          {favourites.favouriteCityIds.map((favouriteCityId) => (
+          {favourites.favouriteLocationIds.map((favouriteLocationId) => (
             <WeatherCard
-              key={favouriteCityId}
-              cityId={favouriteCityId}
+              key={favouriteLocationId}
+              locationId={favouriteLocationId}
             />
           ))}
         </div>

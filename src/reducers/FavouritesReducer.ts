@@ -1,9 +1,9 @@
 interface FavouritesState {
-  favouriteCityIds: number[];
+  favouriteLocationIds: number[];
 }
 
 const initialState: FavouritesState = {
-  favouriteCityIds: [],
+  favouriteLocationIds: [],
 };
 
 enum ActionType {
@@ -20,18 +20,18 @@ type Action =
 const FavouritesReducer = (state: FavouritesState, action: Action) => {
   switch (action.type) {
     case ActionType.INIT_STORED:
-      return { favouriteCityIds: action.payload };
+      return { favouriteLocationIds: action.payload };
     case ActionType.ADD_FAVOURITE: {
       return {
         ...state,
-        favouriteCityIds: [...state.favouriteCityIds, action.payload],
+        favouriteLocationIds: [...state.favouriteLocationIds, action.payload],
       };
     }
     case ActionType.REMOVE_FAVOURITE: {
       return {
         ...state,
-        favouriteCityIds: state.favouriteCityIds.filter(
-          (favouriteCityId) => favouriteCityId !== action.payload,
+        favouriteLocationIds: state.favouriteLocationIds.filter(
+          (favouriteLocationId) => favouriteLocationId !== action.payload,
         ),
       };
     }
