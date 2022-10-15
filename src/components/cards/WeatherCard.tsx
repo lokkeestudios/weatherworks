@@ -50,7 +50,7 @@ function WeatherCard({
       {(currentWeatherData) => (
         <Link
           href={`/locations/${currentWeatherData.id}`}
-          aria-label="View detailed location page"
+          title="View detailed location page"
           className="flex w-full items-center justify-between rounded-2xl border-0.5 border-neutrals-50/30 bg-neutrals-800/60 px-8 py-4 shadow-lg backdrop-blur-xl transition-all duration-300 focus-visible:-translate-y-1 focus-visible:scale-[1.005]  focus-visible:shadow-2xl hover:-translate-y-1 hover:scale-[1.005] hover:shadow-2xl lg:px-11 lg:py-6"
         >
           <p className="font-display font-bold leading-none text-7xl">

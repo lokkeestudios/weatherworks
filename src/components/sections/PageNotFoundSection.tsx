@@ -30,7 +30,7 @@ function PageNotFoundSection() {
           </p>
           <Link
             href="/"
-            aria-label="Go back home"
+            title="Go back home"
             className="group flex -translate-x-5 items-center  transition-transform duration-300 focus-visible:translate-x-0 hover:translate-x-0"
           >
             <ChevronRightIcon className="mr-0.5 inline h-7 w-7 opacity-0 transition-opacity duration-300 group-hover:opacity-100 group-focus-visible:opacity-100" />

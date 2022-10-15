@@ -144,7 +144,7 @@ function LocationDetailsSection({
               <div className="flex items-center gap-x-2">
                 <Link
                   href="/"
-                  aria-label="Go back home"
+                  title="Go back home"
                   className="text-neutrals-50/70 transition-colors duration-200 focus-visible:text-neutrals-50 hover:text-neutrals-50"
                 >
                   <HomeIcon className="h-7 w-7 lg:h-8 lg:w-8" />

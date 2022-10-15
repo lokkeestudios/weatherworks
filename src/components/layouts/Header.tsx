@@ -10,7 +10,7 @@ function Header() {
         <div className="flex items-center justify-between">
           <Link
             href="/"
-            aria-label="Go back home"
+            title="Go back home"
             className="h-14 w-14 lg:h-16 lg:w-16"
           >
             <Image
@@ -31,7 +31,7 @@ function Header() {
                   href={link}
                   rel="noreferrer"
                   target="_blank"
-                  aria-label={title}
+                  title={title}
                   className="text-neutrals-50/70 transition-colors duration-200 focus-visible:text-neutrals-50 hover:text-neutrals-50"
                 >
                   <Icon className="h-6 w-6" />

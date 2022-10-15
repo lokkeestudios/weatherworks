@@ -40,7 +40,7 @@ function Footer() {
               href="https://lokkeestudios.com"
               rel="noreferrer"
               target="_blank"
-              aria-label="Check out the creator"
+              title="Get inspired by more great work"
               className="flex flex-col items-center justify-center"
             >
               <div className="w-12 md:w-14">
@@ -77,7 +77,7 @@ function Footer() {
                     href={link}
                     rel="noreferrer"
                     target="_blank"
-                    aria-label={title}
+                    title={title}
                     className="text-neutrals-300 transition-colors duration-200 focus-visible:text-neutrals-50 hover:text-neutrals-50"
                   >
                     <Icon className="h-6 w-6" />
