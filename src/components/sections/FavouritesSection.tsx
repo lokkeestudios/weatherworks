@@ -1,10 +1,10 @@
 import WeatherCard from '@/components/cards/WeatherCard';
 import Container from '@/components/Container';
+import ActiveFavouriteIcon from '@/components/icons/ActiveFavouriteIcon';
 import {
   MAX_FAVOURITES,
   useFavouritesContext,
 } from '@/contexts/FavouritesContext';
-import { AiFillStar as FavouriteIcon } from 'react-icons/ai';
 
 function FavouritesSection() {
   const [favourites] = useFavouritesContext();
@@ -16,12 +16,16 @@ function FavouritesSection() {
     >
       <Container>
         <h2 className="mb-8 font-display font-bold leading-tight text-4xl">{`Your favourites (${favourites.favouriteLocationIds.length}/${MAX_FAVOURITES})`}</h2>
-        <div className="flex flex-col gap-y-3">
+        <div className="flex flex-col items-center gap-y-3">
           {favourites.favouriteLocationIds.length === 0 && (
             <>
-              <FavouriteIcon size={128} />
-              <h3>No favourites yet</h3>
-              <p>Locations you mark as favourite are shown here</p>
+              <ActiveFavouriteIcon className="h-24 w-24 text-neutrals-50/70 md:h-36 md:w-36" />
+              <h3 className="font-display font-bold text-2xl">
+                No favourites yet
+              </h3>
+              <p className="text-base">
+                Locations you mark as favourite are shown here
+              </p>
             </>
           )}
           {favourites.favouriteLocationIds.map((favouriteLocationId) => (
