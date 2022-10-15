@@ -1,18 +1,4 @@
-import Loader from '@/components/loaders/Loader';
 import { UseQueryResult } from '@tanstack/react-query';
-
-// const StyledLoaderWrapper = styled.div`
-//   --weather-icon-height: 128px;
-//   --weather-card-padding-block: 25px;
-//   --weather-card-border-width: 0.5px;
-//   display: flex;
-//   justify-content: center;
-
-//   height: calc(
-//     var(--weather-icon-height) + var(--weather-card-padding-block) * 2 +
-//       var(--weather-card-border-width) * 2
-//   );
-// `;
 
 interface Props<T> {
   query: UseQueryResult<T, unknown>;
@@ -23,8 +9,21 @@ interface Props<T> {
 function QueryStateWrapper<T>({ query, errorText, children }: Props<T>) {
   if (query.isLoading) {
     return (
-      <div>
-        <Loader />
+      <div className="pointer-events-none w-full rounded-2xl border-0.5 border-neutrals-50/30 bg-neutrals-800/60 px-8 py-4 shadow-lg backdrop-blur-xl lg:px-11 lg:py-6">
+        <div className="flex animate-pulse items-center justify-between">
+          <p className="rounded-full bg-neutrals-900/60 font-display font-bold leading-none text-transparent text-7xl">
+            00°
+          </p>
+          <div className="flex flex-col items-center justify-center gap-y-2">
+            <p className="rounded-full bg-neutrals-900/60 font-medium leading-none text-transparent text-sm">
+              Clear Sky
+            </p>
+            <h3 className="rounded-full bg-neutrals-900/60 font-display font-bold leading-none text-transparent text-2xl">
+              Hamburg - DE
+            </h3>
+          </div>
+          <div className="h-20 w-20 rounded-full bg-neutrals-900/60 md:h-24 md:w-24 lg:h-32 lg:w-32" />
+        </div>
       </div>
     );
   }
