@@ -28,6 +28,7 @@ function WeatherTimepointCard({ weatherTimepoint }: Props) {
           alt={weatherTimepoint.description}
           width={256}
           height={256}
+          layout="responsive"
         />
       </div>
       {(weatherTimepoint.type === 'current' ||
