@@ -65,6 +65,8 @@ function LocationSearchInput() {
   const showLoadingDisplay = queryStatus === QueryStatus.LOADING;
   const showErrorDisplay = queryStatus === QueryStatus.ERROR;
   const showNoResultsDisplay = queryStatus === QueryStatus.NO_RESULTS;
+  const showResults =
+    !showLoadingDisplay && !showErrorDisplay && !showNoResultsDisplay;
 
   return (
     <Combobox
@@ -96,18 +98,19 @@ function LocationSearchInput() {
         {showLoadingDisplay && <p>Searching...</p>}
         {showErrorDisplay && <p>Unable to fetch results. Try again later</p>}
         {showNoResultsDisplay && <p>No locations matched your query</p>}
-        {filteredLocations.map((location) => (
-          <Combobox.Option
-            key={location.id}
-            value={location}
-            className="cursor-pointer rounded-sm py-1 px-2 ui-active:bg-primary"
-          >
-            <span className="font-semibold">
-              {getQuerySubstringOfResult2(location.name, query)}
-            </span>
-            {getQuerySubstringOfResult(location.name, query)}
-          </Combobox.Option>
-        ))}
+        {showResults &&
+          filteredLocations.map((location) => (
+            <Combobox.Option
+              key={location.id}
+              value={location}
+              className="cursor-pointer rounded-sm py-1 px-2 ui-active:bg-primary"
+            >
+              <span className="font-semibold">
+                {getQuerySubstringOfResult2(location.name, query)}
+              </span>
+              {getQuerySubstringOfResult(location.name, query)}
+            </Combobox.Option>
+          ))}
       </Combobox.Options>
     </Combobox>
   );
