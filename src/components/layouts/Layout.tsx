@@ -1,3 +1,4 @@
+import SearchModal from '@/components/forms/SearchModal';
 import Footer from '@/components/layouts/Footer';
 import Header from '@/components/layouts/Header';
 import SEO from '@/components/layouts/SEO';
@@ -16,6 +17,7 @@ function Layout({ title, slug = '', children }: Props) {
         title={title}
         slug={slug}
       />
+      <SearchModal />
       <Header />
       <main>{children}</main>
       <Footer />
