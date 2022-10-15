@@ -155,7 +155,7 @@ function LocationDetailsSection({
             <div className="grid grid-cols-2 gap-4 lg:grid-cols-3">
               <div className="col-span-3 w-full">
                 <InformationCard title="Weather forecast">
-                  <ul className="grid auto-cols-max grid-flow-col gap-x-10 overflow-x-scroll scrollbar-none">
+                  <ul className="grid auto-cols-max grid-flow-col gap-x-4 overflow-x-scroll scrollbar-none lg:gap-x-8">
                     {getWeatherTimepoints(
                       currentWeatherQuery.data,
                       threeHourForecastQuery.data,
