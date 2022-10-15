@@ -12,8 +12,8 @@ interface Props {
 
 function WeatherTimepointCard({ weatherTimepoint }: Props) {
   return (
-    <li className="flex flex-col items-center gap-y-2">
-      <p className="text-sm font-medium text-slate-300">
+    <li className="flex flex-col items-center gap-y-1">
+      <p className="font-medium text-slate-300 text-sm">
         {weatherTimepoint.type === 'current'
           ? 'Now'
           : `${appendZeroIfNess(
@@ -22,26 +22,22 @@ function WeatherTimepointCard({ weatherTimepoint }: Props) {
               weatherTimepoint.date.getUTCMinutes().toString(),
             )}`}
       </p>
-      <Image
-        src={`/images/icons/weather/${weatherTimepoint.icon}.webp`}
-        alt={weatherTimepoint.description}
-        width={60}
-        height={60}
-      />
+      <div className="h-11 w-11 md:h-16 md:w-16">
+        <Image
+          src={`/images/icons/weather/${weatherTimepoint.icon}.webp`}
+          alt={weatherTimepoint.description}
+          width={256}
+          height={256}
+        />
+      </div>
       {(weatherTimepoint.type === 'current' ||
         weatherTimepoint.type === 'forecast') &&
         weatherTimepoint.rainPropability && (
-          <span
-            className={`text-sm ${
-              weatherTimepoint.rainPropability
-                ? 'text-sky-400'
-                : 'text-slate-50'
-            }`}
-          >
+          <span className="text-sky-400 text-xs">
             {weatherTimepoint.rainPropability}%
           </span>
         )}
-      <p className="text-lg">
+      <p className="text-base">
         {weatherTimepoint.type === 'current' ||
         weatherTimepoint.type === 'forecast'
           ? `${Math.round(weatherTimepoint.temperature)}°`
