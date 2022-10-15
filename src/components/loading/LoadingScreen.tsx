@@ -54,10 +54,10 @@ function LoadingScreen() {
         >
           <div className="h-20 w-20 animate-ping">
             <Image
-              src="/images/logos/weatherworks.svg"
+              src="/images/logos/weatherworks.webp"
               alt="WeatherWorks"
-              width={512}
-              height={512}
+              width={150}
+              height={150}
               layout="responsive"
             />
           </div>
