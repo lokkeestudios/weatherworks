@@ -1,4 +1,3 @@
-/* eslint-disable import/no-extraneous-dependencies */
 const defaultTheme = require('tailwindcss/defaultTheme')
 
 /** @type {import('tailwindcss').Config} */
@@ -18,6 +17,7 @@ module.exports = {
         neutrals: {
           '50': '#F8FAFC',
           '300': '#CBD5E1',
+          '400': '#94a3b8',
           '900': '#12112C',
           '800': '#1C1B45',
         }
@@ -29,8 +29,18 @@ module.exports = {
         '1': '1',
       }
     },
+    fluidType: {
+      settings: {
+        fontSizeMin: 1, /* 16px */
+      },
+    },
+  },
+  corePlugins: {
+    fontSize: false,
   },
   plugins: [
+    require('@headlessui/tailwindcss')({ prefix: 'ui' }),
+    require('tailwindcss-fluid-type'),
     require('tailwind-scrollbar')({ nocompatible: true }),
   ],
 }
