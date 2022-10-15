@@ -43,6 +43,7 @@ function FavouriteButton({ locationId }: Props) {
   return (
     <button
       type="button"
+      aria-label="Toggle favourite status"
       onClick={
         isCityFavourite ? handleRemoveFromFavourites : handleAddToFavourites
       }
