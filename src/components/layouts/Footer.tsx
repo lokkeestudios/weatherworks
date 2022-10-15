@@ -80,7 +80,7 @@ function Footer() {
                     aria-label={title}
                     className="text-neutrals-300 transition-colors duration-200 focus-visible:text-neutrals-50 hover:text-neutrals-50"
                   >
-                    <Icon className="h-5 w-5 lg:h-6 lg:w-6" />
+                    <Icon className="h-6 w-6" />
                   </a>
                 );
               })}

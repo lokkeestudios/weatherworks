@@ -11,7 +11,7 @@ function Header() {
           <Link
             href="/"
             aria-label="Go back home"
-            className="h-12 w-12 lg:h-16 lg:w-16"
+            className="h-14 w-14 lg:h-16 lg:w-16"
           >
             <Image
               src="/images/logos/weatherworks.svg"
@@ -34,7 +34,7 @@ function Header() {
                   aria-label={title}
                   className="text-neutrals-50/70 transition-colors duration-200 focus-visible:text-neutrals-50 hover:text-neutrals-50"
                 >
-                  <Icon className="h-5 w-5 lg:h-6 lg:w-6" />
+                  <Icon className="h-6 w-6" />
                 </a>
               );
             })}
