@@ -46,6 +46,7 @@ module.exports = {
         'jsx-a11y/label-has-associated-control': [2, {
           'controlComponents': ['Combobox.Input'], 'assert': 'either'
         }],
+        'react/jsx-props-no-spreading': 'off',
       },
     },
   ],
