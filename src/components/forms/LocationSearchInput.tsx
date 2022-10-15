@@ -80,10 +80,10 @@ function LocationSearchInput() {
           className="flex-1 bg-transparent outline-none placeholder:text-neutrals-300"
         />
         <div className="ml-2 hidden space-x-1 lg:block">
-          <kbd className="rounded border border-b-2 border-neutrals-50 border-b-neutrals-400 bg-neutrals-300 py-0.5 px-2 font-semibold text-neutrals-800 shadow-lg text-xs">
+          <kbd className="rounded border border-b-2 border-neutrals-700 border-b-neutrals-900 bg-neutrals-800 py-0.5 px-2 font-semibold text-neutrals-300 shadow-lg text-xs">
             ⌘
           </kbd>
-          <kbd className="rounded border border-b-2 border-neutrals-50 border-b-slate-400 bg-neutrals-300 py-0.5 px-2 font-display text-neutrals-800 shadow-lg text-xs">
+          <kbd className="rounded border border-b-2 border-neutrals-700 border-b-neutrals-900 bg-neutrals-800 py-0.5 px-2 font-display text-neutrals-300 shadow-lg text-xs">
             K
           </kbd>
         </div>
