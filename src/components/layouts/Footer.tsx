@@ -12,7 +12,10 @@ function getCurrentYear() {
 function Footer() {
   return (
     <footer className="relative isolate mt-24 w-full bg-neutrals-900 py-4">
-      <div className="aria-hidden absolute -top-80 -z-1 h-[508px] w-full overflow-hidden">
+      <div
+        aria-hidden
+        className="absolute -top-80 -z-1 h-[508px] w-full overflow-hidden"
+      >
         <Image
           src="/images/waves/footer.svg"
           layout="fill"
