@@ -12,7 +12,7 @@ function getCurrentYear() {
 function Footer() {
   return (
     <footer className="relative isolate mt-24 w-full bg-neutrals-900 py-4">
-      <div className="absolute -top-80 -z-1 h-[508px] w-full overflow-hidden">
+      <div className="aria-hidden absolute -top-80 -z-1 h-[508px] w-full overflow-hidden">
         <Image
           src="/images/waves/footer.svg"
           layout="fill"
@@ -22,12 +22,15 @@ function Footer() {
       <Container>
         <div className="flex flex-col items-center divide-y-0.5 divide-neutrals-300">
           <div className="flex w-full items-center justify-center py-8">
-            <Image
-              src="/images/logos/weatherworks.svg"
-              alt="WeatherWorks"
-              width={76}
-              height={76}
-            />
+            <div className="w-16 md:w-20">
+              <Image
+                src="/images/logos/weatherworks.svg"
+                alt="WeatherWorks"
+                width={512}
+                height={512}
+                layout="responsive"
+              />
+            </div>
           </div>
           <div className="flex w-full items-center justify-center py-8">
             <a
@@ -37,12 +40,15 @@ function Footer() {
               aria-label="Check out the creator"
               className="flex flex-col items-center justify-center"
             >
-              <Image
-                src="/images/logos/lokkee-studios.svg"
-                alt="LOKKEE STUDIOS"
-                width={48}
-                height={48}
-              />
+              <div className="w-12 md:w-14">
+                <Image
+                  src="/images/logos/lokkee-studios.svg"
+                  alt="LOKKEE STUDIOS"
+                  width={512}
+                  height={512}
+                  layout="responsive"
+                />
+              </div>
               <p className="mt-2 font-semibold uppercase text-sm">
                 Hand crafted by{' '}
                 <span className="font-display font-normal">
