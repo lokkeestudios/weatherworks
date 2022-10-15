@@ -144,7 +144,6 @@ function LocationDetailsSection({
               <div className="flex items-center gap-x-2">
                 <Link
                   href="/"
-                  as="a"
                   aria-label="Go back home"
                   className="text-neutrals-50/70 transition-colors duration-200 focus-visible:text-neutrals-50 hover:text-neutrals-50"
                 >
@@ -183,7 +182,7 @@ function LocationDetailsSection({
                     width={248}
                     height={143}
                   />
-                  <div className="absolute left-1/2 top-1/2 flex aspect-square h-16 w-16 -translate-x-1/2 -translate-y-1/2 flex-col items-center justify-center rounded-full bg-sky-400 bg-neutrals-50/20 backdrop-blur-xl lg:h-24 lg:w-24">
+                  <div className="absolute left-1/2 top-1/2 flex aspect-square h-16 w-16 -translate-x-1/2 -translate-y-1/2 flex-col items-center justify-center rounded-full bg-neutrals-50/20 backdrop-blur-xl lg:h-24 lg:w-24">
                     <span className="font-bold text-lg">
                       {currentWeatherQuery.data.wind.speed.toFixed(1)}
                     </span>
