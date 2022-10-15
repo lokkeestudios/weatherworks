@@ -14,7 +14,6 @@ function Background({ src }: Props) {
         src={src}
         layout="fill"
         objectFit="cover"
-        priority
       />
     </div>
   );
