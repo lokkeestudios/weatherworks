@@ -1,6 +1,5 @@
 import WeatherCard from '@/components/cards/WeatherCard';
 import Container from '@/components/Container';
-import Loader from '@/components/loaders/Loader';
 import useGeolocation from '@/hooks/useGeolocation';
 
 function GeolocationSection() {
@@ -24,7 +23,7 @@ function GeolocationSection() {
         {isError && <p>Unable to retrieve location. Try again later</p>}
         {!isError && isLoading && (
           <div>
-            <Loader />
+            <p>[PH] Loading...</p>
           </div>
         )}
         {!isError && !isLoading && <WeatherCard geolocation={location} />}
