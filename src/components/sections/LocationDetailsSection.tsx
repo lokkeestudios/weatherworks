@@ -1,20 +1,19 @@
-import Card from '@/components/cards/Card';
+import InformationCard from '@/components/cards/InformationCard';
 import WeatherTimepointCard from '@/components/cards/WeatherTimepointCard';
 import Container from '@/components/Container';
 import FavouriteButton from '@/components/forms/FavouriteButton';
-import Loader from '@/components/loaders/Loader';
+import HomeIcon from '@/components/icons/HomeIcon';
 import { QueryKeys } from '@/proxies';
 import getCurrentWeather from '@/proxies/getCurrentWeather';
 import getThreeHourForecast from '@/proxies/getThreeHourForecast';
 import WeatherTimepoint from '@/types/Weathertimepoint';
 import { useQuery } from '@tanstack/react-query';
+import Image from 'next/image';
 import Link from 'next/link';
 import {
   CurrentResponse,
   ThreeHourResponse,
 } from 'openweathermap-ts/dist/types';
-import { AiFillHome as HomeIcon } from 'react-icons/ai';
-import { BsArrowUp as ArrowUpIcon } from 'react-icons/bs';
 
 function getWeatherTimepoints(
   currentWeatherData: CurrentResponse,
@@ -45,13 +44,17 @@ function getWeatherTimepoints(
   );
 
   for (let i = 0; i < FORECASTED_DAYS; i++) {
-    const dayOffset =
+    const sunriseDayOffset =
       sunriseDate.getTime() < currentTimepoint.date.getTime() ? 1 : 0;
+    const sunsetDayOffset =
+      sunsetDate.getTime() < currentTimepoint.date.getTime() ? 1 : 0;
 
     const currentSunriseDate = new Date(sunriseDate.getTime());
     const currentSunsetDate = new Date(sunsetDate.getTime());
-    currentSunriseDate.setUTCDate(sunriseDate.getUTCDate() + i + dayOffset);
-    currentSunsetDate.setUTCDate(sunsetDate.getUTCDate() + i + dayOffset);
+    currentSunriseDate.setUTCDate(
+      sunriseDate.getUTCDate() + i + sunriseDayOffset,
+    );
+    currentSunsetDate.setUTCDate(sunsetDate.getUTCDate() + i + sunsetDayOffset);
 
     const sunriseTimepoint: WeatherTimepoint = {
       type: 'sunrise',
@@ -102,18 +105,18 @@ function LocationDetailsSection({
   initialCurrentWeatherData,
   initialThreeHourForecastData,
 }: Props) {
-  const cityId = initialCurrentWeatherData.id;
+  const locationId = initialCurrentWeatherData.id;
 
   const currentWeatherQuery = useQuery(
-    QueryKeys.currentWeather(cityId),
-    async () => getCurrentWeather({ cityId }),
+    QueryKeys.currentWeather(locationId),
+    async () => getCurrentWeather({ locationId }),
     {
       initialData: initialCurrentWeatherData,
     },
   );
   const threeHourForecastQuery = useQuery(
-    QueryKeys.threeHourForecast(cityId),
-    async () => getThreeHourForecast(cityId),
+    QueryKeys.threeHourForecast(locationId),
+    async () => getThreeHourForecast(locationId),
     {
       initialData: initialThreeHourForecastData,
     },
@@ -122,86 +125,86 @@ function LocationDetailsSection({
   const isErrorMessageDisplayed =
     currentWeatherQuery.isError || threeHourForecastQuery.isError;
   const isLoaderDisplayed =
-    currentWeatherQuery.isLoading || threeHourForecastQuery.isLoading;
+    currentWeatherQuery.isLoading || threeHourForecastQuery.isLoading; // TODO: refactor here
   const isWeatherDataAvailable = !isErrorMessageDisplayed && !isLoaderDisplayed;
 
   return (
-    <Container as="section">
-      {isErrorMessageDisplayed && (
-        <p>Unable to fetch weather data. Try again later</p>
-      )}
-      {isLoaderDisplayed && <Loader />}
-      {isWeatherDataAvailable && (
-        <>
-          <section
-            className="mb-8"
-            aria-label="Location details"
-          >
-            <h1 className="font-display text-6xl font-semibold leading-tight">{`${currentWeatherQuery.data.name} - ${currentWeatherQuery.data.sys.country}`}</h1>
-            <div className="flex items-center gap-x-2">
-              <Link
-                href="/"
-                passHref
-              >
-                <a
-                  className="focus-visible:text-slate-300 hover:text-slate-300"
+    <section
+      className="relative z-1 py-8"
+      aria-label="Location details"
+    >
+      <Container>
+        {isErrorMessageDisplayed && (
+          <p>Unable to fetch weather data. Try again later</p>
+        )}
+        {isWeatherDataAvailable && (
+          <>
+            <div className="mb-10 flex items-center justify-between">
+              <h1 className="mb-1 font-display font-bold leading-tight text-5xl">{`${currentWeatherQuery.data.name} - ${currentWeatherQuery.data.sys.country}`}</h1>
+              <div className="flex items-center gap-x-2">
+                <Link
+                  href="/"
+                  as="a"
                   aria-label="Go back home"
+                  className="text-neutrals-50/70 transition-colors duration-200 focus-visible:text-neutrals-50 hover:text-neutrals-50"
                 >
-                  <HomeIcon size={24} />
-                </a>
-              </Link>
-              <FavouriteButton cityId={cityId} />
-            </div>
-          </section>
-          <Card title="Weather forecast">
-            <ul className="grid w-full auto-cols-max grid-flow-col gap-x-10 overflow-y-hidden overflow-x-scroll scrollbar-none">
-              {getWeatherTimepoints(
-                currentWeatherQuery.data,
-                threeHourForecastQuery.data,
-              ).map((weatherTimepoint) => (
-                <WeatherTimepointCard
-                  key={weatherTimepoint.date.getTime()}
-                  weatherTimepoint={weatherTimepoint}
-                />
-              ))}
-            </ul>
-          </Card>
-          <div className="grid lg:grid-cols-[1fr,_2fr]">
-            <Card title="Wind">
-              <div className="relative flex aspect-square h-full w-full items-center justify-center rounded-full border-2 border-slate-50">
-                <span className="absolute top-1 left-1/2 -translate-x-1/2">
-                  N
-                </span>
-                <span className="absolute right-1 top-1/2 -translate-y-1/2">
-                  E
-                </span>
-                <span className="absolute bottom-1 left-1/2 -translate-x-1/2">
-                  S
-                </span>
-                <span className="absolute left-1 top-1/2 -translate-y-1/2">
-                  W
-                </span>
-                <ArrowUpIcon
-                  style={{ rotate: `${-currentWeatherQuery.data.wind.deg}deg` }}
-                  size={240}
-                />
-                <div className="absolute left-1/2 top-1/2 flex aspect-square -translate-x-1/2 -translate-y-1/2 flex-col items-center justify-center rounded-full bg-slate-900 p-2">
-                  <span className="text-lg font-bold">
-                    {currentWeatherQuery.data.wind.speed}
-                  </span>
-                  <span className="text-sm">m/s</span>
-                </div>
+                  <HomeIcon className="h-7 w-7 lg:h-8 lg:w-8" />
+                </Link>
+                <FavouriteButton locationId={locationId} />
               </div>
-            </Card>
-            <Card title="[PH] Further stats">
-              <div>Visibility: {currentWeatherQuery.data.visibility} m</div>
-              <div>Humidity: {currentWeatherQuery.data.main.humidity}%</div>
-              <div>Pressure: {currentWeatherQuery.data.main.pressure} hPa</div>
-            </Card>
-          </div>
-        </>
-      )}
-    </Container>
+            </div>
+            <div className="grid grid-cols-2 gap-4 lg:grid-cols-3">
+              <div className="col-span-3 w-full">
+                <InformationCard title="Weather forecast">
+                  <ul className="grid auto-cols-max grid-flow-col gap-x-10 overflow-x-scroll scrollbar-none">
+                    {getWeatherTimepoints(
+                      currentWeatherQuery.data,
+                      threeHourForecastQuery.data,
+                    ).map((weatherTimepoint) => (
+                      <WeatherTimepointCard
+                        key={weatherTimepoint.date.getTime()}
+                        weatherTimepoint={weatherTimepoint}
+                      />
+                    ))}
+                  </ul>
+                </InformationCard>
+              </div>
+              <InformationCard title="Wind">
+                <div className="relative flex aspect-square items-center justify-center">
+                  <Image
+                    src="/images/compass/rose.webp"
+                    layout="fill"
+                  />
+                  <Image
+                    src="/images/compass/needle.webp"
+                    style={{
+                      rotate: `${-currentWeatherQuery.data.wind.deg}deg`,
+                    }}
+                    width={248}
+                    height={143}
+                  />
+                  <div className="absolute left-1/2 top-1/2 flex aspect-square h-16 w-16 -translate-x-1/2 -translate-y-1/2 flex-col items-center justify-center rounded-full bg-sky-400 bg-neutrals-50/20 backdrop-blur-xl lg:h-24 lg:w-24">
+                    <span className="font-bold text-lg">
+                      {currentWeatherQuery.data.wind.speed.toFixed(1)}
+                    </span>
+                    <span className="text-sm">m/s</span>
+                  </div>
+                </div>
+              </InformationCard>
+              <div className="col-span-2">
+                <InformationCard title="[PH] Further stats">
+                  <div>Visibility: {currentWeatherQuery.data.visibility} m</div>
+                  <div>Humidity: {currentWeatherQuery.data.main.humidity}%</div>
+                  <div>
+                    Pressure: {currentWeatherQuery.data.main.pressure} hPa
+                  </div>
+                </InformationCard>
+              </div>
+            </div>
+          </>
+        )}
+      </Container>
+    </section>
   );
 }
 
