@@ -1,7 +1,7 @@
 import Layout from '@/components/layouts/Layout';
 import PageNotFoundSection from '@/components/sections/PageNotFoundSection';
 
-function Home() {
+function PageNotFound() {
   return (
     <Layout title="Page not found | WeatherWorks">
       <PageNotFoundSection />
@@ -9,4 +9,4 @@ function Home() {
   );
 }
 
-export default Home;
+export default PageNotFound;
