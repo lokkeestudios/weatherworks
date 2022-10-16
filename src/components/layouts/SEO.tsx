@@ -25,8 +25,8 @@ function SEO({ title, slug }: Props) {
         images: [
           {
             url: '/icon-512x512.png',
-            width: 1200,
-            height: 630,
+            width: 512,
+            height: 512,
             alt: title,
           },
           {
