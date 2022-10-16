@@ -179,23 +179,44 @@ function LocationDetailsSection({
                     style={{
                       rotate: `${-currentWeatherQuery.data.wind.deg}deg`,
                     }}
-                    width={248}
-                    height={143}
+                    layout="fill"
+                    className="absolute inset-0"
                   />
-                  <div className="absolute left-1/2 top-1/2 flex aspect-square h-16 w-16 -translate-x-1/2 -translate-y-1/2 flex-col items-center justify-center rounded-full bg-neutrals-50/20 backdrop-blur-xl lg:h-24 lg:w-24">
-                    <span className="font-bold text-lg">
+                  <div className="absolute left-1/2 top-1/2 flex h-16 w-16 -translate-x-1/2 -translate-y-1/2 flex-col items-center justify-center rounded-full bg-neutrals-50/20 backdrop-blur-lg md:h-24 md:w-24">
+                    <span className="font-bold text-base">
                       {currentWeatherQuery.data.wind.speed.toFixed(1)}
                     </span>
-                    <span className="text-sm">m/s</span>
+                    <span className="text-xs">m/s</span>
                   </div>
                 </div>
               </InformationCard>
               <div className="col-span-2">
                 <InformationCard title="[PH] Further stats">
-                  <div>Visibility: {currentWeatherQuery.data.visibility} m</div>
-                  <div>Humidity: {currentWeatherQuery.data.main.humidity}%</div>
-                  <div>
-                    Pressure: {currentWeatherQuery.data.main.pressure} hPa
+                  <div className="flex flex-col gap-y-4 md:flex-row md:justify-between">
+                    <div>
+                      <p className="font-semibold uppercase text-neutrals-300 text-sm">
+                        Visibility
+                      </p>
+                      <p className="text-base">
+                        {currentWeatherQuery.data.visibility} m
+                      </p>
+                    </div>
+                    <div>
+                      <p className="font-semibold uppercase text-neutrals-300 text-sm">
+                        Humidity
+                      </p>
+                      <p className="text-base">
+                        {currentWeatherQuery.data.main.humidity}%
+                      </p>
+                    </div>
+                    <div>
+                      <p className="font-semibold uppercase text-neutrals-300 text-sm">
+                        Pressure
+                      </p>
+                      <p className="text-base">
+                        {currentWeatherQuery.data.main.pressure} hPa
+                      </p>
+                    </div>
                   </div>
                 </InformationCard>
               </div>
