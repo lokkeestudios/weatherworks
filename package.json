@@ -4,7 +4,7 @@
   "homepage": "https://weatherworks.lokkeestudios.com",
   "license": "UNLICENSED",
   "description": "The most visually compelling real-time weather app",
-  "author": "Lokkee Studios",
+  "author": "LOKKEE STUDIOS",
   "scripts": {
     "dev": "next dev",
     "build": "next build",
