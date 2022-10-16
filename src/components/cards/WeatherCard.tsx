@@ -55,11 +55,11 @@ function WeatherCard({ currentWeatherQuery }: Props) {
               }
               °
             </p>
-            <div className="flex flex-col items-center justify-center gap-y-2">
-              <p className="font-medium capitalize leading-none text-neutrals-300 text-sm">
+            <div className="flex w-1/2 flex-col items-center justify-center text-center md:w-auto md:gap-y-2">
+              <p className="font-medium capitalize leading-none text-neutrals-300 text-xs md:text-sm">
                 {currentWeatherData.weather[0].description}
               </p>
-              <h3 className="font-display font-bold leading-none text-2xl">
+              <h3 className="w-full overflow-hidden text-ellipsis whitespace-nowrap font-display font-bold leading-none text-lg md:text-2xl">
                 {currentWeatherData.name} - {currentWeatherData.sys.country}
               </h3>
             </div>
