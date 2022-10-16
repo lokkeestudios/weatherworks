@@ -13,7 +13,7 @@ interface Props {
 function WeatherTimepointCard({ weatherTimepoint }: Props) {
   return (
     <li className="flex flex-col items-center gap-y-1">
-      <p className="font-medium text-slate-300 text-sm">
+      <p className="font-medium text-neutrals-300 text-sm">
         {weatherTimepoint.type === 'current'
           ? 'Now'
           : `${appendZeroIfNess(
