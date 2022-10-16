@@ -24,6 +24,12 @@ function SEO({ title, slug }: Props) {
         site_name: 'WeatherWorks',
         images: [
           {
+            url: '/icon-512x512.png',
+            width: 1200,
+            height: 630,
+            alt: title,
+          },
+          {
             url: '/banner-1200x630.png',
             width: 1200,
             height: 630,

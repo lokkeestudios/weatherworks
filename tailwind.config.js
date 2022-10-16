@@ -13,11 +13,11 @@ module.exports = {
         'body': ['Roboto', ...defaultTheme.fontFamily.sans],
       },
       colors: {
-        primary: '#6919ff',
+        primary: '#6919FF',
         neutrals: {
           '50': '#F8FAFC',
           '300': '#CBD5E1',
-          '400': '#94a3b8',
+          '400': '#94A3B8',
           '700': '#292961',
           '800': '#1C1B45',
           '900': '#12112C',

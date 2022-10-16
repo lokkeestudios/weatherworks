@@ -3,8 +3,8 @@
   "description": "WeatherWorks brings you visually compelling real-time global weather data, from both the present and the future.",
   "start_url": "/?home=true",
   "display": "standalone",
-  "background_color": "#90cdf4",
-  "theme_color": "#12112C",
+  "background_color": "#0F1922",
+  "theme_color": "#6919FF",
   "icons": [
     {
       "src": "/icon-128x128.png",
