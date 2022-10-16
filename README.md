@@ -1,8 +1,8 @@
 <div align="center">
- <img src="public/images/logos/weatherworks.svg" width="300"/>
+ <img src="icons/logo.svg" width="300"/>
 </div>
 
-# WeatherWorks<br>The most visually compelling real-time weather app
+# WeatherWorks</br>The most visually compelling real-time weather app
 
 <sup>Copyright &copy; 2022 Lokkee Studios All Rights Reserved.</sup>
 
