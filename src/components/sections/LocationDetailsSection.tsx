@@ -4,7 +4,7 @@ import Container from '@/components/Container';
 import FavouriteButton from '@/components/forms/FavouriteButton';
 import HomeIcon from '@/components/icons/HomeIcon';
 import { QueryKeys } from '@/proxies';
-import getCurrentWeather from '@/proxies/getCurrentWeather';
+import getCurrentWeatherByLocationId from '@/proxies/getCurrentWeatherByLocationId';
 import getThreeHourForecast from '@/proxies/getThreeHourForecast';
 import WeatherTimepoint from '@/types/Weathertimepoint';
 import { useQuery } from '@tanstack/react-query';
@@ -109,7 +109,7 @@ function LocationDetailsSection({
 
   const currentWeatherQuery = useQuery(
     QueryKeys.currentWeather(locationId),
-    async () => getCurrentWeather({ locationId }),
+    async () => getCurrentWeatherByLocationId(locationId),
     {
       initialData: initialCurrentWeatherData,
     },

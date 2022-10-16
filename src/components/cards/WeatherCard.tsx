@@ -1,16 +1,9 @@
 import FavouriteButton from '@/components/forms/FavouriteButton';
 import QueryStateWrapper from '@/components/QueryStateWrapper';
-import { QueryKeys } from '@/proxies';
-import getCurrentWeather from '@/proxies/getCurrentWeather';
-import Geolocation from '@/types/Geolocation';
-import { useQuery } from '@tanstack/react-query';
+import { UseQueryResult } from '@tanstack/react-query';
 import Image from 'next/image';
 import Link from 'next/link';
-
-interface Props {
-  geolocation?: Geolocation;
-  locationId?: number;
-}
+import { CurrentResponse } from 'openweathermap-ts/dist/types';
 
 function LoadingStateDisplay() {
   return (
@@ -33,15 +26,11 @@ function LoadingStateDisplay() {
   );
 }
 
-function WeatherCard({
-  geolocation = undefined,
-  locationId = undefined,
-}: Props) {
-  const currentWeatherQuery = useQuery(
-    QueryKeys.currentWeather(geolocation || locationId),
-    async () => getCurrentWeather({ geolocation, locationId }),
-  );
+interface Props {
+  currentWeatherQuery: UseQueryResult<CurrentResponse, unknown>;
+}
 
+function WeatherCard({ currentWeatherQuery }: Props) {
   return (
     <QueryStateWrapper
       query={currentWeatherQuery}

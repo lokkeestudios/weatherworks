@@ -1,7 +1,7 @@
 import Background from '@/components/Background';
 import Layout from '@/components/layouts/Layout';
 import LocationDetailsSection from '@/components/sections/LocationDetailsSection';
-import getCurrentWeather from '@/proxies/getCurrentWeather';
+import getCurrentWeatherByLocationId from '@/proxies/getCurrentWeatherByLocationId';
 import getThreeHourForecast from '@/proxies/getThreeHourForecast';
 import { GetServerSidePropsContext } from 'next';
 import {
@@ -34,7 +34,7 @@ async function getServerSideProps(context: GetServerSidePropsContext) {
 
   try {
     const [currentWeather, threeHourForecast] = await Promise.all([
-      getCurrentWeather({ locationId: locationIdNum }),
+      getCurrentWeatherByLocationId(locationIdNum),
       getThreeHourForecast(locationIdNum),
     ]);
 

@@ -1,3 +1,4 @@
+import Geolocation from '@/types/Geolocation';
 import OpenWeatherMap from 'openweathermap-ts';
 import {
   CurrentResponse,
@@ -17,8 +18,14 @@ const openWeatherMap = new OpenWeatherMap({
 
 function weatherApi() {
   return {
-    getCurrentWeatherByGeoCoordinates: (latitude: number, longitude: number) =>
-      openWeatherMap.getCurrentWeatherByGeoCoordinates(latitude, longitude),
+    getCurrentWeatherByGeolocation: (geolocation: Geolocation) => {
+      const { latitude, longitude } = geolocation;
+
+      return openWeatherMap.getCurrentWeatherByGeoCoordinates(
+        latitude,
+        longitude,
+      );
+    },
     getCurrentWeatherByLocationId: (locationId: number) =>
       openWeatherMap.getCurrentWeatherByCityId(locationId),
     getThreeHourForecastByLocationId: (locationId: number) =>

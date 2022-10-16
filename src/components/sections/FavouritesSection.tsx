@@ -1,4 +1,4 @@
-import WeatherCard from '@/components/cards/WeatherCard';
+import LocationIdWeatherCard from '@/components/cards/LocationIdWeatherCard';
 import Container from '@/components/Container';
 import ActiveFavouriteIcon from '@/components/icons/ActiveFavouriteIcon';
 import {
@@ -29,7 +29,7 @@ function FavouritesSection() {
             </>
           )}
           {favourites.favouriteLocationIds.map((favouriteLocationId) => (
-            <WeatherCard
+            <LocationIdWeatherCard
               key={favouriteLocationId}
               locationId={favouriteLocationId}
             />
