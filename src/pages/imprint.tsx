@@ -3,7 +3,10 @@ import ImprintSection from '@/components/sections/ImprintSection';
 
 function Imprint() {
   return (
-    <Layout title="Imprint | WeatherWorks">
+    <Layout
+      title="Imprint | WeatherWorks"
+      slug="imprint"
+    >
       <ImprintSection />
     </Layout>
   );
