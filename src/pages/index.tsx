@@ -13,12 +13,13 @@ async function getServerSideProps({ req }: GetServerSidePropsContext) {
   const forwarded = req.headers['x-forwarded-for'] as string | undefined;
   const ip = forwarded ? forwarded.split(',')[0] : req.socket.remoteAddress;
 
+  const couldNotRetrieveGeolocation = { props: {} };
+
   if (!ip || LOCAL_IP_LIST.includes(ip)) {
-    return { props: {} };
+    return couldNotRetrieveGeolocation;
   }
   try {
-    const ipInformation = await getIpInformation(ip);
-    const { lat, lon } = ipInformation.data;
+    const { lat, lon } = await getIpInformation(ip);
 
     return {
       props: {
@@ -29,7 +30,7 @@ async function getServerSideProps({ req }: GetServerSidePropsContext) {
       },
     };
   } catch (error) {
-    return { props: {} };
+    return couldNotRetrieveGeolocation;
   }
 }
 

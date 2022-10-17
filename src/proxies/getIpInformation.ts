@@ -18,7 +18,11 @@ interface IpInformation {
 }
 
 async function getIpInformation(ip: string) {
-  return axios.get<IpInformation>(`http://ip-api.com/json/${ip}`);
+  const { data } = await axios.get<IpInformation>(
+    `http://ip-api.com/json/${ip}`,
+  );
+
+  return data;
 }
 
 export default getIpInformation;
