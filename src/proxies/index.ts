@@ -47,6 +47,7 @@ async function validateWeatherResponseStatusCode<
 const QueryKeys = {
   currentWeather: (id: unknown) => ['currentWeather', id],
   threeHourForecast: (id: unknown) => ['threeHourForecast', id],
+  filteredLocations: (id: unknown) => ['filteredLocations', id],
 };
 
 export { weatherApi, validateWeatherResponseStatusCode, QueryKeys };

@@ -1,11 +1,15 @@
 import SearchIcon from '@/components/icons/SearchIcon';
+import useDebounce from '@/hooks/useDebounce';
+import { QueryKeys } from '@/proxies';
 import getFilteredLocations from '@/proxies/getFilteredLocations';
 import { Combobox } from '@headlessui/react';
 import { Location } from '@prisma/client';
+import { useQuery } from '@tanstack/react-query';
 import { useRouter } from 'next/router';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 
 const MAX_DISPLAYED_RESULTS = 5;
+const QUERY_DEBOUNCE_TIME = 200;
 
 function getSubstringOfResultWithoutQuery(result: string, query: string) {
   const substring = result.replace(new RegExp(query, 'i'), '');
@@ -21,52 +25,21 @@ function getQuerySubstringOfResult(result: string, query: string) {
   return substring;
 }
 
-enum QueryStatus {
-  PASSING,
-  LOADING,
-  ERROR,
-  NO_RESULTS,
-}
-
 function LocationSearchInput() {
   const [query, setQuery] = useState('');
-  const [filteredLocations, setFilteredLocations] = useState<Location[]>([]);
-  const [queryStatus, setQueryStatus] = useState(QueryStatus.PASSING);
+  const debouncedQuery = useDebounce(query, QUERY_DEBOUNCE_TIME);
+  const {
+    data: filteredLocations,
+    isLoading,
+    isError,
+    isSuccess,
+  } = useQuery(
+    QueryKeys.filteredLocations(debouncedQuery),
+    () => getFilteredLocations(debouncedQuery, MAX_DISPLAYED_RESULTS),
+    { enabled: Boolean(debouncedQuery.length !== 0) },
+  );
 
   const router = useRouter();
-
-  useEffect(() => {
-    if (query.length === 0) {
-      setFilteredLocations([]);
-      setQueryStatus(QueryStatus.PASSING);
-      return;
-    }
-
-    setQueryStatus(QueryStatus.LOADING);
-
-    getFilteredLocations(query, MAX_DISPLAYED_RESULTS)
-      .then((response) => {
-        const { data: locations } = response;
-
-        setFilteredLocations(locations);
-
-        if (locations.length === 0) {
-          setQueryStatus(QueryStatus.NO_RESULTS);
-          return;
-        }
-        setQueryStatus(QueryStatus.PASSING);
-      })
-      .catch(() => {
-        setFilteredLocations([]);
-        setQueryStatus(QueryStatus.ERROR);
-      });
-  }, [query]);
-
-  const showLoadingDisplay = queryStatus === QueryStatus.LOADING;
-  const showErrorDisplay = queryStatus === QueryStatus.ERROR;
-  const showNoResultsDisplay = queryStatus === QueryStatus.NO_RESULTS;
-  const showResults =
-    !showLoadingDisplay && !showErrorDisplay && !showNoResultsDisplay;
 
   return (
     <Combobox
@@ -95,21 +68,27 @@ function LocationSearchInput() {
         </div>
       </label>
       <Combobox.Options className="absolute left-0 top-12 flex w-full flex-col rounded-b-lg border-0.5 border-neutrals-50/30 bg-neutrals-800/60 p-3 backdrop-blur-xl">
-        {showLoadingDisplay && <p>Searching...</p>}
-        {showErrorDisplay && <p>Unable to fetch results. Try again later</p>}
-        {showNoResultsDisplay && <p>No locations matched your query</p>}
-        {showResults &&
-          filteredLocations.map((location) => (
-            <Combobox.Option
-              key={location.id}
-              value={location}
-              className="cursor-pointer rounded-sm py-1 px-2 ui-active:bg-primary"
-            >
-              <span className="font-semibold">
-                {getQuerySubstringOfResult(location.name, query)}
-              </span>
-              {getSubstringOfResultWithoutQuery(location.name, query)}
-            </Combobox.Option>
+        {isLoading && <p>Searching...</p>}
+        {isError && <p>Unable to fetch results. Try again later</p>}
+        {isSuccess &&
+          (filteredLocations.length === 0 ? (
+            <p>No locations matched your query</p>
+          ) : (
+            filteredLocations.map((location) => (
+              <Combobox.Option
+                key={location.id}
+                value={location}
+                className="cursor-pointer rounded-sm py-1 px-2 ui-active:bg-primary"
+              >
+                <span className="font-semibold">
+                  {getQuerySubstringOfResult(location.name, debouncedQuery)}
+                </span>
+                {getSubstringOfResultWithoutQuery(
+                  location.name,
+                  debouncedQuery,
+                )}
+              </Combobox.Option>
+            ))
           ))}
       </Combobox.Options>
     </Combobox>

@@ -6,7 +6,7 @@ const queryClient = new QueryClient({
   defaultOptions: {
     queries: {
       refetchOnWindowFocus: (query) => query.state.status !== 'error',
-      retry: false,
+      retry: 2,
       staleTime: STALE_TIME,
       cacheTime: STALE_TIME,
     },
