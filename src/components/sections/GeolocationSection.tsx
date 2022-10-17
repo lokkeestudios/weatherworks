@@ -1,16 +1,12 @@
 import GeolocationWeatherCard from '@/components/cards/GeolocationWeatherCard';
 import Container from '@/components/Container';
-import useGeolocation from '@/hooks/useGeolocation';
+import Geolocation from '@/types/Geolocation';
 
-function GeolocationSection() {
-  const [location, error] = useGeolocation({
-    maximumAge: 1000,
-    timeout: 1000 * 10,
-  });
+interface Props {
+  geolocation: Geolocation | undefined;
+}
 
-  const isError = typeof error !== 'undefined';
-  const isLoading = !location;
-
+function GeolocationSection({ geolocation }: Props) {
   return (
     <section
       className="relative z-1 py-8"
@@ -20,14 +16,10 @@ function GeolocationSection() {
         <h2 className="mb-8 font-display font-bold leading-tight text-4xl">
           Your location
         </h2>
-        {isError && <p>Unable to retrieve location. Try again later</p>}
-        {!isError && isLoading && (
-          <div>
-            <p>[PH] Loading...</p>
-          </div>
-        )}
-        {!isError && !isLoading && (
-          <GeolocationWeatherCard geolocation={location} />
+        {geolocation ? (
+          <GeolocationWeatherCard geolocation={geolocation} />
+        ) : (
+          <p>Unable to retrieve location. Try again later</p>
         )}
       </Container>
     </section>
