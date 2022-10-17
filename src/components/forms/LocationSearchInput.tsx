@@ -7,14 +7,14 @@ import { useEffect, useState } from 'react';
 
 const MAX_DISPLAYED_RESULTS = 5;
 
-function getQuerySubstringOfResult(result: string, query: string) {
+function getSubstringOfResultWithoutQuery(result: string, query: string) {
   const substring = result.replace(new RegExp(query, 'i'), '');
 
   return substring;
 }
-function getQuerySubstringOfResult2(result: string, query: string) {
+function getQuerySubstringOfResult(result: string, query: string) {
   const substring = result.replace(
-    getQuerySubstringOfResult(result, query),
+    getSubstringOfResultWithoutQuery(result, query),
     '',
   );
 
@@ -106,9 +106,9 @@ function LocationSearchInput() {
               className="cursor-pointer rounded-sm py-1 px-2 ui-active:bg-primary"
             >
               <span className="font-semibold">
-                {getQuerySubstringOfResult2(location.name, query)}
+                {getQuerySubstringOfResult(location.name, query)}
               </span>
-              {getQuerySubstringOfResult(location.name, query)}
+              {getSubstringOfResultWithoutQuery(location.name, query)}
             </Combobox.Option>
           ))}
       </Combobox.Options>
