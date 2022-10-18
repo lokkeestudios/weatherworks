@@ -9,7 +9,7 @@ import { useRouter } from 'next/router';
 import { useState } from 'react';
 
 const MAX_DISPLAYED_RESULTS = 5;
-const QUERY_DEBOUNCE_TIME = 200;
+const QUERY_DEBOUNCE_TIME = 150;
 
 function getSubstringOfResultWithoutQuery(result: string, query: string) {
   const substring = result.replace(new RegExp(query, 'i'), '');
