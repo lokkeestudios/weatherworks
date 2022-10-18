@@ -19,7 +19,13 @@ async function getServerSideProps({ req }: GetServerSidePropsContext) {
     return couldNotRetrieveGeolocation;
   }
   try {
-    const { lat, lon } = await getIpInformation(ip);
+    const ipInformation = await getIpInformation(ip);
+
+    if (ipInformation.status === 'fail') {
+      return couldNotRetrieveGeolocation;
+    }
+
+    const { lat, lon } = ipInformation;
 
     return {
       props: {
