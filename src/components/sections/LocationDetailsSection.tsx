@@ -152,7 +152,7 @@ function LocationDetailsSection({
                 <FavouriteButton locationId={locationId} />
               </div>
             </div>
-            <div className="grid grid-cols-2 gap-4 lg:grid-cols-3">
+            <div className="grid grid-cols-2 gap-4 md:grid-cols-2 lg:grid-cols-3">
               <div className="col-span-3 w-full">
                 <InformationCard title="Weather forecast">
                   <ul className="grid auto-cols-max grid-flow-col gap-x-4 overflow-x-scroll scrollbar-none lg:gap-x-8">
@@ -168,30 +168,32 @@ function LocationDetailsSection({
                   </ul>
                 </InformationCard>
               </div>
-              <InformationCard title="Wind">
-                <div className="relative flex aspect-square items-center justify-center">
-                  <Image
-                    src="/images/compass/rose.webp"
-                    layout="fill"
-                  />
-                  <Image
-                    src="/images/compass/needle.webp"
-                    style={{
-                      rotate: `${-currentWeatherQuery.data.wind.deg}deg`,
-                    }}
-                    layout="fill"
-                    className="absolute inset-0"
-                  />
-                  <div className="absolute left-1/2 top-1/2 flex h-16 w-16 -translate-x-1/2 -translate-y-1/2 flex-col items-center justify-center rounded-full bg-neutrals-50/20 backdrop-blur-lg md:h-24 md:w-24">
-                    <span className="font-bold text-base">
-                      {currentWeatherQuery.data.wind.speed.toFixed(1)}
-                    </span>
-                    <span className="text-xs">m/s</span>
+              <div className="col-span-3 md:col-span-1">
+                <InformationCard title="Wind">
+                  <div className="relative flex aspect-square items-center justify-center">
+                    <Image
+                      src="/images/compass/rose.webp"
+                      layout="fill"
+                    />
+                    <Image
+                      src="/images/compass/needle.webp"
+                      style={{
+                        rotate: `${-currentWeatherQuery.data.wind.deg}deg`,
+                      }}
+                      layout="fill"
+                      className="absolute inset-0"
+                    />
+                    <div className="absolute left-1/2 top-1/2 flex h-24 w-24 -translate-x-1/2 -translate-y-1/2 flex-col items-center justify-center rounded-full bg-neutrals-50/20 backdrop-blur-lg">
+                      <span className="font-bold text-base">
+                        {currentWeatherQuery.data.wind.speed.toFixed(1)}
+                      </span>
+                      <span className="text-xs">m/s</span>
+                    </div>
                   </div>
-                </div>
-              </InformationCard>
-              <div className="col-span-2">
-                <InformationCard title="[PH] Further stats">
+                </InformationCard>
+              </div>
+              <div className="col-span-3 md:col-span-2">
+                <InformationCard title="Additional conditions">
                   <div className="flex flex-col gap-y-4 md:flex-row md:justify-between">
                     <div>
                       <p className="font-semibold uppercase text-neutrals-300 text-sm">
