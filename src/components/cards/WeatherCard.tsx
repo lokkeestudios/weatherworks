@@ -39,7 +39,7 @@ function WeatherCard({ currentWeatherQuery }: Props) {
     >
       {(currentWeatherData) => (
         <div className="group relative w-full rounded-2xl border-0.5 border-neutrals-50/30 bg-neutrals-800/60 shadow-lg backdrop-blur-xl transition-all duration-300 focus-visible:-translate-y-1 focus-visible:scale-[1.005] focus-visible:shadow-2xl hover:-translate-y-1 hover:scale-[1.005] hover:shadow-2xl">
-          <div className="absolute top-4 right-8 z-1 opacity-0 transition-opacity duration-300 group-hover:opacity-100 lg:top-6 lg:right-11">
+          <div className="absolute top-4 right-8 z-1 translate-x-1/2 opacity-0 transition-all duration-300 group-hover:translate-x-0 group-hover:opacity-100 lg:top-6 lg:right-11">
             <FavouriteButton locationId={currentWeatherData.id} />
           </div>
           <Link
