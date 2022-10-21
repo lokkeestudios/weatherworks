@@ -1,9 +1,9 @@
 import FavouriteButton from '@/components/forms/FavouriteButton';
 import QueryStateWrapper from '@/components/QueryStateWrapper';
+import { CurrentWeather } from '@/proxies';
 import { UseQueryResult } from '@tanstack/react-query';
 import Image from 'next/image';
 import Link from 'next/link';
-import { CurrentResponse } from 'openweathermap-ts/dist/types';
 
 function LoadingStateDisplay() {
   return (
@@ -27,7 +27,7 @@ function LoadingStateDisplay() {
 }
 
 interface Props {
-  currentWeatherQuery: UseQueryResult<CurrentResponse, unknown>;
+  currentWeatherQuery: UseQueryResult<CurrentWeather, unknown>;
 }
 
 function WeatherCard({ currentWeatherQuery }: Props) {

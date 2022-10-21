@@ -12,7 +12,7 @@ interface Props {
 
 function WeatherTimepointCard({ weatherTimepoint }: Props) {
   return (
-    <li className="flex flex-col items-center gap-y-1">
+    <li className="flex flex-col items-center justify-between">
       <p className="font-medium text-neutrals-300 text-sm">
         {weatherTimepoint.type === 'current'
           ? 'Now'
@@ -34,7 +34,7 @@ function WeatherTimepointCard({ weatherTimepoint }: Props) {
       {(weatherTimepoint.type === 'current' ||
         weatherTimepoint.type === 'forecast') &&
         weatherTimepoint.rainPropability && (
-          <span className="text-sky-400 text-xs">
+          <span className="font-semibold text-sky-400 text-xs">
             {weatherTimepoint.rainPropability}%
           </span>
         )}

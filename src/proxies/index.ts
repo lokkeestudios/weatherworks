@@ -16,9 +16,17 @@ const openWeatherMap = new OpenWeatherMap({
   units: 'metric',
 });
 
+type CurrentWeather = CurrentResponse;
+
+type ThreeHourForecast = {
+  list: ({ pop?: number } & ThreeHourResponse['list'][number])[];
+} & ThreeHourResponse;
+
 function weatherApi() {
   return {
-    getCurrentWeatherByGeolocation: (geolocation: Geolocation) => {
+    getCurrentWeatherByGeolocation: (
+      geolocation: Geolocation,
+    ): Promise<CurrentWeather> => {
       const { latitude, longitude } = geolocation;
 
       return openWeatherMap.getCurrentWeatherByGeoCoordinates(
@@ -29,12 +37,14 @@ function weatherApi() {
     getCurrentWeatherByLocationId: (locationId: number) =>
       openWeatherMap.getCurrentWeatherByCityId(locationId),
     getThreeHourForecastByLocationId: (locationId: number) =>
-      openWeatherMap.getThreeHourForecastByCityId(locationId),
+      openWeatherMap.getThreeHourForecastByCityId(
+        locationId,
+      ) as Promise<ThreeHourForecast>,
   };
 }
 
 async function validateWeatherResponseStatusCode<
-  T extends Promise<CurrentResponse> | Promise<ThreeHourResponse>,
+  T extends Promise<CurrentWeather> | Promise<ThreeHourForecast>,
 >(weatherResponse: T): Promise<T> {
   const response = await weatherResponse;
 
@@ -50,4 +60,10 @@ const QueryKeys = {
   filteredLocations: (id: unknown) => ['filteredLocations', id],
 };
 
-export { weatherApi, validateWeatherResponseStatusCode, QueryKeys };
+export {
+  type CurrentWeather,
+  type ThreeHourForecast,
+  weatherApi,
+  validateWeatherResponseStatusCode,
+  QueryKeys,
+};
