@@ -3,21 +3,17 @@ import WeatherTimepointCard from '@/components/cards/WeatherTimepointCard';
 import Container from '@/components/Container';
 import FavouriteButton from '@/components/forms/FavouriteButton';
 import HomeIcon from '@/components/icons/HomeIcon';
-import { QueryKeys } from '@/proxies';
+import { CurrentWeather, QueryKeys, ThreeHourForecast } from '@/proxies';
 import getCurrentWeatherByLocationId from '@/proxies/getCurrentWeatherByLocationId';
 import getThreeHourForecast from '@/proxies/getThreeHourForecast';
 import WeatherTimepoint from '@/types/Weathertimepoint';
 import { useQuery } from '@tanstack/react-query';
 import Image from 'next/image';
 import Link from 'next/link';
-import {
-  CurrentResponse,
-  ThreeHourResponse,
-} from 'openweathermap-ts/dist/types';
 
 function getWeatherTimepoints(
-  currentWeatherData: CurrentResponse,
-  threeHourForecastData: ThreeHourResponse,
+  currentWeatherData: CurrentWeather,
+  threeHourForecastData: ThreeHourForecast,
 ) {
   const weatherTimepoints: WeatherTimepoint[] = [];
 
@@ -84,10 +80,10 @@ function getWeatherTimepoints(
         ),
         icon: forecastedWeather.weather[0].icon,
         description: forecastedWeather.weather[0].description,
-        /* rainPropability:
-          forecastedWeather.weather[0].main === 'Rain'
-            ? forecastedWeather.pop * 100 // TODO: make custom wrapper type which contains the pop prop
-            : undefined, */
+        rainPropability:
+          forecastedWeather.weather[0].main === 'Rain' && forecastedWeather.pop
+            ? Math.round(forecastedWeather.pop * 100)
+            : undefined,
       }),
     );
 
@@ -97,8 +93,8 @@ function getWeatherTimepoints(
 }
 
 interface Props {
-  initialCurrentWeatherData: CurrentResponse;
-  initialThreeHourForecastData: ThreeHourResponse;
+  initialCurrentWeatherData: CurrentWeather;
+  initialThreeHourForecastData: ThreeHourForecast;
 }
 
 function LocationDetailsSection({
@@ -121,6 +117,7 @@ function LocationDetailsSection({
       initialData: initialThreeHourForecastData,
     },
   );
+  console.log(currentWeatherQuery.data.wind.deg);
 
   const isErrorMessageDisplayed =
     currentWeatherQuery.isError || threeHourForecastQuery.isError;
@@ -178,7 +175,7 @@ function LocationDetailsSection({
                     <Image
                       src="/images/compass/needle.webp"
                       style={{
-                        rotate: `${-currentWeatherQuery.data.wind.deg}deg`,
+                        rotate: `${currentWeatherQuery.data.wind.deg}deg`,
                       }}
                       layout="fill"
                       className="absolute inset-0"
