@@ -117,7 +117,6 @@ function LocationDetailsSection({
       initialData: initialThreeHourForecastData,
     },
   );
-  console.log(currentWeatherQuery.data.wind.deg);
 
   const isErrorMessageDisplayed =
     currentWeatherQuery.isError || threeHourForecastQuery.isError;
