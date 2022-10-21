@@ -57,7 +57,9 @@ interface Props {
 function Location({ currentWeather, threeHourForecast }: Props) {
   return (
     <Layout
-      title={`[PH] ${currentWeather.name} - ${currentWeather.sys.country} | WeatherWorks`}
+      title={
+        `${currentWeather.name} - ${currentWeather.sys.country} | WeatherWorks` /* TODO: extract this into a utility function */
+      }
       slug={`location/${currentWeather.id}`}
     >
       <Background src="/images/waves/background2.svg" />
