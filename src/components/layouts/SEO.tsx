@@ -62,6 +62,10 @@ function SEO({ title, slug }: Props) {
             name: 'theme-color',
             content: '#6919FF',
           },
+          {
+            name: 'google-site-verification',
+            content: 'M5b_xgbjIoOjw_GHMkLyUdW-uSAfYHuL9Elqv5IloxQ',
+          },
         ]}
       />
       {NEXT_PUBLIC_GA_MEASUREMENT_ID && (
