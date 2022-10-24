@@ -68,11 +68,11 @@ function SEO({ title, slug }: Props) {
         <>
           <Script
             src={`https://www.googletagmanager.com/gtag/js?id=${NEXT_PUBLIC_GA_MEASUREMENT_ID}`}
-            strategy="afterInteractive"
+            strategy="lazyOnload"
           />
           <Script
             id="google-analytics"
-            strategy="afterInteractive"
+            strategy="lazyOnload"
           >
             {`
             window.dataLayer = window.dataLayer || [];
