@@ -5,14 +5,14 @@ import {
   ThreeHourResponse,
 } from 'openweathermap-ts/dist/types';
 
-const { NEXT_PUBLIC_WEATHER_API_KEY } = process.env;
+const WEATHER_API_KEY = process.env.NEXT_PUBLIC_WEATHER_API_KEY;
 
-if (NEXT_PUBLIC_WEATHER_API_KEY === undefined) {
+if (WEATHER_API_KEY === undefined) {
   throw new Error('.env variable WEATHER_API_KEY is undefined');
 }
 
 const openWeatherMap = new OpenWeatherMap({
-  apiKey: NEXT_PUBLIC_WEATHER_API_KEY,
+  apiKey: WEATHER_API_KEY,
   units: 'metric',
 });
 

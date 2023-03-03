@@ -14,9 +14,11 @@ function PageNotFoundSection() {
           <div className="relative w-64 md:w-80 lg:w-96">
             <Image
               src="/images/cloud-monster.webp"
+              alt="Happy cloud monster"
               width={504}
               height={416}
-              layout="responsive"
+              sizes="100vw"
+              className="w-full"
             />
             <h1 className="absolute left-1/2 top-1/2 -translate-y-1/2 -translate-x-1/2 font-display font-bold text-neutrals-900 text-9xl">
               404

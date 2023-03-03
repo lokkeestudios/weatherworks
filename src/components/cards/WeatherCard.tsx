@@ -2,7 +2,7 @@ import FavouriteButton from '@/components/forms/FavouriteButton';
 import QueryStateWrapper from '@/components/QueryStateWrapper';
 import { CurrentWeather } from '@/proxies';
 import { UseQueryResult } from '@tanstack/react-query';
-import Image from 'next/image';
+import Image from "next/image";
 import Link from 'next/link';
 
 function LoadingStateDisplay() {
@@ -69,8 +69,11 @@ function WeatherCard({ currentWeatherQuery }: Props) {
                 alt={currentWeatherData.weather[0].description}
                 width={256}
                 height={256}
-                layout="responsive"
-              />
+                sizes="100vw"
+                style={{
+                  width: "100%",
+                  height: "auto"
+                }} />
             </div>
           </Link>
         </div>

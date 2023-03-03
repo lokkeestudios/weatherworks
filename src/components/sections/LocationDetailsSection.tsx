@@ -169,15 +169,14 @@ function LocationDetailsSection({
                   <div className="relative flex aspect-square items-center justify-center">
                     <Image
                       src="/images/compass/rose.webp"
-                      layout="fill"
+                      alt="Compass rose"
+                      fill
                     />
                     <Image
                       src="/images/compass/needle.webp"
-                      style={{
-                        rotate: `${currentWeatherQuery.data.wind.deg}deg`,
-                      }}
-                      layout="fill"
+                      alt="Compass needle"
                       className="absolute inset-0"
+                      fill
                     />
                     <div className="absolute left-1/2 top-1/2 flex h-24 w-24 -translate-x-1/2 -translate-y-1/2 flex-col items-center justify-center rounded-full bg-neutrals-50/20 backdrop-blur-lg">
                       <span className="font-bold text-base">

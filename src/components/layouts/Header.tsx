@@ -1,6 +1,6 @@
 import Container from '@/components/Container';
 import socials from '@/data/socials';
-import Image from 'next/image';
+import Image from "next/image";
 import Link from 'next/link';
 
 function Header() {
@@ -18,8 +18,11 @@ function Header() {
               alt="WeatherWorks"
               width={256}
               height={256}
-              layout="responsive"
-            />
+              sizes="100vw"
+              style={{
+                width: "100%",
+                height: "auto"
+              }} />
           </Link>
           <div className="flex gap-x-2">
             {socials.map((social) => {

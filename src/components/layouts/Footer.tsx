@@ -18,12 +18,13 @@ function Footer() {
       >
         <Image
           src="/images/waves/footer.svg"
-          layout="fill"
-          objectFit="cover"
+          alt="Footer wave"
+          fill
+          className="object-cover"
         />
       </div>
       <Container>
-        <div className="flex flex-col items-center divide-y-0.5 divide-neutrals-300">
+        <div className="flex flex-col items-center divide-y-0.5 divide-neutrals-400">
           <div className="flex w-full items-center justify-center py-8">
             <div className="w-16 md:w-20">
               <Image
@@ -31,7 +32,6 @@ function Footer() {
                 alt="WeatherWorks"
                 width={256}
                 height={256}
-                layout="responsive"
               />
             </div>
           </div>
@@ -49,7 +49,7 @@ function Footer() {
                   alt="LOKKEE STUDIOS"
                   width={48}
                   height={48}
-                  layout="responsive"
+                  className="w-full"
                 />
               </div>
               <p className="mt-2 font-semibold uppercase text-sm">

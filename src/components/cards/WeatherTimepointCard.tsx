@@ -1,5 +1,5 @@
 import WeatherTimepoint from '@/types/Weathertimepoint';
-import Image from 'next/image';
+import Image from "next/image";
 
 // TODO: placeholder only!
 function appendZeroIfNess(s: string) {
@@ -28,8 +28,11 @@ function WeatherTimepointCard({ weatherTimepoint }: Props) {
           alt={weatherTimepoint.description}
           width={256}
           height={256}
-          layout="responsive"
-        />
+          sizes="100vw"
+          style={{
+            width: "100%",
+            height: "auto"
+          }} />
       </div>
       {(weatherTimepoint.type === 'current' ||
         weatherTimepoint.type === 'forecast') &&

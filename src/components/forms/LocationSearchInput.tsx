@@ -68,7 +68,7 @@ function LocationSearchInput() {
         </div>
       </label>
       <Combobox.Options className="absolute left-0 top-12 flex w-full flex-col rounded-b-lg border-0.5 border-neutrals-50/30 bg-neutrals-800/60 p-3 backdrop-blur-xl">
-        {isLoading && <p>Searching...</p>}
+        {isLoading && <p className="animate-pulse">Searching...</p>}
         {isError && <p>Unable to fetch results. Try again later</p>}
         {isSuccess &&
           (filteredLocations.length === 0 ? (

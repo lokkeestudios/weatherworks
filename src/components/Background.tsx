@@ -12,8 +12,9 @@ function Background({ src }: Props) {
     >
       <Image
         src={src}
-        layout="fill"
-        objectFit="cover"
+        alt="Background waves"
+        fill
+        className="object-cover"
       />
     </div>
   );
