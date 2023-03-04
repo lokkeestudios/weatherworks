@@ -1,5 +1,5 @@
 import { AnimatePresence, motion } from 'framer-motion';
-import Image from "next/image";
+import Image from 'next/image';
 import { useRouter } from 'next/router';
 import { useEffect, useState } from 'react';
 
@@ -52,18 +52,13 @@ function LoadingScreen() {
             },
           }}
         >
-          <div className="h-20 w-20 animate-ping">
-            <Image
-              src="/images/logos/weatherworks.webp"
-              alt="WeatherWorks"
-              width={256}
-              height={256}
-              sizes="100vw"
-              style={{
-                width: "100%",
-                height: "auto"
-              }} />
-          </div>
+          <Image
+            src="/images/logos/weatherworks.webp"
+            alt="WeatherWorks"
+            width={256}
+            height={256}
+            className="h-20 w-20 animate-ping"
+          />
         </motion.div>
       )}
     </AnimatePresence>

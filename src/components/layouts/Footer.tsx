@@ -20,20 +20,20 @@ function Footer() {
           src="/images/waves/footer.svg"
           alt="Footer wave"
           fill
+          sizes="100vw"
           className="object-cover"
         />
       </div>
       <Container>
         <div className="flex flex-col items-center divide-y-0.5 divide-neutrals-400">
           <div className="flex w-full items-center justify-center py-8">
-            <div className="w-16 md:w-20">
-              <Image
-                src="/images/logos/weatherworks.webp"
-                alt="WeatherWorks"
-                width={256}
-                height={256}
-              />
-            </div>
+            <Image
+              src="/images/logos/weatherworks.webp"
+              alt="WeatherWorks"
+              width={256}
+              height={256}
+              className="w-16 md:w-20"
+            />
           </div>
           <div className="flex w-full items-center justify-center py-8">
             <a
@@ -43,15 +43,13 @@ function Footer() {
               title="Get inspired by more great work"
               className="flex flex-col items-center justify-center"
             >
-              <div className="w-12 md:w-14">
-                <Image
-                  src="/images/logos/lokkee-studios.svg"
-                  alt="LOKKEE STUDIOS"
-                  width={48}
-                  height={48}
-                  className="w-full"
-                />
-              </div>
+              <Image
+                src="/images/logos/lokkee-studios.svg"
+                alt="LOKKEE STUDIOS"
+                width={48}
+                height={48}
+                className="w-12 md:w-14"
+              />
               <p className="mt-2 font-semibold uppercase text-sm">
                 Hand crafted by{' '}
                 <span className="font-display font-normal">

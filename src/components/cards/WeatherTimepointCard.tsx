@@ -1,5 +1,5 @@
 import WeatherTimepoint from '@/types/Weathertimepoint';
-import Image from "next/image";
+import Image from 'next/image';
 
 // TODO: placeholder only!
 function appendZeroIfNess(s: string) {
@@ -22,18 +22,14 @@ function WeatherTimepointCard({ weatherTimepoint }: Props) {
               weatherTimepoint.date.getUTCMinutes().toString(),
             )}`}
       </p>
-      <div className="h-11 w-11 md:h-16 md:w-16">
-        <Image
-          src={`/images/icons/weather/${weatherTimepoint.icon}.webp`}
-          alt={weatherTimepoint.description}
-          width={256}
-          height={256}
-          sizes="100vw"
-          style={{
-            width: "100%",
-            height: "auto"
-          }} />
-      </div>
+      <Image
+        src={`/images/icons/weather/${weatherTimepoint.icon}.webp`}
+        alt={weatherTimepoint.description}
+        width={256}
+        height={256}
+        loading="lazy"
+        className="h-11 w-11 md:h-16 md:w-16"
+      />
       {(weatherTimepoint.type === 'current' ||
         weatherTimepoint.type === 'forecast') &&
         weatherTimepoint.rainPropability && (

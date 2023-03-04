@@ -2,12 +2,15 @@ import FavouriteButton from '@/components/forms/FavouriteButton';
 import QueryStateWrapper from '@/components/QueryStateWrapper';
 import { CurrentWeather } from '@/proxies';
 import { UseQueryResult } from '@tanstack/react-query';
-import Image from "next/image";
+import Image from 'next/image';
 import Link from 'next/link';
 
 function LoadingStateDisplay() {
   return (
-    <div className="pointer-events-none w-full rounded-2xl border-0.5 border-neutrals-50/30 bg-neutrals-800/20 px-8 py-4 shadow-lg backdrop-blur-xl lg:px-11 lg:py-6">
+    <div
+      aria-hidden
+      className="pointer-events-none w-full rounded-2xl border-0.5 border-neutrals-50/30 bg-neutrals-800/20 px-8 py-4 shadow-lg backdrop-blur-xl lg:px-11 lg:py-6"
+    >
       <div className="flex animate-pulse items-center justify-between">
         <p className="rounded-full bg-neutrals-50/20 font-display font-bold leading-none text-transparent text-7xl">
           00°
@@ -63,18 +66,14 @@ function WeatherCard({ currentWeatherQuery }: Props) {
                 {currentWeatherData.name} - {currentWeatherData.sys.country}
               </h3>
             </div>
-            <div className="h-20 w-20 md:h-24 md:w-24 lg:h-32 lg:w-32">
-              <Image
-                src={`/images/icons/weather/${currentWeatherData.weather[0].icon}.webp`}
-                alt={currentWeatherData.weather[0].description}
-                width={256}
-                height={256}
-                sizes="100vw"
-                style={{
-                  width: "100%",
-                  height: "auto"
-                }} />
-            </div>
+            <Image
+              src={`/images/icons/weather/${currentWeatherData.weather[0].icon}.webp`}
+              alt={currentWeatherData.weather[0].description}
+              width={256}
+              height={256}
+              loading="lazy"
+              className="h-20 w-20 md:h-24 md:w-24 lg:h-32 lg:w-32"
+            />
           </Link>
         </div>
       )}

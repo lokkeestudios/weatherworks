@@ -151,7 +151,7 @@ function LocationDetailsSection({
             <div className="grid grid-cols-2 gap-4 md:grid-cols-2 lg:grid-cols-3">
               <div className="col-span-3 w-full">
                 <InformationCard title="Weather forecast">
-                  <ul className="grid auto-cols-max grid-flow-col gap-x-4 overflow-x-scroll scrollbar-none lg:gap-x-8">
+                  <ul className="grid auto-cols-max grid-flow-col gap-x-4 overflow-x-auto scrollbar-none lg:gap-x-8 lg:scrollbar">
                     {getWeatherTimepoints(
                       currentWeatherQuery.data,
                       threeHourForecastQuery.data,
@@ -171,12 +171,16 @@ function LocationDetailsSection({
                       src="/images/compass/rose.webp"
                       alt="Compass rose"
                       fill
+                      loading="lazy"
+                      sizes="(max-width: 768px) 100vw, 50vw"
                     />
                     <Image
                       src="/images/compass/needle.webp"
                       alt="Compass needle"
-                      className="absolute inset-0"
                       fill
+                      loading="lazy"
+                      sizes="(max-width: 768px) 100vw, 50vw"
+                      className="absolute inset-0"
                     />
                     <div className="absolute left-1/2 top-1/2 flex h-24 w-24 -translate-x-1/2 -translate-y-1/2 flex-col items-center justify-center rounded-full bg-neutrals-50/20 backdrop-blur-lg">
                       <span className="font-bold text-base">
@@ -191,7 +195,7 @@ function LocationDetailsSection({
                 <InformationCard title="Additional conditions">
                   <div className="flex flex-col gap-y-4 md:flex-row md:justify-between">
                     <div>
-                      <p className="font-semibold uppercase text-neutrals-300 text-sm">
+                      <p className="font-semibold uppercase text-neutrals-300 text-xs">
                         Visibility
                       </p>
                       <p className="text-base">
@@ -199,7 +203,7 @@ function LocationDetailsSection({
                       </p>
                     </div>
                     <div>
-                      <p className="font-semibold uppercase text-neutrals-300 text-sm">
+                      <p className="font-semibold uppercase text-neutrals-300 text-xs">
                         Humidity
                       </p>
                       <p className="text-base">
@@ -207,7 +211,7 @@ function LocationDetailsSection({
                       </p>
                     </div>
                     <div>
-                      <p className="font-semibold uppercase text-neutrals-300 text-sm">
+                      <p className="font-semibold uppercase text-neutrals-300 text-xs">
                         Pressure
                       </p>
                       <p className="text-base">
