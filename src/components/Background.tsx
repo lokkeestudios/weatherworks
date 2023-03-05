@@ -15,7 +15,6 @@ function Background({ src }: Props) {
         alt="Background waves"
         fill
         sizes="100vw"
-        priority
         className="object-cover"
       />
     </div>

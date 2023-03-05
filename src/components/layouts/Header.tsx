@@ -1,3 +1,4 @@
+import weatherworksLogoImage from '@/assets/images/logos/weatherworks.webp';
 import Container from '@/components/Container';
 import socials from '@/data/socials';
 import Image from 'next/image';
@@ -13,10 +14,8 @@ function Header() {
             title="Go back home"
           >
             <Image
-              src="/images/logos/weatherworks.webp"
+              src={weatherworksLogoImage}
               alt="WeatherWorks"
-              width={256}
-              height={256}
               className="h-14 w-14 lg:h-16 lg:w-16"
             />
           </Link>

@@ -1,4 +1,11 @@
 import {
+  Action,
+  ActionType,
+  FavouritesReducer,
+  FavouritesState,
+  initialState,
+} from '@/reducers/FavouritesReducer';
+import {
   createContext,
   Dispatch,
   ReactNode,
@@ -7,13 +14,6 @@ import {
   useMemo,
   useReducer,
 } from 'react';
-import {
-  Action,
-  ActionType,
-  FavouritesReducer,
-  FavouritesState,
-  initialState,
-} from '../reducers/FavouritesReducer';
 
 const FAVOURITES_STORAGE_KEY = 'favourites';
 const MAX_FAVOURITES = 4;

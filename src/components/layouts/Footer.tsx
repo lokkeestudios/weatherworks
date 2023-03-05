@@ -1,3 +1,4 @@
+import weatherworksLogoImage from '@/assets/images/logos/weatherworks.webp';
 import Container from '@/components/Container';
 import socials from '@/data/socials';
 import Image from 'next/image';
@@ -28,10 +29,8 @@ function Footer() {
         <div className="flex flex-col items-center divide-y-0.5 divide-neutrals-400">
           <div className="flex w-full items-center justify-center py-8">
             <Image
-              src="/images/logos/weatherworks.webp"
+              src={weatherworksLogoImage}
               alt="WeatherWorks"
-              width={256}
-              height={256}
               className="w-16 md:w-20"
             />
           </div>
@@ -61,7 +60,7 @@ function Footer() {
           <div className="flex w-full flex-col-reverse items-center justify-center gap-5 py-8 lg:flex-row">
             <div className="flex basis-1/3 items-center justify-start">
               <p className="text-neutrals-300 text-xs">
-                Copyright &copy; {getCurrentYear()} Lokkee Studios All Rights
+                Copyright &copy; {getCurrentYear()} LOKKEE STUDIOS All Rights
                 Reserved.
               </p>
             </div>

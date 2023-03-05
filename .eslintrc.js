@@ -54,5 +54,5 @@ module.exports = {
     'global-require': 'off',
     'import/no-extraneous-dependencies': ['error', { 'devDependencies': true }],
   },
-  plugins: ['@typescript-eslint', 'react', 'prettier'],
+  plugins: ['@typescript-eslint', 'import', 'react', 'prettier'],
 };

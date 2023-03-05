@@ -10,7 +10,7 @@ function ImprintSection() {
         <h1 className="mb-12 font-display font-bold text-7xl">Imprint</h1>
         <h2 className="mb-4 font-display font-bold text-3xl">Details</h2>
         <p className="mb-12 text-neutrals-50/70">
-          Lokkee Studios
+          LOKKEE STUDIOS
           <br />
           Kilian Peters
           <br />

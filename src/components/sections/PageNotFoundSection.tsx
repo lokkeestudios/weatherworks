@@ -1,3 +1,4 @@
+import cloudMonsterImage from '@/assets/images/cloud-monster.webp';
 import Container from '@/components/Container';
 import ChevronRightIcon from '@/components/icons/ChevronRightIcon';
 import Image from 'next/image';
@@ -13,11 +14,8 @@ function PageNotFoundSection() {
         <div className="flex flex-col items-center justify-center">
           <div className="relative">
             <Image
-              src="/images/cloud-monster.webp"
+              src={cloudMonsterImage}
               alt="Happy cloud monster"
-              width={504}
-              height={416}
-              sizes="100vw"
               className="w-64 md:w-80 lg:w-96"
             />
             <h1 className="absolute left-1/2 top-1/2 -translate-y-1/2 -translate-x-1/2 font-display font-bold text-neutrals-900 text-9xl">

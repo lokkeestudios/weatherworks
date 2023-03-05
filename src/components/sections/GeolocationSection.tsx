@@ -31,8 +31,8 @@ function GeolocationSection() {
             onClick={refetchGeolocation}
             className="flex items-center rounded-lg border-0.5 border-neutrals-50/30 bg-neutrals-800/60 p-3 backdrop-blur-xl"
           >
-            <LocationIcon className="mr-2 h-5 w-5" /> [TODO] Retrieve weather
-            for my location
+            <LocationIcon className="mr-2 h-5 w-5" /> Retrieve weather for my
+            location
           </button>
         )}
       </Container>

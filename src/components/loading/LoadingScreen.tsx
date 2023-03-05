@@ -1,3 +1,4 @@
+import weatherworksLogoImage from '@/assets/images/logos/weatherworks.webp';
 import { AnimatePresence, motion } from 'framer-motion';
 import Image from 'next/image';
 import { useRouter } from 'next/router';
@@ -8,28 +9,20 @@ function LoadingScreen() {
   const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
-    function handleStartRoute(url: string) {
-      if (url === router.asPath) {
-        return;
-      }
+    function handleStartRoute() {
       setIsLoading(true);
     }
 
-    function handleStopRoute(url: string) {
-      if (url !== router.asPath) {
-        return;
-      }
+    function handleStopRoute() {
       setIsLoading(false);
     }
 
     router.events.on('routeChangeStart', handleStartRoute);
     router.events.on('routeChangeComplete', handleStopRoute);
-    router.events.on('routeChangeError', handleStopRoute);
 
     return () => {
       router.events.off('routeChangeStart', handleStartRoute);
       router.events.off('routeChangeComplete', handleStopRoute);
-      router.events.off('routeChangeError', handleStopRoute);
     };
   }, [router]);
 
@@ -37,26 +30,24 @@ function LoadingScreen() {
     <AnimatePresence mode="wait">
       {isLoading && (
         <motion.div
-          className="fixed inset-0 z-50 flex h-screen w-full items-center justify-center bg-neutrals-900"
-          aria-hidden
           key={router.route}
+          aria-hidden
           initial="hidden"
           animate="visible"
           exit="hidden"
           variants={{
             hidden: {
-              opacity: '0%',
+              opacity: 0,
             },
             visible: {
-              opacity: '100%',
+              opacity: 1,
             },
           }}
+          className="fixed inset-0 z-50 flex h-screen w-full items-center justify-center bg-neutrals-900"
         >
           <Image
-            src="/images/logos/weatherworks.webp"
+            src={weatherworksLogoImage}
             alt="WeatherWorks"
-            width={256}
-            height={256}
             className="h-20 w-20 animate-ping"
           />
         </motion.div>

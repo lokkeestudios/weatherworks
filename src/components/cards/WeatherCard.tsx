@@ -12,14 +12,14 @@ function LoadingStateDisplay() {
       className="pointer-events-none w-full rounded-2xl border-0.5 border-neutrals-50/30 bg-neutrals-800/20 px-8 py-4 shadow-lg backdrop-blur-xl lg:px-11 lg:py-6"
     >
       <div className="flex animate-pulse items-center justify-between">
-        <p className="rounded-full bg-neutrals-50/20 font-display font-bold leading-none text-transparent text-7xl">
+        <p className="rounded-md bg-neutrals-50/20 font-display font-bold leading-none text-transparent text-7xl">
           00°
         </p>
         <div className="flex flex-col items-center justify-center gap-y-2">
-          <p className="rounded-full bg-neutrals-50/20 font-medium leading-none text-transparent text-sm">
+          <p className="rounded-md bg-neutrals-50/20 font-medium leading-none text-transparent text-sm">
             Clear Sky
           </p>
-          <h3 className="rounded-full bg-neutrals-50/20 font-display font-bold leading-none text-transparent text-2xl">
+          <h3 className="rounded-md bg-neutrals-50/20 font-display font-bold leading-none text-transparent text-2xl">
             Hamburg - DE
           </h3>
         </div>
@@ -42,7 +42,7 @@ function WeatherCard({ currentWeatherQuery }: Props) {
     >
       {(currentWeatherData) => (
         <div className="group relative w-full rounded-2xl border-0.5 border-neutrals-50/30 bg-neutrals-800/60 shadow-lg backdrop-blur-xl transition-all duration-300 focus-visible:-translate-y-1 focus-visible:scale-[1.005] focus-visible:shadow-2xl hover:-translate-y-1 hover:scale-[1.005] hover:shadow-2xl">
-          <div className="absolute top-4 right-8 z-1 translate-x-1/2 opacity-0 transition-all duration-300 group-hover:translate-x-0 group-hover:opacity-100 lg:top-6 lg:right-11">
+          <div className="absolute top-4 right-8 z-1 hidden translate-x-1/2 opacity-0 transition-all duration-300 group-hover:translate-x-0 group-hover:opacity-100 lg:top-6 lg:right-11 lg:block">
             <FavouriteButton locationId={currentWeatherData.id} />
           </div>
           <Link

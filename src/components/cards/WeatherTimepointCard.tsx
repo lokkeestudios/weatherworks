@@ -1,5 +1,6 @@
 import WeatherTimepoint from '@/types/Weathertimepoint';
 import Image from 'next/image';
+import { forwardRef } from 'react';
 
 // TODO: placeholder only!
 function appendZeroIfNess(s: string) {
@@ -10,9 +11,12 @@ interface Props {
   weatherTimepoint: WeatherTimepoint;
 }
 
-function WeatherTimepointCard({ weatherTimepoint }: Props) {
-  return (
-    <li className="flex flex-col items-center justify-between">
+const WeatherTimepointCard = forwardRef<HTMLLIElement, Props>(
+  ({ weatherTimepoint }, ref) => (
+    <li
+      ref={ref}
+      className="flex flex-col items-center justify-between"
+    >
       <p className="font-medium text-neutrals-300 text-sm">
         {weatherTimepoint.type === 'current'
           ? 'Now'
@@ -44,7 +48,7 @@ function WeatherTimepointCard({ weatherTimepoint }: Props) {
           : weatherTimepoint.description}
       </p>
     </li>
-  );
-}
+  ),
+);
 
 export default WeatherTimepointCard;
