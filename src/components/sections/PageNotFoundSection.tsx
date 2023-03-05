@@ -22,7 +22,7 @@ function PageNotFoundSection() {
               404
             </h1>
           </div>
-          <p className="mb-8 font-display font-bold text-3xl">
+          <p className="mb-8 text-center font-display font-bold text-3xl">
             Some things are better not disturbed
           </p>
           <p className="mb-4 text-neutrals-50 text-base">
