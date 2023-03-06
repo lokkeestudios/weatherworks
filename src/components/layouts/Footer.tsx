@@ -43,7 +43,7 @@ function Footer() {
               className="flex flex-col items-center justify-center"
             >
               <Image
-                src="/images/logos/lokkee-studios.svg"
+                src="/images/logos/lokkeestudios.svg"
                 alt="LOKKEE STUDIOS"
                 width={48}
                 height={48}
