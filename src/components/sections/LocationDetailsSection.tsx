@@ -4,95 +4,19 @@ import InformationCard from '@/components/cards/InformationCard';
 import WeatherTimepointCard from '@/components/cards/WeatherTimepointCard';
 import Container from '@/components/Container';
 import FavouriteButton from '@/components/forms/FavouriteButton';
-import ArrowLeftIcon from '@/components/icons/ArrowLeftIcon';
-import { CurrentWeather, QueryKeys, ThreeHourForecast } from '@/proxies';
-import getCurrentWeatherByLocationId from '@/proxies/getCurrentWeatherByLocationId';
-import getThreeHourForecast from '@/proxies/getThreeHourForecast';
-import WeatherTimepoint from '@/types/Weathertimepoint';
+import ChevronLeftIcon from '@/components/icons/ChevronLeftIcon';
+import { CurrentWeather, QueryKeys, ThreeHourForecast } from '@/utils';
+import {
+  dateTimeToTimezoneDate,
+  dateToTimeString,
+  getWeatherTimepoints,
+  sortWeatherTimepointsByDay,
+} from '@/utils/dateUtils';
+import getCurrentWeatherByLocationId from '@/utils/getCurrentWeatherByLocationId';
+import getThreeHourForecast from '@/utils/getThreeHourForecast';
 import { useQuery } from '@tanstack/react-query';
 import Image from 'next/image';
 import Link from 'next/link';
-
-function getWeatherTimepoints(
-  currentWeatherData: CurrentWeather,
-  threeHourForecastData: ThreeHourForecast,
-) {
-  const weatherTimepoints: WeatherTimepoint[] = [];
-
-  /* TODO: create date utility functions */
-  const currentTimepoint: WeatherTimepoint = {
-    type: 'current',
-    temperature: currentWeatherData.main.temp,
-    date: new Date(
-      (currentWeatherData.dt + currentWeatherData.timezone) * 1000,
-    ),
-    icon: currentWeatherData.weather[0].icon,
-    description: currentWeatherData.weather[0].description,
-  };
-
-  weatherTimepoints.push(currentTimepoint);
-
-  const FORECASTED_DAYS = 3;
-
-  const sunriseDate = new Date(
-    (currentWeatherData.sys.sunrise + currentWeatherData.timezone) * 1000,
-  );
-  const sunsetDate = new Date(
-    (currentWeatherData.sys.sunset + currentWeatherData.timezone) * 1000,
-  );
-
-  for (let i = 0; i < FORECASTED_DAYS; i++) {
-    const sunriseDayOffset =
-      sunriseDate.getTime() < currentTimepoint.date.getTime() ? 1 : 0;
-    const sunsetDayOffset =
-      sunsetDate.getTime() < currentTimepoint.date.getTime() ? 1 : 0;
-
-    const currentSunriseDate = new Date(sunriseDate.getTime());
-    const currentSunsetDate = new Date(sunsetDate.getTime());
-    currentSunriseDate.setUTCDate(
-      sunriseDate.getUTCDate() + i + sunriseDayOffset,
-    );
-    currentSunsetDate.setUTCDate(sunsetDate.getUTCDate() + i + sunsetDayOffset);
-
-    const sunriseTimepoint: WeatherTimepoint = {
-      type: 'sunrise',
-      date: currentSunriseDate,
-      icon: '00d',
-      description: 'Sunrise',
-    };
-    const sunsetTimepoint: WeatherTimepoint = {
-      type: 'sunset',
-      date: currentSunsetDate,
-      icon: '00n',
-      description: 'Sunset',
-    };
-    weatherTimepoints.push(sunriseTimepoint, sunsetTimepoint);
-  }
-
-  const MAX_FORECAST_TIMEPOINTS = 8 * FORECASTED_DAYS; // which equals to the next three forecasted days
-
-  threeHourForecastData.list
-    .slice(0, MAX_FORECAST_TIMEPOINTS)
-    .forEach((forecastedWeather) =>
-      weatherTimepoints.push({
-        type: 'forecast',
-        temperature: forecastedWeather.main.temp,
-        date: new Date(
-          (forecastedWeather.dt + currentWeatherData.timezone) * 1000,
-        ),
-        icon: forecastedWeather.weather[0].icon,
-        description: forecastedWeather.weather[0].description,
-        rainPropability:
-          forecastedWeather.weather[0].main === 'Rain' && forecastedWeather.pop
-            ? Math.round(forecastedWeather.pop * 100)
-            : undefined,
-      }),
-    );
-
-  weatherTimepoints.sort((a, b) => a.date.getTime() - b.date.getTime());
-
-  return weatherTimepoints;
-}
 
 interface Props {
   initialCurrentWeatherData: CurrentWeather;
@@ -120,51 +44,36 @@ function LocationDetailsSection({
     },
   );
 
+  const currentDate = new Date(
+    (currentWeatherQuery.data.dt + currentWeatherQuery.data.timezone) * 1000,
+  );
+
+  const weatherTimepointsByDay = sortWeatherTimepointsByDay(
+    currentDate,
+    getWeatherTimepoints(currentWeatherQuery.data, threeHourForecastQuery.data),
+  );
+
+  const windSpeed = currentWeatherQuery.data.wind.speed.toFixed(1);
+
+  const sunriseTime = dateToTimeString(
+    dateTimeToTimezoneDate(
+      currentWeatherQuery.data.sys.sunrise,
+      currentWeatherQuery.data.timezone,
+    ),
+  );
+
+  const sunsetTime = dateToTimeString(
+    dateTimeToTimezoneDate(
+      currentWeatherQuery.data.sys.sunset,
+      currentWeatherQuery.data.timezone,
+    ),
+  );
+
   const isErrorMessageDisplayed =
     currentWeatherQuery.isError || threeHourForecastQuery.isError;
   const isLoaderDisplayed =
-    currentWeatherQuery.isLoading || threeHourForecastQuery.isLoading; // TODO: refactor here
+    currentWeatherQuery.isLoading || threeHourForecastQuery.isLoading;
   const isWeatherDataAvailable = !isErrorMessageDisplayed && !isLoaderDisplayed;
-
-  function sortWeatherTimepointsByDayTest(
-    weatherTimepoints: WeatherTimepoint[],
-  ) {
-    // Create an object to store the dates by day
-    const weatherTimepointsByDay: {
-      dayName: string;
-      weatherTimepoints: WeatherTimepoint[];
-    }[] = [];
-
-    // Loop through the datesArray
-    weatherTimepoints.forEach((weatherTimepoint) => {
-      // Get the day of the date
-      const day = weatherTimepoint.date.getUTCDate();
-
-      // If the day doesn't exist in the object yet, create an empty array for it
-      if (!weatherTimepointsByDay[day]) {
-        const currentDay = new Date(
-          (currentWeatherQuery.data.dt + currentWeatherQuery.data.timezone) *
-            1000,
-        ).getDate();
-
-        weatherTimepointsByDay[day] = {
-          dayName:
-            day === currentDay
-              ? 'Today'
-              : weatherTimepoint.date.toLocaleDateString('en', {
-                  weekday: 'long',
-                }),
-          weatherTimepoints: [],
-        };
-      }
-
-      // Push the date into the array for its corresponding day
-      weatherTimepointsByDay[day].weatherTimepoints.push(weatherTimepoint);
-    });
-
-    // Return the datesByDay array
-    return weatherTimepointsByDay;
-  }
 
   return (
     <section
@@ -180,30 +89,25 @@ function LocationDetailsSection({
             <Link
               href="/"
               title="Go back home"
-              className="mb-2 inline-block text-neutrals-50/70 transition-colors duration-200 focus-visible:text-neutrals-50 hover:text-neutrals-50"
+              className="mb-2 flex items-center text-neutrals-50/70 transition-colors duration-200 text-base focus-visible:text-neutrals-50 hover:text-neutrals-50"
             >
-              <ArrowLeftIcon className="h-7 w-7 lg:h-8 lg:w-8" />
+              <ChevronLeftIcon className="h-7 w-7 lg:h-10 lg:w-10" /> Home
             </Link>
             <div className="mb-10 flex items-center justify-between">
               <h1 className="mb-1 font-display font-bold leading-tight text-5xl">{`${currentWeatherQuery.data.name} - ${currentWeatherQuery.data.sys.country}`}</h1>
               <FavouriteButton locationId={locationId} />
             </div>
             <div className="grid grid-cols-2 gap-4 md:grid-cols-2 lg:grid-cols-3">
-              <div className="col-span-3 w-full">
+              <div className="col-span-3">
                 <InformationCard title="Weather forecast">
                   <ul className="grid auto-cols-max grid-flow-col divide-x-0.5 divide-neutrals-50/30 overflow-x-scroll pb-4 scrollbar-thin scrollbar-track-transparent scrollbar-thumb-neutrals-300/70 scrollbar-thumb-rounded hover:scrollbar-thumb-neutrals-300/90">
-                    {sortWeatherTimepointsByDayTest(
-                      getWeatherTimepoints(
-                        currentWeatherQuery.data,
-                        threeHourForecastQuery.data,
-                      ),
-                    ).map((weatherTimePointsByDay) => (
+                    {weatherTimepointsByDay.map((weatherTimePointsByDay) => (
                       <div
-                        key={weatherTimePointsByDay.dayName}
+                        key={weatherTimePointsByDay.dayOfWeek}
                         className="px-2 lg:px-4"
                       >
                         <p className="font-display font-bold text-base">
-                          {weatherTimePointsByDay.dayName}
+                          {weatherTimePointsByDay.dayOfWeek}
                         </p>
                         <ul className="flex gap-x-4 lg:gap-x-8">
                           {weatherTimePointsByDay.weatherTimepoints.map(
@@ -229,6 +133,7 @@ function LocationDetailsSection({
                       fill
                       loading="lazy"
                       sizes="(max-width: 768px) 100vw, 50vw"
+                      className="absolute"
                     />
                     <Image
                       src={compassNeedleImage}
@@ -236,42 +141,54 @@ function LocationDetailsSection({
                       fill
                       loading="lazy"
                       sizes="(max-width: 768px) 100vw, 50vw"
-                      className="absolute inset-0"
+                      className="absolute"
                     />
-                    <div className="absolute left-1/2 top-1/2 flex h-24 w-24 -translate-x-1/2 -translate-y-1/2 flex-col items-center justify-center rounded-full bg-neutrals-50/20 backdrop-blur-lg">
-                      <span className="font-bold text-base">
-                        {currentWeatherQuery.data.wind.speed.toFixed(1)}
-                      </span>
-                      <span className="text-xs">m/s</span>
+                    <div className="flex items-center justify-center rounded-full bg-neutrals-50/20 p-5 backdrop-blur-lg after:pt-[100%]">
+                      <div className="text-center">
+                        <p className="font-bold text-2xl">{windSpeed}</p>
+                        <p className="text-sm">m/s</p>
+                      </div>
                     </div>
                   </div>
                 </InformationCard>
               </div>
               <div className="col-span-3 md:col-span-2">
                 <InformationCard title="Additional conditions">
-                  <div className="flex flex-col gap-y-4 md:flex-row md:justify-between">
+                  <div className="grid h-full auto-rows-fr grid-cols-2 gap-y-4">
                     <div>
-                      <p className="font-semibold uppercase text-neutrals-300 text-xs">
-                        Visibility
-                      </p>
-                      <p className="text-base">
-                        {currentWeatherQuery.data.visibility} m
-                      </p>
-                    </div>
-                    <div>
-                      <p className="font-semibold uppercase text-neutrals-300 text-xs">
+                      <p className="font-semibold uppercase text-neutrals-400 text-xs">
                         Humidity
                       </p>
-                      <p className="text-base">
-                        {currentWeatherQuery.data.main.humidity}%
+                      <p className="text-5xl">
+                        {currentWeatherQuery.data.main.humidity}
+                        <span className="ml-2 text-base">%</span>
                       </p>
                     </div>
                     <div>
-                      <p className="font-semibold uppercase text-neutrals-300 text-xs">
+                      <p className="font-semibold uppercase text-neutrals-400 text-xs">
                         Pressure
                       </p>
-                      <p className="text-base">
-                        {currentWeatherQuery.data.main.pressure} hPa
+                      <p className="text-5xl">
+                        {currentWeatherQuery.data.main.pressure}
+                        <span className="ml-2 text-base">hPa</span>
+                      </p>
+                    </div>
+                    <div>
+                      <p className="font-semibold uppercase text-neutrals-400 text-xs">
+                        Sunrise
+                      </p>
+                      <p className="text-5xl">{sunriseTime}</p>
+                      <p className="mt-2 text-sm">
+                        {`Sunset at ${sunsetTime}`}
+                      </p>
+                    </div>
+                    <div>
+                      <p className="font-semibold uppercase text-neutrals-400 text-xs">
+                        Visibility
+                      </p>
+                      <p className="text-5xl">
+                        {currentWeatherQuery.data.visibility}
+                        <span className="ml-2 text-base">m</span>
                       </p>
                     </div>
                   </div>

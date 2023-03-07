@@ -1,6 +1,6 @@
 import FavouriteButton from '@/components/forms/FavouriteButton';
 import QueryStateWrapper from '@/components/QueryStateWrapper';
-import { CurrentWeather } from '@/proxies';
+import { CurrentWeather } from '@/utils';
 import { UseQueryResult } from '@tanstack/react-query';
 import Image from 'next/image';
 import Link from 'next/link';

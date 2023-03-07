@@ -1,6 +1,6 @@
 import WeatherCard from '@/components/cards/WeatherCard';
-import { QueryKeys } from '@/proxies';
-import getCurrentWeatherByLocationId from '@/proxies/getCurrentWeatherByLocationId';
+import { QueryKeys } from '@/utils';
+import getCurrentWeatherByLocationId from '@/utils/getCurrentWeatherByLocationId';
 import { useQuery } from '@tanstack/react-query';
 
 interface Props {

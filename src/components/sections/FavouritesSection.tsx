@@ -23,7 +23,7 @@ function FavouritesSection() {
               <h3 className="font-display font-bold text-2xl">
                 No favourites yet
               </h3>
-              <p className="text-base">
+              <p className="text-center text-base">
                 Locations you mark as favourite are shown here
               </p>
             </>

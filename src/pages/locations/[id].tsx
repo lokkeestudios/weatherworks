@@ -1,21 +1,19 @@
 import Background from '@/components/Background';
 import Layout from '@/components/layouts/Layout';
 import LocationDetailsSection from '@/components/sections/LocationDetailsSection';
-import getCurrentWeatherByLocationId from '@/proxies/getCurrentWeatherByLocationId';
-import getThreeHourForecast from '@/proxies/getThreeHourForecast';
+import getCurrentWeatherByLocationId from '@/utils/getCurrentWeatherByLocationId';
+import getThreeHourForecast from '@/utils/getThreeHourForecast';
 import { GetServerSidePropsContext } from 'next';
 import {
   CurrentResponse,
   ThreeHourResponse,
 } from 'openweathermap-ts/dist/types';
 
-/* start utility function */
 function isDigit(string: string) {
   const digitsRegex = /^[0-9]*$/;
 
   return digitsRegex.test(string);
 }
-/* end utility function */
 
 async function getServerSideProps(context: GetServerSidePropsContext) {
   const notFound = { notFound: true };

@@ -1,7 +1,7 @@
 import SearchIcon from '@/components/icons/SearchIcon';
 import useDebounce from '@/hooks/useDebounce';
-import { QueryKeys } from '@/proxies';
-import getFilteredLocations from '@/proxies/getFilteredLocations';
+import { QueryKeys } from '@/utils';
+import getFilteredLocations from '@/utils/getFilteredLocations';
 import { Combobox } from '@headlessui/react';
 import { Location } from '@prisma/client';
 import { useQuery } from '@tanstack/react-query';
