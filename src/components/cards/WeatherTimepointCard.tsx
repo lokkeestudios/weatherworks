@@ -27,7 +27,6 @@ const WeatherTimepointCard = forwardRef<HTMLLIElement, Props>(
           alt={description}
           width={256}
           height={256}
-          loading="lazy"
           className="h-11 w-11 md:h-16 md:w-16"
         />
         {isNotSunriseOrSunsetTimepoint && weatherTimepoint.rainPropability && (
