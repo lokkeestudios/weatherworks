@@ -161,7 +161,7 @@ function sortWeatherTimepointsByDay(
     const timepointDay = timepointDate.getUTCDate();
 
     if (!weatherTimepointsByDay[timepointDay]) {
-      const isTimepointDayToday = timepointDay === todaysDate.getDate();
+      const isTimepointDayToday = timepointDay === todaysDate.getUTCDate();
 
       const nameOfTimepointDay = timepointDate.toLocaleDateString('en', {
         weekday: 'long',
