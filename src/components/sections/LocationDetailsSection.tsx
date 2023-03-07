@@ -84,7 +84,7 @@ function LocationDetailsSection({
             <div className="grid grid-cols-2 gap-4 md:grid-cols-2 lg:grid-cols-3">
               <div className="col-span-3">
                 <InformationCard title="Weather forecast">
-                  <ul className="grid auto-cols-max grid-flow-col divide-x-0.5 divide-neutrals-50/30 overflow-x-scroll pb-4 scrollbar-thin scrollbar-track-transparent scrollbar-thumb-neutrals-300/70 scrollbar-thumb-rounded hover:scrollbar-thumb-neutrals-300/90">
+                  <div className="grid auto-cols-max grid-flow-col divide-x-0.5 divide-neutrals-50/30 overflow-x-scroll pb-4 scrollbar-thin scrollbar-track-transparent scrollbar-thumb-neutrals-300/70 scrollbar-thumb-rounded hover:scrollbar-thumb-neutrals-300/90">
                     {weatherTimepointsByDay.map((weatherTimePointsByDay) => (
                       <div
                         key={weatherTimePointsByDay.dayOfWeek}
@@ -105,7 +105,7 @@ function LocationDetailsSection({
                         </ul>
                       </div>
                     ))}
-                  </ul>
+                  </div>
                 </InformationCard>
               </div>
               <div className="col-span-3 md:col-span-1">
