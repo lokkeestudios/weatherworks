@@ -31,6 +31,7 @@ function Footer() {
             <Image
               src={weatherworksLogoImage}
               alt="WeatherWorks"
+              loading="lazy"
               className="w-16 md:w-20"
             />
           </div>
@@ -47,6 +48,7 @@ function Footer() {
                 alt="LOKKEE STUDIOS"
                 width={48}
                 height={48}
+                loading="lazy"
                 className="w-12 md:w-14"
               />
               <p className="mt-2 font-semibold uppercase text-sm">
