@@ -126,14 +126,14 @@ function LocationDetailsSection({
               </div>
               <div className="col-span-3 md:col-span-1">
                 <InformationCard title="Wind">
-                  <div className="relative flex aspect-square items-center justify-center">
+                  <div className="relative flex aspect-square w-full items-center justify-center">
                     <Image
                       src={compassRoseImage}
                       alt="Compass rose"
                       fill
                       loading="lazy"
                       sizes="(max-width: 768px) 100vw, 50vw"
-                      className="absolute"
+                      className="absolute h-full w-full"
                     />
                     <Image
                       src={compassNeedleImage}
@@ -141,7 +141,7 @@ function LocationDetailsSection({
                       fill
                       loading="lazy"
                       sizes="(max-width: 768px) 100vw, 50vw"
-                      className="absolute"
+                      className="absolute h-full w-full"
                     />
                     <div className="flex items-center justify-center rounded-full bg-neutrals-50/20 p-5 backdrop-blur-lg after:pt-[100%]">
                       <div className="text-center">
@@ -154,7 +154,7 @@ function LocationDetailsSection({
               </div>
               <div className="col-span-3 md:col-span-2">
                 <InformationCard title="Additional conditions">
-                  <div className="grid h-full auto-rows-fr grid-cols-2 gap-y-4">
+                  <div className="grid h-full auto-rows-[1fr] grid-cols-2 gap-y-4">
                     <div>
                       <p className="font-semibold uppercase text-neutrals-400 text-xs">
                         Humidity
