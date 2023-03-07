@@ -66,11 +66,11 @@ function Footer() {
             </div>
             <div className="flex basis-1/3 items-center justify-center gap-x-2">
               {socials.map((social) => {
-                const { id, link, title, Icon } = social;
+                const { position, link, title, Icon } = social;
 
                 return (
                   <a
-                    key={id}
+                    key={position}
                     href={link}
                     rel="noreferrer"
                     target="_blank"

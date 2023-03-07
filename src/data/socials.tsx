@@ -4,19 +4,19 @@ import GitHubIcon from '@/components/icons/GitHubIcon';
 
 const socials = [
   {
-    id: 1,
+    position: 0,
     title: 'View GitHub profile',
     Icon: GitHubIcon,
     link: 'https://github.lokkeestudios.com',
   },
   {
-    id: 2,
+    position: 1,
     title: 'Join Discord server',
     Icon: DiscordIcon,
     link: 'https://discord.lokkeestudios.com',
   },
   {
-    id: 3,
+    position: 2,
     title: 'View source code',
     Icon: CodeIcon,
     link: 'https://github.com/lokkeestudios/WeatherWorks',

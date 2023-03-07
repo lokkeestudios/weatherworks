@@ -21,11 +21,11 @@ function Header() {
           </Link>
           <div className="flex gap-x-2">
             {socials.map((social) => {
-              const { id, link, title, Icon } = social;
+              const { position, link, title, Icon } = social;
 
               return (
                 <a
-                  key={id}
+                  key={position}
                   href={link}
                   rel="noreferrer"
                   target="_blank"
