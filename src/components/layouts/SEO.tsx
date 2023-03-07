@@ -28,33 +28,28 @@ function SEO({ title, slug }: Props) {
           site_name: 'WeatherWorks',
           images: [
             {
-              url: '/icon-512x512.png',
-              width: 512,
-              height: 512,
-              alt: title,
-            },
-            {
               url: '/banner-1200x630.png',
+              alt: 'WeatherWorks',
               width: 1200,
               height: 630,
-              alt: title,
             },
           ],
         }}
-        twitter={{ cardType: 'summary' }}
+        twitter={{ cardType: 'summary_large_image' }}
         additionalLinkTags={[
           {
             rel: 'icon',
             href: '/favicon.ico',
+            sizes: 'any',
           },
           {
             rel: 'apple-touch-icon',
-            href: '/apple-touch-icon-180x180.png',
+            href: '/apple-touch-icon.png',
             sizes: '180x180',
           },
           {
             rel: 'manifest',
-            href: '/manifest.json',
+            href: '/site.webmanifest',
           },
         ]}
         additionalMetaTags={[
