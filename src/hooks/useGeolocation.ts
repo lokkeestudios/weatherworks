@@ -66,6 +66,8 @@ function useGeolocation() {
   }, [handlePositionError, handlePositionSuccess]);
 
   useEffect(() => {
+    if (!navigator.permissions || !navigator.permissions.query) return;
+
     navigator.permissions
       .query({ name: 'geolocation' })
       .then((geolocationPermission) => {
