@@ -1,4 +1,4 @@
-import { validateWeatherResponseStatusCode, weatherApi } from '@/proxies';
+import { validateWeatherResponseStatusCode, weatherApi } from '@/utils';
 
 async function getThreeHourForecast(locationId: number) {
   return validateWeatherResponseStatusCode(

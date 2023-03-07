@@ -1,5 +1,5 @@
-import { validateWeatherResponseStatusCode, weatherApi } from '@/proxies';
 import Geolocation from '@/types/Geolocation';
+import { validateWeatherResponseStatusCode, weatherApi } from '@/utils';
 
 async function getCurrentWeatherByGeolocation(geolocation: Geolocation) {
   return validateWeatherResponseStatusCode(
