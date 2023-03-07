@@ -7,8 +7,6 @@ import FavouriteButton from '@/components/forms/FavouriteButton';
 import ChevronLeftIcon from '@/components/icons/ChevronLeftIcon';
 import { CurrentWeather, QueryKeys, ThreeHourForecast } from '@/utils';
 import {
-  dateTimeToTimezoneDate,
-  dateToTimeString,
   getWeatherTimepoints,
   sortWeatherTimepointsByDay,
 } from '@/utils/dateUtils';
@@ -54,20 +52,6 @@ function LocationDetailsSection({
   );
 
   const windSpeed = currentWeatherQuery.data.wind.speed.toFixed(1);
-
-  const sunriseTime = dateToTimeString(
-    dateTimeToTimezoneDate(
-      currentWeatherQuery.data.sys.sunrise,
-      currentWeatherQuery.data.timezone,
-    ),
-  );
-
-  const sunsetTime = dateToTimeString(
-    dateTimeToTimezoneDate(
-      currentWeatherQuery.data.sys.sunset,
-      currentWeatherQuery.data.timezone,
-    ),
-  );
 
   const isErrorMessageDisplayed =
     currentWeatherQuery.isError || threeHourForecastQuery.isError;
@@ -157,6 +141,14 @@ function LocationDetailsSection({
                   <div className="grid h-full auto-rows-[1fr] grid-cols-2 gap-y-4">
                     <div>
                       <p className="font-semibold uppercase text-neutrals-400 text-xs">
+                        Feels like
+                      </p>
+                      <p className="flex text-5xl">
+                        {Math.round(currentWeatherQuery.data.main.feels_like)}°
+                      </p>
+                    </div>
+                    <div>
+                      <p className="font-semibold uppercase text-neutrals-400 text-xs">
                         Humidity
                       </p>
                       <p className="text-5xl">
@@ -173,15 +165,7 @@ function LocationDetailsSection({
                         <span className="ml-2 text-base">hPa</span>
                       </p>
                     </div>
-                    <div>
-                      <p className="font-semibold uppercase text-neutrals-400 text-xs">
-                        Sunrise
-                      </p>
-                      <p className="text-5xl">{sunriseTime}</p>
-                      <p className="mt-2 text-sm">
-                        {`Sunset at ${sunsetTime}`}
-                      </p>
-                    </div>
+
                     <div>
                       <p className="font-semibold uppercase text-neutrals-400 text-xs">
                         Visibility
