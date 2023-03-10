@@ -88,12 +88,12 @@ function LocationDetailsSection({
                     {weatherTimepointsByDay.map((weatherTimePointsByDay) => (
                       <div
                         key={weatherTimePointsByDay.dayOfWeek}
-                        className="px-2 lg:px-4"
+                        className="flex flex-col px-2 lg:px-4"
                       >
                         <p className="font-display font-bold text-base">
                           {weatherTimePointsByDay.dayOfWeek}
                         </p>
-                        <ul className="flex gap-x-4 lg:gap-x-8">
+                        <ul className="flex flex-1 gap-x-4 lg:gap-x-8">
                           {weatherTimePointsByDay.weatherTimepoints.map(
                             (weatherTimepoint) => (
                               <WeatherTimepointCard
@@ -127,7 +127,7 @@ function LocationDetailsSection({
                       sizes="(max-width: 768px) 100vw, 50vw"
                       className="absolute h-full w-full"
                     />
-                    <div className="flex items-center justify-center rounded-full bg-neutrals-50/20 p-5 backdrop-blur-lg after:pt-[100%]">
+                    <div className="flex aspect-square w-32 items-center justify-center rounded-full bg-neutrals-50/20 p-5 backdrop-blur-lg">
                       <div className="text-center">
                         <p className="font-bold text-2xl">{windSpeed}</p>
                         <p className="text-sm">m/s</p>
