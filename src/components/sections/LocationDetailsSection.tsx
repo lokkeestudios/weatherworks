@@ -88,11 +88,11 @@ function LocationDetailsSection({
                     {weatherTimepointsByDay.map((weatherTimePointsByDay) => (
                       <div
                         key={weatherTimePointsByDay.dayOfWeek}
-                        className="flex flex-col px-2 lg:px-4"
+                        className="relative px-2 lg:px-4"
                       >
-                        <p className="font-display font-bold text-base">
+                        <span className="sticky left-0 font-display font-bold text-base">
                           {weatherTimePointsByDay.dayOfWeek}
-                        </p>
+                        </span>
                         <ul className="flex flex-1 gap-x-4 lg:gap-x-8">
                           {weatherTimePointsByDay.weatherTimepoints.map(
                             (weatherTimepoint) => (
