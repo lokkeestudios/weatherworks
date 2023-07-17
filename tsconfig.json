@@ -17,7 +17,6 @@
     "esModuleInterop": true,
     "module": "esnext",
     "isolatedModules": true,
-    "watch": true,
     "jsx": "preserve",
     "resolveJsonModule": true
   },
