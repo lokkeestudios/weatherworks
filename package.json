@@ -23,7 +23,7 @@
     "@prisma/client": "^5.0.0",
     "@tanstack/react-query": "^4.29.25",
     "axios": "^1.4.0",
-    "framer-motion": "^10.12.22",
+    "framer-motion": "^9.0.2",
     "next": "^13.4.10",
     "next-seo": "^6.1.0",
     "openweathermap-ts": "^1.2.10",
