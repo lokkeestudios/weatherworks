@@ -61,9 +61,9 @@ const QueryKeys = {
 };
 
 export {
+  QueryKeys,
+  validateWeatherResponseStatusCode,
+  weatherApi,
   type CurrentWeather,
   type ThreeHourForecast,
-  weatherApi,
-  validateWeatherResponseStatusCode,
-  QueryKeys,
 };
