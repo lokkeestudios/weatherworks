@@ -30,7 +30,6 @@ function LoadingScreen() {
     <AnimatePresence mode="wait">
       {isLoading && (
         <motion.div
-          key={router.route}
           aria-hidden
           initial="hidden"
           animate="visible"
