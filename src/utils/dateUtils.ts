@@ -1,7 +1,7 @@
 import WeatherTimepoint from '@/types/Weathertimepoint';
 import { CurrentWeather, ThreeHourForecast } from '@/utils';
 
-const NUMBER_OF_FORECASTED_DAYS = 3;
+const NUMBER_OF_FORECASTED_DAYS = 5;
 const TIMEPOINTS_PER_DAY = 24 / 3;
 
 function toTwoDigitNumberString(number: number) {
@@ -182,8 +182,8 @@ function sortWeatherTimepointsByDay(
 }
 
 export {
-  dateToTimeString,
   dateTimeToTimezoneDate,
+  dateToTimeString,
   getWeatherTimepoints,
   sortWeatherTimepointsByDay,
 };
